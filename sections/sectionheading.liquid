@@ -1,0 +1,199 @@
+<style>
+  h2.h3 {
+    color: #d3a640;
+    font-size: 68px;
+    font-weight: 500;
+    line-height: 84px;
+}
+  
+  @media only screen and (max-width: 800px){
+  div#shopify-section-rich-text-2 {
+    border-top: 1px solid;
+}
+ h2.h3 {
+    font-size: 2.6rem;
+    line-height: 3rem;
+}
+    .grid__item.medium-up--two-thirds.medium-up--push-one-sixth {
+    margin: 0;
+}
+    .rich-text__text--large p {
+    line-height: 30px;
+    margin: 2rem 0;
+}
+  }
+
+  
+  {% if section.settings.layoutchange=="Dark" %}
+  div#shopify-section-template--15028525072428__1662651933d8997ff5 {
+    background: black;
+    
+}
+  div#shopify-section-template--15028525072428__1662651933d8997ff5 .rich-text__heading h2{
+    color:white;
+    text-align: center;
+    font-size: 4rem;
+    font-weight: 500;
+    line-height: 5rem;
+   
+  }
+ div#shopify-section-template--15028525072428__1662651933d8997ff5 .rich-text__text p{
+    color:white;
+  }
+   
+   
+    {% endif %}
+    
+    {%if section.settings.layoutchange=="Light"%}
+     div#shopify-section-template--15028525072428__1662651933d8997ff5 {
+    background: White;
+       
+}
+   div#shopify-section-template--15028525072428__1662651933d8997ff5 .rich-text__heading h2{
+    color:black;
+        text-align: center;
+    font-size: 4rem;
+    font-weight: 500;
+    line-height: 5rem;
+  }
+   div#shopify-section-template--15028525072428__1662651933d8997ff5 .rich-text__text p{
+    color:black;
+  }
+
+   {% endif %}
+   
+    {% if section.settings.layoutchange=="Golden"  %}
+         div#shopify-section-template--15028525072428__1662651933d8997ff5 {
+    background: Black;
+}
+   div#shopify-section-template--15028525072428__1662651933d8997ff5 .rich-text__heading h2{
+    color:#d3a640;
+     text-align: center;
+    font-size: 4rem;
+    font-weight: 500;
+    line-height: 5rem;
+  }
+   div#shopify-section-template--15028525072428__1662651933d8997ff5 .rich-text__text p{
+    color:#d3a640;
+  }
+
+    {% endif %}
+</style>
+
+
+{%- if section.settings.section_title != blank -%}
+<div class="page-width rich-text">
+  <div class="grid">
+    <div class="grid__item {% unless section.settings.full_width %} medium-up--two-thirds medium-up--push-one-sixth{% endunless %}">
+      {% if section.settings.section_title != blank %}
+        <div class="rich-text__heading text-center">
+          <h2 class="h3">{{ section.settings.section_title | escape }}</h2>
+        </div>
+      {% endif %}
+      {% if section.settings.text != blank %}
+        <div class="rich-text__text rte-setting text-center">{{ section.settings.text }}</div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+
+{% schema %}
+{
+  "name": "Section Heading",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": {
+        
+        "en": "Wide display",
+        "es": "Pantalla ancha"
+      }
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": {
+        "cs": "Nadpis",
+        "da": "Overskrift",
+        "de": "Titel",
+        "en": "Heading",
+        "es": "Título",
+        "fi": "Otsake",
+        "fr": "En-tête",
+        "it": "Heading",
+        "ja": "見出し",
+        "ko": "제목",
+        "nb": "Overskrift",
+        "nl": "Kop",
+        "pl": "Nagłówek",
+        "pt-BR": "Título",
+        "pt-PT": "Título",
+        "sv": "Rubrik",
+        "th": "ส่วนหัว",
+        "tr": "Başlık",
+        "vi": "Tiêu đề",
+        "zh-CN": "标题",
+        "zh-TW": "標題"
+      }
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": {
+        "cs": "Text",
+        "da": "Tekst",
+        "de": "Text",
+        "en": "Text",
+        "es": "Texto",
+        "fi": "Teksti",
+        "fr": "Texte",
+        "it": "Testo",
+        "ja": "テキスト",
+        "ko": "텍스트",
+        "nb": "Tekst",
+        "nl": "Tekst",
+        "pl": "Tekst",
+        "pt-BR": "Texto",
+        "pt-PT": "Texto",
+        "sv": "Text",
+        "th": "ข้อความ",
+        "tr": "Metin",
+        "vi": "Văn bản",
+        "zh-CN": "文本",
+        "zh-TW": "文字"
+      }
+    },
+    {
+  "type": "select",
+  "id": "layoutchange",
+  "label": "Layout",
+  "options": [
+    {
+      "value": "Dark",
+      "label": "Dark"
+    },
+    {
+      "value": "Light",
+      "label": "Light"
+    },
+    {
+      "value": "Golden",
+      "label": "Golden"
+    }
+  ],
+  "default": "Dark"
+}
+    
+  ],
+  "presets": [
+    {
+      "category": "text",
+      "name": "SectionHeading",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

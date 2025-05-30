@@ -1,0 +1,484 @@
+<style>
+  .homepage-twoproduct-v2 {
+   background:white;
+   position:relative;
+   padding-bottom:0 !important;
+}
+  div#shopify-section-8c0124f8-5ee6-49ce-979e-fc75a57c12bd {
+    padding-bottom: 0 !important;
+}
+  .shopify-section.index-section.hompage-twoproduct-v2{
+    padding-bottom: 0 !important;
+  }
+
+  
+  img.image_fluid {
+    width: 100%;
+    height: 100%;
+}
+  .imageSection {
+    position: relative;
+}
+  
+  .hompage-twoproduct-v2 .mainContainer {
+    display: flex;
+    justify-content: center;
+   margin: 0px auto; 
+    padding-top:0;
+    align-items:normal;
+}
+.hompage-twoproduct-v2 .contentSection {
+    padding: 70px;
+    padding-left:0px;
+    flex-basis: 50%;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom:0;
+  cursor: pointer;
+}
+.hompage-twoproduct-v2 .contentSection h3{
+    font-size: 40px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 0.03em;
+    text-align:center;
+    position:relative;
+    top:40px;
+}
+
+  .readMorebtn {
+  background: #000000;
+  width: auto;
+  color: white;
+  padding: 11px 50px;
+  font-size:16px;
+  font-weight: 700;
+  line-height: 31px;
+  letter-spacing: 0em;
+  text-align: left;
+
+}
+  .btnWrapper-about-v2 {
+   
+    margin-top: 30px;
+    position: relative;
+}
+  .image1 img.image_fluid {
+    width:60%;
+}
+    .image2 img.image_fluid {
+    width:45%;
+}
+.hompage-twoproduct-v2 .contentWrapper {
+/*     padding: 40px; */
+    border: 0px solid transparent;
+    padding-bottom: 0px;
+    padding-top: 0;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    
+}
+.image2 {
+    margin-left: -90px;
+    margin-top: -16px;
+}
+  .image1 {
+    padding-left: 16px;
+}
+  .hompage-twoproduct-v2 .contentWrapper p {
+    color: rgb(255 255 255);
+    font-size: 20px;
+    line-height: 36px;
+    margin: 0px auto;
+    text-align: center;
+/*     max-width: 80%; */
+}
+  .about-use-v2 .imageSection {
+    margin-top: -40px;
+}
+  .hompage-twoproduct-v2 {
+    padding-top: 0;
+}
+      .twoproduct-image .image1 img.image_fluid {
+ width:70%;
+ height:auto;       
+}
+  .btnWrapper-twoproduct-v2 p {
+    text-align:left;
+}
+  .btnWrapper-twoproduct-v2 {
+    margin-left: 40px;
+}
+  
+ 
+ 
+  @media only screen and (max-width:768px) {
+  .hompage-twoproduct-v2 .mainContainer {
+display: block;
+justify-content: center;
+margin: 0px auto;
+/* margin: 30px; */
+}
+    .hompage-twoproduct-v2 .contentSection.sectionBlock1{
+      border-bottom: 1px solid #696969;
+    }
+    .hompage-twoproduct-v2 .contentSection.sectionBlock1, .hompage-twoproduct-v2 .contentSection.sectionBlock2 {
+padding: 40px;
+padding: 0;
+}
+    .contentSection {
+/* padding-left: 100px; */
+/* flex-basis: 80%; */
+}
+    .contentWrapper {
+/* padding: 40px; */
+border: 4px solid rgba(214, 180, 98, 0.95);
+padding-bottom: 50px;
+padding-right: 118px;
+padding: 0;
+padding: 30px;
+}
+    .about-use-v2 .imageSection {
+/* margin-top: -40px; */
+display: flex;
+margin-top: 10px;
+/* justify-content: space-between; */
+gap: 12px;
+}
+    .image1 {
+/* padding-left: 16px; */
+}
+    .imageSection img.image_fluid {
+/* position: relative; */
+/* top: 20px; */
+}
+    .twoproduct-image .image1 img.image_fluid {
+ width:auto;
+}
+     .twoproduct-image .image1{
+       padding-left:0px;
+     }
+  .twoproduct-image .image1{
+       padding-left:0px;
+     }
+    
+   .twoproduct-image .image2 {
+margin-left:0px; 
+ margin-top:0px; 
+}
+    .twoproduct-image img.image_fluid {
+ position:unset; 
+ top:0px; 
+}
+    .twoproduct-image .image2 img.image_fluid {
+ width:auto;
+}
+
+ .two-productsection-v2 .sectionBlock1{
+   border-right:0px solid transparent;
+ }   
+.hompage-twoproduct-v2 .contentWrapper{
+  border-right:0px solid transparent;
+}
+    .hompage-twoproduct-v2 .contentWrapper{
+      height:400px;
+    }
+
+    .two-productsection-v2 .sectionBlock1{
+      position:relative;
+    }
+      .two-productsection-v2 .sectionBlock2{
+      position:relative;
+    }
+    .sectionBlock2:before{
+      border-right:0px solid transparent !important;
+    }
+
+  
+    
+
+
+    
+}
+  .sectionBlock1{
+    {% if section.settings.block1Image !=blank %}
+     background-image:url("{{section.settings.block1Image |img_url:'master'}}");
+     background-position:center center;
+     background-repeat:no-repeat;
+     background-size:cover;
+    {% endif %}
+     min-height: 400px;
+     position:relative;
+      {% if section.settings.colorID1 !=blank %}
+      background-color:{{section.settings.colorID1}}; 
+     {% endif %}  
+      z-index:1;  
+     border-right: 1px solid #525252;
+  
+  }
+  .sectionBlock1:before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-color:{{section.settings.overlay1}};
+   
+    opacity: 0.83;
+    z-index: -1;
+  }
+    .sectionBlock2:before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-color:{{section.settings.overlay2}};
+    opacity: 0.83;
+    z-index: -1;
+  }
+   .sectionBlock2{
+    {% if section.settings.block2Image !=blank %}
+     background-image:url("{{section.settings.block2Image |img_url:'master'}}");
+     background-position:center center;
+     background-repeat:no-repeat;
+     background-size:cover;
+    {% endif %}
+    min-height: 450px;
+     position:relative;
+     {% if section.settings.colorID2 !=blank %}
+      background-color:{{section.settings.colorID2}};
+     {% endif %}  
+     z-index:1;   
+  }
+  .sectionDescription{
+    transition: 0.5s all ease-in-out; 
+   
+  }
+  .sectionHeading{
+    transition: 0.5s all ease-in-out;
+  }
+
+.sectionBlock1:hover .sectionDescription{
+   opacity:1 !important;
+   transition: 0.5s all ease-in-out;
+   transform:scale(1);
+
+}  
+.sectionBlock2:hover .sectionHeading {
+    margin-top: -20px;
+    position: relative;
+    top:0px;
+}
+  .sectionBlock1:hover .sectionHeading {
+/*     margin-top:-20px; */
+    position: relative;
+    top:0px;
+}
+  
+.sectionBlock2:hover .sectionDescription{
+   opacity:1 !important;
+   transition: 0.5s all ease-in-out;
+  margin-top:-10px;
+} 
+    .sectionBlock1:hover .sectionDescription{
+   opacity:1 !important;
+   transition: 0.5s all ease-in-out;
+  margin-top:-10px;
+} 
+
+
+</style>
+<div class="mainContainer two-productsection-v2"> 
+    <a href="{{ section.settings.collectionLink }}"> 
+    <div class="contentSection sectionBlock1" style="background-color:rgba(236, 236, 236, 1)">
+        <div class="contentWrapper">
+       {% if section.settings.block1heading !=blank %}
+        <h3 class="sectionHeading">  
+         {{ section.settings.block1heading }}
+       </h3>
+         {% endif %}
+       <div class="sectionDescription" style="opacity:0">
+         {% if section.settings.block1description !=blank %}
+         {{ section.settings.block1description }}
+          {% endif %}
+       </div>
+<!--     
+ <div class="btnWrapper-twoproduct-v2">
+  <p>
+    <a href="{{ section.settings.btnWrapperurl}}"class="readMorebtn">Shop Now</a>
+    </p>
+ </div> -->
+        </div>
+
+      </a>
+      </div>
+   
+
+   <div class="contentSection sectionBlock2" style="background-color:rgba(236, 236, 236, 1)">
+      <a href="{{ section.settings.collectionLink2 }}"> 
+        <div class="contentWrapper">
+       {% if section.settings.block2heading !=blank %}
+        <h3 class="sectionHeading">  
+         {{ section.settings.block2heading }}
+       </h3>
+         {% endif %}
+       <div class="sectionDescription" style="opacity:0">
+         {% if section.settings.block2description !=blank %}
+         {{ section.settings.block2description }}
+          {% endif %}
+       </div>
+<!--     
+ <div class="btnWrapper-twoproduct-v2">
+  <p>
+    <a href="{{ section.settings.btnWrapperurl}}"class="readMorebtn">Shop Now</a>
+    </p>
+ </div> -->
+        </div>
+          </a>
+      </div>
+   
+
+
+ </div>
+    <script>
+
+ // $(document).ready(function(){
+   //$(".sectionBlock2").mouseover(function(){
+
+  //    $(this).find(".sectionDescription").show("slow");
+      // $(this).find(".sectionHeading").hide("slow");
+     
+ //  });
+ //$(".sectionBlock2").mouseleave(function(){
+
+    //  $(this).find(".sectionDescription").hide("slow");
+    //   $(this).find(".sectionHeading").show("slow");
+     
+  // });
+
+ 
+ //});
+   
+  
+    
+    </script>
+
+{% schema %}
+{
+  "name": {
+    
+    "en": "Homepage-twoproduct-v2"
+  },
+  "class": "index-section hompage-twoproduct-v2",
+  "settings": [
+     {
+       "type":"header",
+       "content":"Section Block 1"
+     },
+       {
+      "type": "text",
+      "id": "block1heading",
+      "label":"Section Block Heading",
+      "default": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "block1description",
+      "label":"Section Description"
+     
+    },
+    {
+      "type": "url",
+      "id": "collectionLink",
+      "label":"Block Link"
+     
+    },
+      {
+      "type": "image_picker",
+      "id": "block1Image",
+      "label":"Choose Section Block BG Image"
+     
+    },
+     {
+        "type": "color",
+        "id": "colorID1",
+        "label": "Select Background For Block 1",
+        "default": "#000000"
+      
+       },
+      {
+        "type": "color",
+        "id": "overlay1",
+        "label": "Select Background overlay Block 1",
+        "default": "#000000"
+      
+       },
+        {
+       "type":"header",
+       "content":"Section Block 2"
+     },
+       {
+      "type": "text",
+      "id": "block2heading",
+      "label":"Section Block Heading",
+      "default": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "block2description",
+      "label":"Section 2 Description"
+     
+    },
+     {
+      "type": "url",
+      "id": "collectionLink2",
+      "label":"Block Link"
+     
+    },
+      {
+      "type": "image_picker",
+      "id": "block2Image",
+      "label":"Choose Section Block BG Image"
+     
+    },
+     {
+        "type": "color",
+        "id": "colorID2",
+        "label": "Select Background For Block 2",
+        "default": "#000000"
+      
+       },
+     {
+        "type": "color",
+        "id": "overlay2",
+        "label": "Select Background overlay Block 2",
+        "default": "#000000"
+      
+       }
+    
+  
+  ],
+  "presets": [
+    {
+      "name": {
+       
+        "en": "Homepage Two product V2"
+      
+      },
+      "category": {
+       
+        "en": "Homepage"
+       
+      }
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,541 @@
+<style>
+.template-index .custom-carousel-wrapper {
+    width: 100% !important;
+}
+  .hompage-custom-review {
+    padding-top: 0px;
+    padding-bottom: 0;
+}
+  .template-index .custom-carousel-wrapper {
+    width: 100%;
+    margin: auto;
+    padding: 48px 0;
+    padding-top:0px;
+    {% if section.settings.colorID !=blank %}
+    background:{{section.settings.colorID}}
+    {% else %}  
+    background: #ffff;
+    {% endif %}  
+}
+ .custom-carousel-title-and-link {
+    margin-bottom: 24px;
+}
+  .custom-widget.custom-widget {
+    display: block;
+}
+  .template-index .custom-carousel {
+    margin: 25px auto;
+    width: 80%;
+}
+  .custom-carousel-title {
+    text-align: center;
+    margin: 0;
+}
+
+.custom-carousel-title {
+    padding: 50px;
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 36px;
+    color: rgba(51, 51, 51, 1);
+    letter-spacing: 0.03em;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform:capitalize;
+}
+  .custom-carousel-wrapper .custom-all-reviews-rating-wrapper {
+    display: block;
+    text-align: center;
+}
+  .custom-carousel-title-and-link .custom-all-reviews-rating-wrapper {
+    display: none !important;
+}
+  .custom-carousel-number-of-reviews {
+    text-decoration: underline;
+}
+
+  .custom-carousel--done .custom-carousel__item-container {
+    overflow: hidden;
+    position: relative;
+}
+  .template-index .custom-carousel__item-container {
+    max-width: 100% !important;
+    margin: 0px auto !important;
+}
+  .custom-carousel__item-container {
+    overflow: auto;
+}
+  .custom-carousel__arrows {
+    margin: 20px auto 10px auto;
+    font-size: 0;
+    text-align: center;
+}
+  .custom-carousel--done .custom-carousel__item-wrapper {
+    position: relative;
+    transition: transform 500ms ease;
+}
+  .template-index .custom-carousel__item-wrapper {
+    height: auto !important;
+}
+  .custom-carousel__item-wrapper {
+    width: 100%;
+    height: 200px;
+    white-space: nowrap;
+}
+  .template-index .custom-carousel__item-wrapper .custom-carousel-item {
+    padding: 0px 25px;
+    padding-top: 15px;
+    min-height:auto;
+    margin: 0px 15px;
+    background: rgba(238, 238, 238, 1);
+    border-radius: 10px;
+    width: calc(33.3% - 25px);
+}
+  .custom-carousel-item {
+    display: inline-block;
+    height: 100%;
+    width: 33.3%;
+    vertical-align: middle;
+    padding: 0 24px;
+    overflow: hidden;
+}
+  .template-index .custom-carousel-wrapper .custom-carousel-item__review {
+    height: calc(70% - 0em) !important;
+}
+  .custom-carousel-item__review {
+    width: 100%;
+    height: calc(72% - 4em);
+    text-align: center;
+    white-space: normal;
+    overflow: hidden;
+}
+  .custom-carousel-item__review-rating {
+    font-size: 120%;
+}
+  .custom-carousel-item__review-rating .custom-star {
+    color: #ecc538;
+}
+  .template-index .custom-carousel-item__review-body {
+    -webkit-line-clamp: unset !important;
+}
+.custom-carousel-item__review-body {
+    margin: 0;
+}
+.custom-line-clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+  .custom-carousel-item__review-body>p {
+    margin: 0;
+}
+
+.custom-carousel-item__review-body>p {
+    font-size:17px;
+    font-weight: 500;
+    line-height:27px;
+    letter-spacing: 0;
+    text-align: left;
+    color: rgba(44, 44, 44, 1);
+    padding: 6px 0px;
+}
+  .custom-carousel-item__reviewer-name.custom-ellipsis {
+    color: rgba(44, 44, 44, 1);
+    opacity: 1;
+    font-size: 16px;
+    font-weight: 500;
+    font-weight: 600;
+}
+  .custom-carousel-item__reviewer-name-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding:10px 0px;
+}
+  .custom-carousel-item__reviewer-name-wrapper img {
+    width: 45px;
+    border-radius: 50%;
+}
+  .testimonials{
+    margin-top:70px;
+  }
+  .custom-carousel--done .custom-carousel__item-container{
+    overflow:visible;
+  }
+  .custom-carousel--done .custom-carousel__item-container svg.icon.icon-chevron-left{
+  margin-left:-60px; 
+  }
+  .custom-carousel--done .custom-carousel__item-container .slick-prev:before{
+    display:none;
+  }
+
+  svg.icon.icon-chevron-left {
+    width: 40px;
+    height: 40px;
+    fill: black;
+}
+  svg.icon.icon-chevron-right {
+    width: 40px;
+    height: 40px;
+    fill: black;
+}
+  .slick-next:before{
+    display:none;
+  }
+    @media only screen and (max-width: 800px){
+.custom-carousel-title{
+       font-size: 36px;
+      line-height: 56px;
+      padding: 25px 0px;
+      color: rgba(51, 51, 51, 1);
+}
+      .template-index .custom-carousel{
+        width:100%;
+      }
+    }
+
+ 
+</style>
+
+<div class="custom-carousel-wrapper">
+  <div class="custom-carousel-title-and-link">
+    {% if section.settings.sectionHeading !=blank %}
+    <h4 class="custom-carousel-title">{{ section.settings.sectionHeading }}</h4>
+    {% endif %}
+    <span class="custom-all-reviews-rating-wrapper">
+      <span  class="custom-all-reviews-rating" aria-label="5.00 stars" tabindex="0" role="img"><span class="custom-star custom--on"></span><span class="custom-star custom--on"></span><span class="custom-star custom--on"></span><span class="custom-star custom--on"></span><span class="custom-star custom--on"></span></span>
+      <span  class="custom-carousel-number-of-reviews">from 3 reviews</span>
+</span>  </div>
+  <section class="custom-widget custom-carousel custom-carousel--default-theme custom-carousel--done"> 
+    <style>.custom-carousel{display: none}</style> <style> .custom-xx{left:0}.custom-carousel-wrapper .custom-carousel-item__review{height:calc(72% - 4em)}
+      
+ </style> 
+    
+    <div class="custom-carousel__item-container"> 
+      <div class="custom-carousel__item-wrapper" style="font-size: 0px; transform: translate3d(0px, 0px, 0px);">
+
+        {% for block in section.blocks %}
+        <div class="custom-carousel-item custom--shop-review" style="font-size: 15px;">
+        <div class="custom-carousel-item__review"> 
+          <div class="custom-carousel-item__review-content">
+        
+            <div class="custom-carousel-item__review-body custom-line-clamp">
+              {% if block.settings.quote !=blank %}
+                <p>{{block.settings.quote }}</p>
+             
+              {% endif %}
+                </div>
+          </div> 
+        </div>
+        <div class="custom-carousel-item__reviewer-name-wrapper">
+             {% if block.settings.image !=blank %}
+            <img src="{{ block.settings.image |img_url:'master' }}" class="authorImage"/>
+            {% endif %}
+          <div class="custom-carousel-item__reviewer-name custom-ellipsis"> 
+           
+            {% if block.settings.author !=blank %}
+             {{ block.settings.author }}
+            
+            {% endif %}  
+              </div> 
+         
+        </div> 
+       
+      </div>
+  {% endfor %}
+   
+        
+      </div> 
+    </div>
+    {% if section.settings.btntitle !=blank %}
+    <div class="product-form__item product-form__item--submit testimonials">
+                <a href="{{ section.settings.btnUrl }}" class="btn product-form__cart-submit" style="width:fit-content;margin:0px auto">
+                  <span>{{ section.settings.btntitle }} </span>
+                 
+                </a>
+                
+              </div>
+      {% endif %}
+  </section>
+</div>
+
+<script>
+
+$(document).ready(function(){
+  $('.custom-carousel__item-wrapper').slick({
+  dots: true,
+  infinite: true,
+  speed: 300,
+  arrows:true,
+prevArrow:"<button type='button' class='slick-prev'>{% render 'icon-chevron-left' %}</button>",
+  nextArrow:"<button type='button' class='slick-next'>{% render 'icon-chevron-right' %}</button>",
+  slidesToShow:3,
+  loop:true,
+  slidesToScroll:3,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 492,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+});
+  
+});
+
+</script>
+{% schema %}
+{
+  "name": {
+    
+    "en": "Custom-Testimonial"
+  },
+  "class": "index-section hompage-custom-review",
+  "settings": [
+         {
+        "type": "header",
+        "content":"Content Area"
+      },
+       {
+      "type": "text",
+      "id": "sectionHeading",
+      "label":"Heading",
+      "default": "Heading"
+      },
+     {
+      "type": "text",
+      "id": "btntitle",
+      "label": "Button Label"
+      },
+      {
+        "type": "url",
+        "id": "btnUrl",
+        "label": "Button Link"
+        
+      },
+      {
+        "type": "header",
+        "content":"Section Settings"
+        
+      },
+     
+     {
+        "type": "color",
+        "id": "colorID",
+        "label": "Select Background Color",
+        "default": "#000000"
+      }
+    
+  ],
+  "blocks": [
+	
+    {
+      "type": "quote",
+      "name": {
+        "cs": "Ohlas",
+        "da": "Udtalelse",
+        "de": "Testimonial",
+        "en": "Testimonial",
+        "es": "Testimonio",
+        "fi": "Suositukset",
+        "fr": "Témoignage",
+        "it": "Testimonial",
+        "ja": "お客様の声",
+        "ko": "추천",
+        "nb": "Anbefaling",
+        "nl": "Testimonial",
+        "pl": "Referencja",
+        "pt-BR": "Depoimento",
+        "pt-PT": "Testemunho",
+        "sv": "Kundberättelser",
+        "th": "เสียงชื่นชมจากลูกค้า",
+        "tr": "Kullanıcı görüşü",
+        "vi": "Chứng thực",
+        "zh-CN": "感言",
+        "zh-TW": "推薦文"
+      },
+      "settings": [
+		{
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+        {
+          "type": "richtext",
+          "id": "quote",
+          "label": {
+            "cs": "Text",
+            "da": "Tekst",
+            "de": "Text",
+            "en": "Text",
+            "es": "Texto",
+            "fi": "Teksti",
+            "fr": "Texte",
+            "it": "Testo",
+            "ja": "テキスト",
+            "ko": "텍스트",
+            "nb": "Tekst",
+            "nl": "Tekst",
+            "pl": "Tekst",
+            "pt-BR": "Texto",
+            "pt-PT": "Texto",
+            "sv": "Text",
+            "th": "ข้อความ",
+            "tr": "Metin",
+            "vi": "Văn bản",
+            "zh-CN": "文本",
+            "zh-TW": "文字"
+          }
+        },
+		
+        {
+          "type": "text",
+          "id": "author",
+          "label": {
+            "cs": "Autor",
+            "da": "Forfatter",
+            "de": "Autor",
+            "en": "Author",
+            "es": "Autor",
+            "fi": "Kirjoittaja",
+            "fr": "Auteur",
+            "it": "Autore",
+            "ja": "執筆者",
+            "ko": "작성자",
+            "nb": "Forfatter",
+            "nl": "Auteur",
+            "pl": "Autor",
+            "pt-BR": "Autoria",
+            "pt-PT": "Autoria",
+            "sv": "Upphovsman",
+            "th": "ผู้เขียน",
+            "tr": "Yazar",
+            "vi": "Tác giả",
+            "zh-CN": "作者",
+            "zh-TW": "作者"
+          },
+          "default": {
+            "cs": "Jméno autora",
+            "da": "Forfatterens navn",
+            "de": "Name des Autors",
+            "en": "Author's name",
+            "es": "Nombre del autor",
+            "fi": "Kirjoittajan nimi",
+            "fr": "Nom de l'auteur",
+            "it": "Nome dell'autore",
+            "ja": "筆者の名前",
+            "ko": "작성자 이름",
+            "nb": "Forfatterens navn",
+            "nl": "Naam auteur",
+            "pl": "Nazwisko autora",
+            "pt-BR": "Nome do autor",
+            "pt-PT": "Nome do autor",
+            "sv": "Författarens namn",
+            "th": "ชื่อผู้เขียน",
+            "tr": "Yazar adı",
+            "vi": "Tên tác giả",
+            "zh-CN": "作者姓名",
+            "zh-TW": "作者名稱"
+          }
+        },
+		{
+      "type": "text",
+      "id": "button_label",
+      "label": {
+        "cs": "Text tlačítka",
+        "da": "Knaptekst",
+        "de": "Button-Etikett",
+        "en": "Button label",
+        "es": "Etiqueta de botón",
+        "fi": "Tekstipainike",
+        "fr": "Texte du bouton",
+        "it": "Etichetta pulsante",
+        "ja": "ボタンのラベル",
+        "ko": "버튼 레이블",
+        "nb": "Knappetikett",
+        "nl": "Knoplabel",
+        "pl": "Przycisk z etykietą",
+        "pt-BR": "Etiqueta de botão",
+        "pt-PT": "Etiqueta do botão",
+        "sv": "Knappetikett",
+        "th": "ป้ายกำกับปุ่ม",
+        "tr": "Düğme etiketi",
+        "vi": "Nhãn nút",
+        "zh-CN": "按钮标签",
+        "zh-TW": "按鈕標籤"
+      }
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": {
+        "cs": "Tlačítkový odkaz",
+        "da": "Knaplink",
+        "de": "Button-Link",
+        "en": "Button link",
+        "es": "Enlace de botón",
+        "fi": "Painikelinkki",
+        "fr": "Lien du bouton",
+        "it": "Link pulsante",
+        "ja": "ボタンのリンク",
+        "ko": "버튼 링크",
+        "nb": "Kobling for knapp",
+        "nl": "Knoplink",
+        "pl": "Link przycisku",
+        "pt-BR": "Link de botão",
+        "pt-PT": "Ligação do botão",
+        "sv": "Knapplänk",
+        "th": "ลิงก์ปุ่ม",
+        "tr": "Düğme bağlantısı",
+        "vi": "Liên kết trên nút",
+        "zh-CN": "按钮链接",
+        "zh-TW": "按鈕連結"
+      }}
+      ]
+    }
+  ],
+  
+  "presets": [
+    {
+      "name": {
+       
+        "en": "Custom Testimonial Section"
+      
+      },
+      "category": {
+       
+        "en": "Homepage"
+       
+      }
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

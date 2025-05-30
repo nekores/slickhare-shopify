@@ -1,0 +1,133 @@
+{% if section.blocks.size > 0 %}
+
+<section class="offer-img-txt">
+   {% for block in section.blocks %}
+  {%- if block.settings.image != blank-%}
+
+  <div class="banner_img">
+    <img src="{{block.settings.image |img_url: 'medium'}}">
+  </div>
+  {%- endif -%}
+   {%- if block.settings.heading != blank-%}
+    <div class="container">
+  <div class="head_content">
+    <h2 class="head">{{block.settings.heading}}</h2>
+    <div class="head_h2">
+    <h3>{{block.settings.discription}}</h3>
+    </div>
+  </div>
+  </div>
+  {%- endif -%}
+  <div class="buy-button">
+
+		<div class="offer-btn">
+        <a href="{{ block.settings.button_link }}"
+          class="btn">
+          {{- block.settings.button_label | escape -}}
+        </a>
+      </div>
+     
+  </div>
+  {% endfor %}
+  
+</section>
+
+ {%- endif -%}
+
+
+
+{% schema %}
+  {
+    "name": "callout-variant-1",
+    "settings": [],
+	"max_blocks": 5,
+  "blocks": [
+	{
+	  "type": "image",
+      "name": "Image slide",
+      "settings": [
+	{
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+	{
+      "type": "text",
+      "id": "discription",
+      "label": "Discription"
+    },
+	{
+      "type": "text",
+      "id": "button_label",
+      "label": "button_labal"
+    },
+	{
+      "type": "url",
+      "id": "button_link",
+      "label": "button_link"
+    }
+	]
+  	}],
+
+"presets": [
+    {
+      "category": "Image",
+      "name": "callout-variant-1",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  
+  .head_content {
+    margin: 1rem;
+    padding: 1rem;
+}
+  h2.head {
+    font-size: 3rem;
+    color: #000;
+    font-weight: 700;
+    text-align: center;
+}
+  .head_h2 h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #000;
+    text-align: center;
+    padding: 1rem 0;
+}
+  section.offer-img-txt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    padding: 4rem;
+}
+  .offer-btn a.btn {
+    text-transform: unset;
+}
+  @media only screen and (max-width: 750px){
+  h2.head {
+    font-size: 1.8rem;
+}
+  .head_h2 h3 {
+    font-size: 1rem;
+    padding: 0;
+}
+  
+ .offer-btn a.btn {
+    padding: 0.9rem 1.8rem;
+}
+    section.offer-img-txt {
+    padding: 2rem 0;
+}
+  }
+</style>

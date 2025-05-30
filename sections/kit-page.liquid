@@ -1,0 +1,813 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+<style> 
+.main-layout {
+    background-color: #eee9e7;
+    padding-top: 50px;
+    padding-bottom:100px;
+}
+
+ @media (min-width: 1260px){
+    .main-layout .container {
+        max-width: 77rem;
+        margin:0px auto;
+    }
+  }
+.sectionHeading__subtitle{
+    letter-spacing: .25em;
+    color: #000;
+    margin-bottom: 1rem;
+    font-size: .875rem;
+    text-transform: uppercase!important;
+    font-weight: 700!important;
+    
+}
+  .sectionHeading.-md .sectionHeading__title {
+    font-size: 3rem;
+    line-height: 1.1;
+    text-transform: uppercase!important;
+    font-weight: 800!important;
+    color: #000;
+    padding-bottom:40px;
+}
+  .text-center {
+    text-align: center!important;
+}
+.col-12 {
+    width: 100%;
+    flex: none;
+}
+  .main-layout .container .row{
+    width: 100%;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x)*.5);
+    padding-left: calc(var(--bs-gutter-x)*.5);
+    margin-top: var(--bs-gutter-y);
+    flex-shrink: 0;
+    display:flex;
+  }
+
+/*  product design */
+  .justify-content-center {
+    justify-content: center!important;
+}
+  .y-gap-48 {
+    margin-top: -1.5rem;
+    margin-bottom: -1.5rem;
+}
+
+.x-gap-48 {
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+}
+.mt-4 {
+    margin-top: 0.25rem!important;
+}
+
+.d-flex {
+    display: flex!important;
+}
+@media (min-width:768px){
+.col-lg-4 {
+    width: 33.3333% !important;
+    flex: none;
+}
+  }
+@media (max-width: 768px){
+.col-md-6 {
+    width: 50%;
+    flex: none;
+}  
+  .main-layout .container .row{
+    flex-wrap:wrap;
+  }
+  .main-layout .productCard{
+    margin-bottom:60px;
+    margin-left:1rem;
+    margin-right:1rem;
+  }
+  }
+  @media (max-width:492px){
+    .main-layout .col-12{
+      width:100%;
+    }
+  }
+  .shadow-light {
+    box-shadow: 0 6px 24px -2px #778ba533;
+}
+  .main-layout .container{
+    align-items:center;
+  }
+  .productCard__title{
+    font-weight: 900;
+    cursor: pointer;
+    font-size: 24px;
+    margin-top: 1rem!important;
+    margin-bottom: 1rem!important;
+    color: #000;
+    font-family: "quasimoda";
+  }
+  .productCard__img{
+    position:relative;
+    overflow: hidden!important;
+    
+  }
+  .badge-price {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 4.25rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    z-index: 2;
+    font-family: 'quasimoda';
+    background: #d2a63f;
+    color: white;
+    font-weight:900;
+    right:10px;
+    top:10px;
+    font-size:15px;
+}
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+  .productCard__content {
+    padding:1rem;
+    justify-content: space-between!important;
+    
+  }
+ .productCard__price{
+    font-weight: 800;
+    font-size: 30px;
+    text-align: center;
+    color: #000;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: 'quasimoda';
+    margin-top: 0;
+}
+  @media (min-width:768px){
+.productCard.-hover-fx:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px #00000024, 0 10px 10px #0000001f;
+}
+  
+}
+.productCard.-hover-fx {
+    transition: all .4s cubic-bezier(.165,.84,.44,1);
+}
+  
+  .stars {
+    --percent: calc(var(--rating)/5*100%);
+    font-family: quasimoda,sans-serif;
+    display: inline-block;
+}
+  .text-xs {
+    font-size: .75rem;
+}
+  .productCard .button {
+    white-space: nowrap;
+}
+
+.button.-accent {
+color: white;
+    background-color: #D3A640;
+    padding: 0.9375rem 1.6875rem;
+    font-size: 20px;
+    line-height: 1;
+    border-radius: 4px;
+    border: none;
+    font-family: 'quasimoda';
+    font-weight: 900;
+    text-transform: uppercase;
+}
+  .flex-column {
+    flex-direction: column!important;
+}
+  .productCard {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    background-color: #fff;
+    border-radius: 10px;
+    position:relative;
+    width:100%;
+    height:100%;
+}
+  .stars:before {
+    content: "\2605\2605\2605\2605\2605";
+    background: linear-gradient(90deg,#fae300 var(--percent),#ced4da var(--percent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0!important;
+}
+
+  .freelabel_product:before {
+    content: "Free";
+    position: absolute;
+    /* box-shadow: 0 0.5rem 1rem #15151561; */
+    width: 168px;
+    height: 64px;
+    font-family: 'quasimoda';
+    justify-content: center;
+    color: #fff;
+    display: flex;
+    background: #E4C13C;
+    font-weight: 800;
+    z-index: 1;
+    font-size: 17px;
+    right: -74px;
+    top: -21px;
+    transform: rotate(45deg);
+    align-items: end;
+    text-transform: uppercase;
+}
+  .text-muted {
+    color: #9c9c9c!important;
+}
+  .productCard__category .d-flex{
+    justify-content: center;
+    color: #000;
+    padding-bottom: 7PX;
+    font-weight: 600;
+    font-family: 'quasimoda';  
+    margin-top:10px;
+    margin-bottom:10px;
+    font-size:18px;
+  }
+  .my-2 {
+    margin-top: 0.5rem!important;
+    margin-bottom: 0.5rem!important;
+}
+  .text-gray-400{
+    color: #000;
+    font-weight: 500;
+    font-family: 'quasimoda';
+    font-size: 12px;
+  }
+
+.button-modal {
+    border: none;
+    /* background: #e9b90f5c; */
+    padding: 10px;
+    position: relative;
+    color: #D2A63F;
+    text-align: center;
+    line-height: 24px;
+    font-weight: 600;
+    font-family: 'quasimoda';
+    top: 8px;
+    /* padding-left: 0; */
+    font-size: 17px;
+    padding: 2px 12px;
+    text-decoration: underline;
+    transition: all 0.5s;
+}
+  @font-face { 
+  font-family:"quasimoda";
+  src:url("https://use.typekit.net/af/eba4b9/00000000000000007735dedf/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("woff2"),url("https://use.typekit.net/af/eba4b9/00000000000000007735dedf/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("woff"),url("https://use.typekit.net/af/eba4b9/00000000000000007735dedf/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("opentype");
+  font-display:swap;
+  font-style:italic;
+  font-weight:400;
+  font-stretch:normal;
+} 
+@font-face { 
+  font-family:"quasimoda";
+  src:url("https://use.typekit.net/af/e1ca79/00000000000000007735deda/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff2"),url("https://use.typekit.net/af/e1ca79/00000000000000007735deda/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff"),url("https://use.typekit.net/af/e1ca79/00000000000000007735deda/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("opentype");
+  font-display:swap;
+  font-style:normal;
+  font-weight:500;
+  font-stretch:normal;
+} 
+@font-face { 
+  font-family:"quasimoda";
+  src:url("https://use.typekit.net/af/6cbe82/00000000000000007735ded9/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i5&v=3") format("woff2"),url("https://use.typekit.net/af/6cbe82/00000000000000007735ded9/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i5&v=3") format("woff"),url("https://use.typekit.net/af/6cbe82/00000000000000007735ded9/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i5&v=3") format("opentype");
+  font-display:swap;
+  font-style:italic;
+  font-weight:500;
+  font-stretch:normal;
+} 
+@font-face { 
+  font-family:"quasimoda";
+  src:url("https://use.typekit.net/af/9f95de/00000000000000007735dedb/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("woff2"),url("https://use.typekit.net/af/9f95de/00000000000000007735dedb/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("woff"),url("https://use.typekit.net/af/9f95de/00000000000000007735dedb/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("opentype");
+  font-display:swap;
+  font-style:normal;
+  font-weight:600;
+  font-stretch:normal;
+} 
+@font-face { 
+  font-family:"quasimoda";
+  src:url("https://use.typekit.net/af/8e71df/00000000000000007735ded6/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i6&v=3") format("woff2"),url("https://use.typekit.net/af/8e71df/00000000000000007735ded6/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i6&v=3") format("woff"),url("https://use.typekit.net/af/8e71df/00000000000000007735ded6/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i6&v=3") format("opentype");
+  font-display:swap;
+  font-style:italic;
+  font-weight:600;
+  font-stretch:normal;
+} 
+@font-face { 
+  font-family:"quasimoda";
+  src:url("https://use.typekit.net/af/4fe93d/00000000000000007735dedd/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff2"),url("https://use.typekit.net/af/4fe93d/00000000000000007735dedd/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff"),url("https://use.typekit.net/af/4fe93d/00000000000000007735dedd/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("opentype");
+  font-display:swap;
+  font-style:normal;
+  font-weight:700;
+  font-stretch:normal;
+} 
+@font-face { 
+  font-family:"quasimoda";
+  src:url("https://use.typekit.net/af/c62fe0/00000000000000007735ded2/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3") format("woff2"),url("https://use.typekit.net/af/c62fe0/00000000000000007735ded2/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3") format("woff"),url("https://use.typekit.net/af/c62fe0/00000000000000007735ded2/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3") format("opentype");
+  font-display:swap;
+  font-style:italic;
+  font-weight:700;
+  font-stretch:normal;
+} 
+@font-face { 
+  font-family:"quasimoda";
+  src:url("https://use.typekit.net/af/af2a98/00000000000000007735ded3/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n8&v=3") format("woff2"),url("https://use.typekit.net/af/af2a98/00000000000000007735ded3/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n8&v=3") format("woff"),url("https://use.typekit.net/af/af2a98/00000000000000007735ded3/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n8&v=3") format("opentype");
+  font-display:swap;
+  font-style:normal;
+  font-weight:800;
+  font-stretch:normal;
+} 
+  .size-2xs {
+    width: 1.25rem!important;
+    height: 1.25rem!important;
+}
+
+/*  Modal Box  */
+ 
+.modal-box-product {
+    max-width: 90%;
+    padding: 0;
+    vertical-align: top;
+    top: 50px;
+    box-sizing: border-box;
+    box-shadow: 0 0.5rem 1rem #00000026;
+    position: inherit;
+    margin: auto;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+  
+}
+  .blocker.current .modal-box-product{
+    opacity:1;
+  }
+ .modal-content {
+    max-height: 100%;
+    overflow: hidden;
+}
+  .modal-content {
+    width: 100%;
+    color:;
+    pointer-events: auto;
+    background-color:#fff ;
+    border:1px solid #0000002d;
+    border-radius:.5rem;
+    box-shadow:0 .5rem 1rem #00000026;
+    background-clip: padding-box;
+    outline: 0;
+    flex-direction: column;
+    display: flex;
+    position: relative;
+}
+  .modal-header {
+    padding:1rem 1rem ;
+    border-bottom:1px solid #dee2e6 ;
+    border-top-left-radius:calc(.5rem - 1px);
+    border-top-right-radius:calc(.5rem - 1px);
+    flex-shrink: 0;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+}
+  .justify-content-center {
+    justify-content: center!important;
+}
+  .modal-footer {
+    padding:10px;
+    background-color: var(--bs-modal-footer-bg);
+    border-top:1px solid #dee2e6;
+    border-bottom-right-radius:calc(.5rem - 1px);
+    border-bottom-left-radius: calc(.5rem - 1px);
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+}
+  .modal a.close-modal{
+    top: 15px;
+    right: 13px;
+  }
+
+  .modal-box-product .modal-body {
+    padding:2rem;
+    flex: auto;
+    background: #eee9e7;
+    position: relative;
+    overflow:hidden;
+    padding-bottom:10px;
+}
+  .modal-box-product .card {
+    word-wrap: break-word;
+    max-height: 350px;
+    border: 1px solid #0000002d;
+    border-radius: 10px;
+    background-clip: border-box;
+    flex-direction: column;
+    overflow: hidden;
+    display: flex;
+    position: relative;
+    margin: 18px;
+    margin-left: 15px;
+    min-height: 350px;
+    background: #fff;  
+}
+  .card-body .heading span{
+    color: #000;
+    font-family: 'quasimoda';
+    font-weight: 700;
+}
+   .card-body{   
+    padding: 10px;
+    background: white;
+            }
+  .productDescription p{
+    font-family: 'quasimoda';
+    font-weight: 500;
+    line-height: 19px;
+    font-size: 14px;
+    color: #000;
+  }
+  svg.bi.bi-arrow-left-circle-fill {
+    width: 40px;
+    display: block;
+    height: 40px;
+    background: transparent;
+    color: black;
+}
+  svg.bi.bi-arrow-right-circle-fill {
+    width: 40px;
+    display: block;
+    height: 40px;
+    background: transparent;
+    color: black;
+}
+.modal-box-product .slick-prev:before {
+    content: "";
+}
+.modal-box-product .slick-next:before{
+  content: "";
+}
+  .slider-content{
+    padding:10px;
+
+  }
+.modal-box-product .slick-next {
+    right: -4px;
+}
+  .modal-box-product .modal-title {
+    font-size: 21px;
+    font-family: 'quasimoda';
+    font-weight: 700;
+    margin-bottom: 0;
+    color: #000;
+}
+  .slider-content img.card-img.img-fluid {
+    min-height: 230px;
+    object-fit: contain;
+    max-height: 230px;
+}
+  .button-modal:before {
+    content: "";
+    width:0%;
+    position: absolute;
+    border: 1px solid #000;
+    bottom: 0;
+    transition:all 0.5s;
+    opacity:0;
+}
+/*   .button-modal:hover::before{
+    width:100%;
+    transition:all 0.5s;
+    opacity:1;
+  } */
+ li.site-nav__childlist-item:last-child {
+    margin-bottom: 0;
+}
+  .productCard__img__inner img{
+    height: 380px;
+    object-fit: cover;
+  }
+  .productCard__img__inner span div {
+        font-size: 18px;
+  }
+</style>
+<section class="main-layout full-container">
+  
+   <div class="container">
+       <div class="row">
+            <div class="col-12 text-center">
+                   <div class="sectionHeading -md">
+                     {% if section.settings.subtitle !=blank %}
+                        <div class="sectionHeading__subtitle js-text" wz_dt_ref="true">
+                            {{ section.settings.subtitle }}
+                        </div>
+                      {% endif %}
+                      {% if section.settings.kitTitle !=blank %}
+                        <h1 class="sectionHeading__title js-title">
+                            {{ section.settings.kitTitle }}
+                        </h1>
+                       {% endif %}
+                    </div>
+                </div>
+            </div> 
+   </div>
+  
+   <div class="container">
+       <div class="row x-gap-48 y-gap-48 mt-4 justify-content-center">
+         {% assign collection = collections[section.settings.collectionkit] %}
+        {% for product in collection.products %}
+        
+    <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-stretch">
+        <div class="productCard w-100 -type-1 -hover-fx text-center bg-white rounded-base shadow-light d-flex flex-column justify-content-between">
+            <a href="{{ product.url }}">
+           <h3 class="productCard__title text-lg mt-16 mb-16">{{ product.title }}</h3>
+
+            <div class="productCard__img position-relative overflow-hidden">
+                <div  class="productCard__img__inner">
+                    <span class="badge badge-price position-absolute z-2 top-0 end-0 text-base bg-black text-white text-center">
+                        <div class="fw-400 text-xs -ls text-uppercase w-100 mb-1">Save</div>
+{% assign savings = product.compare_at_price | minus: product.price %}
+
+                        <div class="fw-700 text-lg w-100">{{ savings | money_without_trailing_zeros }}</div>
+                    </span>
+
+                    <img
+                        src="{{ product.featured_image |img_url:'master' }}"
+                        class="img-fluid"
+                        alt="{{ product.title }}"
+                        sizes="auto"
+                        data-sizes="auto"
+                      />
+                </div>
+            </div>
+
+            <div class="productCard__content d-flex flex-column flex-fill justify-content-between mt-12 py-16 px-16">
+                <div class="productCard__category">
+          {% comment %}
+                    <a href="#scroll-placeholder" class="js-scroll-to-id star-rating d-inline-flex align-items-center">
+                        <div class="stars" style="--rating: 4.8;"></div>
+                        &nbsp;
+                        <span class="text-xs text-gray-400">({% if product.metafields.custom.custom_review_number < 2 %}1{% else %}{{ product.metafields.custom.custom_review_number }}{% endif %} Reviews)</span>
+                    </a>
+
+           {% endcomment %}
+
+                    <div class="productCard__price text-lg">
+                        <span>{{ product.price | money_without_trailing_zeros }}</span>
+
+                        <s class="text-muted ml-8">{{ product.compare_at_price |money_without_trailing_zeros}}</s>
+                    </div>
+
+                    <div class="d-inline-block text-start d-flex">
+                        {{ product.description | truncatewords:23, "..."}}
+                    </div>
+
+                    <div>
+                      <button  class="button js-btn-add-to-cart -cart -sm -accent fw-700 text-uppercase mt-8 d-inline-flex align-items-center justify-content-center mb-8 px-5 add-to-cart-atc"  data-id="{{ product.variants.first.id }}" >
+                            <span class="spinner spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <span class="text">Add to cart</span>
+                        </button>
+                    </div>
+
+                    <a class="button text-sm fw-500 -underline text-dark button-modal slickintizalized" id="modalOpen-{{ product.id }}" rel="modal:open" href="#modalcontent{{ product.id }}" data-bs-toggle="modal">
+                        See What's Inside
+                    </a>
+                </div>
+            </div>
+            </a>
+        </div>
+    </div>
+
+
+<!--     Modal Content For container      -->
+  <div id="modalcontent{{ product.id }}" class="modal modal-box-product">
+  <div class="modal-content">
+    <div class="modal-header">
+        <h6 class="modal-title pr-8">
+            <span class="fw-600">
+              {{ product.title }}
+             </span>
+        </h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body bg-light-1 overflow-hidden">
+                <div class="row gy-3">
+                    <div class="col-12">
+                        <div class="slider-content sliderElement{{ product.id }}" >
+                            
+          {% for product_modal in product.metafields.custom.vvb.value %}
+
+                 
+                          <div class="card h-100 {% if product_modal.metafields.bundleproduct.free_bundle_product==true %}freelabel_product{% endif %}">
+            
+                             <img src="{{ product_modal.featured_image |img_url:'master' }}" class="card-img img-fluid" alt="{{product_modal.title}}" sizes="auto">
+                             <div class="card-body">
+                            <div class="d-inline-flex align-items-start heading">
+            
+                                  <span class="text-md leading-md fw-700">{{product_modal.title}}</span>
+                             </div>
+                          <div class="productDescription">
+                            <p class="text-sm leading-md">{{product_modal.description| truncate:100}}</p>
+                           </div>
+                                                
+                              </div>
+
+                          </div>
+        {% endfor %}
+              {% if product.metafields.custom.is_it_bundle_product==true %}
+                  <p class="line-item-property__field">
+                    {% if product.handle=="magic-beard-kit" %}
+                    <input id="freeproduct" type="hidden" class="propertyData" value="Magic Beard Elixir 4oz (Free Gift)" name="properties[Free]">
+                    {% elsif product.handle=="city-line-kit" %}
+                    <input id="freeproducts" type="hidden" class="propertyData" value="Matte Texture Cream (Free Gift)" name="properties[Free]">
+                      
+                    {% endif %}
+                  </p>
+               {% endif %}
+
+   </div>
+                </div>
+            </div>
+
+    <div class="modal-footer justify-content-center">
+        <button class="button js-btn-add-to-cart -sm -accent  add-to-cart-atc"  data-id="{{ product.variants.first.id }}">
+            <span class="spinner spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span class="text">Add to cart -{{ product.price | money }}</span>
+        </button>
+    </div>
+</div>
+   
+</div>
+</div>
+<!--    Modal Content End       -->
+
+ <script>
+
+$(document).ready(function(){
+$("#modalOpen-{{ product.id }}").on("click",function(){
+
+  setTimeout(() => {
+ $(".sliderElement{{ product.id }}").trigger('resize');  
+}, 500);     
+ 
+          
+$('.sliderElement{{ product.id }}').not('.slick-initialized').slick({
+  dots: true,
+  infinite: false,
+  nextArrow: "<button class='slick-next slick-arrow'>{% render 'arrow-right' %}</button>",
+  prevArrow: "<button class='slick-prev slick-arrow slick-disabled'>{% render 'arrow-left' %}</button>",
+  speed: 300,
+  slidesToShow:4,
+  slidesToScroll:4,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+});
+
+  
+    
+  
+});
+
+
+  
+
+
+
+});
+
+
+
+
+   
+         </script>
+         {% endfor %}
+
+</div>
+
+   </div>
+
+
+
+
+
+
+  
+</section>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+  <script src="https://kenwheeler.github.io/slick/slick/slick.js"></script>
+
+
+<script>
+
+  
+ $(document).on("click",".add-to-cart-atc",function(e){ 
+  e.preventDefault();
+    var selectedID=$(this).data('id');
+    addItemToCart(selectedID , 1);    // paste your id product number
+    console.log("clicked");
+  });
+
+  function addItemToCart(variant_id, qty) {
+   var propertyData= $(".propertyData").val();
+    data = {
+      "id": variant_id,
+      "quantity": qty,
+       properties: {
+       'Free':propertyData
+      }
+    }
+    
+    jQuery.ajax({
+      type: 'POST',
+      url: '/cart/add.js',
+      data: data,
+      dataType: 'json',
+      success: function() { 
+         console.log("success");
+        $("#badgeCounter").load(" #badgeCounter");
+         $(".Icon--cart").trigger("click");
+         $("#testWrapper").load(" #testWrapper");
+         $("#CartSubtotal").load(" #CartSubtotal");
+      }
+    });
+    document.documentElement.dispatchEvent(new CustomEvent('cart:refresh', {
+    	bubbles: true    // same code for prestige theme   
+ 	 }));
+  }
+ 
+</script>
+{% schema %}
+  {
+    "name": "Kit-template",
+    "class":"section kit-template",
+    "settings": [
+      {
+        "type":"text",
+        "id":"subtitle",
+        "label":"Kit Subtitle"
+      }
+      ,
+      {
+        "type":"text",
+        "id":"kitTitle",
+        "label":"Kit Title"
+      }
+      ,
+      {
+        "type":"collection",
+        "id":"collectionkit",
+        "label":"Select Collection Kit"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

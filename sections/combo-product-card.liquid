@@ -1,0 +1,319 @@
+<style>
+  .combo-container {
+    padding: 3rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+}
+  .combo-grid-content {
+    width: 23%;
+    padding: 1.5rem 0;
+    border: 3px solid #000;
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: #fff;
+}
+ 
+  .combo-heading h3 {
+    color: #000;
+    font-size: 68px;
+    font-weight: 500;
+    line-height: 84px;
+    text-align: center;
+    padding: 1rem 0;
+}
+  .combo-main{
+    padding: 5rem 0;
+    background: #fff;
+  }
+  .combo-grid{
+    padding: 1rem;
+  }
+  .combo-best_value h3 {
+    text-align: center;
+    background: #d3a640;
+    color: #000;
+    margin: 1rem 0;
+    font-weight: 600;
+}
+  .combo-best_value {
+    width: 100%;
+    background: #d3a640;
+}
+  
+  .combo-grid-content h4 {
+    color: #000;
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 600;
+    padding: 1rem;
+    line-height: 1.9rem;
+}
+  .combo-grid img {
+    width: 100%;
+}
+  .combo-grid h5 {
+    color: #000;
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 500;
+    margin: 1rem 0;
+}
+ .combo-save h3 {
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    background: #000;
+    padding: 1rem 0;
+}
+  .combo-save{
+    width: 100%;
+  }
+ .combo-save h5 {
+    font-size: 1.5rem;
+    color: #000;
+    text-align: center;
+}
+ .combo-save p {
+    color: #000;
+    text-align: center;
+}
+  .payment {
+margin-top: 1rem;
+width: 100%;
+text-align: center;
+}
+
+.payment img {
+max-width: 100%;
+border: 0;
+width: auto;
+}
+  .combo-grid {
+    width: 100%;
+}
+  
+
+  .combo-grid-content{
+   box-sizing: border-box; 
+box-shadow: 1px 2px 20px 0px #818181;
+border: 3px solid #000;
+}
+  .badge {
+    position: absolute;
+    left: -3rem;
+    top: -3rem;
+    width: 7rem;
+    height: 7rem;
+}
+  .combo-grid-content {
+    position: relative;
+}
+  .badge {
+    position: absolute;
+    left: -1.2rem;
+    top: 1rem;
+    width: 7rem;
+    height: 7rem;
+}
+  
+  @media only screen and (max-width: 800px){
+  .combo-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+}
+   .combo-grid-content {
+    width: 90%;
+     margin: 1.5rem;
+} .combo-heading h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 0;
+    line-height: 3rem;
+}
+  .badge {
+    position: absolute;
+    left: -1rem;
+    top: 1rem;
+    width: 7rem;
+    height: 7rem;
+}  
+  }
+  @media only screen and (min-width: 1200px){
+  .combo-grid-content:nth-child(odd) {
+    transform: scale(0.9);
+}
+  }
+
+  @font-face {
+  font-family: Helvetica;
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://fonts.shopifycdn.com/helvetica/helvetica_n7.39bee04bd277a9c4e94e2fd42d53f4e3c0afb8a5.woff2?h1=c2xpY2toYXJlLmNvbQ&hmac=5ad35ebab426caa06247b29f46604c0e37c1dfe3d7bccc93af61a70d6e3ccd9d") format("woff2"),
+       url("https://fonts.shopifycdn.com/helvetica/helvetica_n7.b95359461a6788d5549e702cb2123bc40c227e49.woff?h1=c2xpY2toYXJlLmNvbQ&hmac=7a24769a71c394708e792bd64255dcba8d57123426fd7b065ed7597e4eed4939") format("woff");
+}
+</style>
+
+
+
+{% if section.blocks.size > 0 %}
+<section class="combo-product-card">
+  
+  
+  <div class="combo-main">
+    <div class="combo-heading">
+    <h3>{{ section.settings.heading }}</h3>
+  </div>
+    <div class="combo-container">
+  {% for block in section.blocks %}
+  <div class="combo-grid-content">
+    
+    {%- if block.settings.badge != blank-%}
+    <div class="badge"> 
+      <img src="{{block.settings.badge |img_url: 'small'}}"> 
+      </div>
+    {%- endif -%}
+    {%- if block.settings.best_value != blank-%}
+    <div class="combo-best_value">
+    <h3>{{ block.settings.best_value }}</h3>
+    </div>
+    {%- endif -%}
+      
+   
+    
+    <h4>{{ block.settings.tital }}</h4>
+    <div class="combo-grid">
+  {%- if block.settings.image != blank-%}
+    <div class="combo_img">
+    <img src="{{block.settings.image |img_url: 'large'}}">
+  </div>
+   {%- endif -%}
+    <h5>{{ block.settings.price }}</h5>
+    </div>
+    <div class="combo-save">
+    <h3>{{ block.settings.save }}</h3>
+    <h5>{{ block.settings.free-shipping }}</h5>
+    <p>{{ block.settings.money_back }}</p>
+    </div>
+    <div class="combo-product">
+      {% if block.settings.combo-button-link != blank %}
+      <a href="{{ block.settings.combo-button-link }}" class="btn" style="background:#d3a640;font-weight:bold;text-transform:capitalize;font-family:Helvetica;margin-top: 20px;padding: 17px;font-size: 18px;"> {{ block.settings.combo-button }} </a>
+      {% else %}
+      {{ block.settings.combo-button }}
+      {% endif %}
+      
+      
+    </div>
+    
+    {%- if block.settings.payment != blank-%}
+    <div class="payment">
+    <img src="{{block.settings.payment |img_url: 'medium'}}">
+  </div>
+  {%- endif -%}
+   
+  </div>
+      
+  {% endfor %}
+    </div>
+  </div>
+</section>
+
+{%- endif -%}
+
+
+
+
+
+{% schema %}
+  {
+    "name": "combo-product-card",
+    "settings": [
+	{
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    }
+	],
+	"max_blocks": 4,
+  "blocks": [
+	{
+	  "type": "image",
+      "name": "Image slide",
+      "settings": [
+	{
+      "type": "image_picker",
+      "id": "badge",
+      "label": "Badge"
+    },
+	{
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+	{
+      "type": "text",
+      "id": "best_value",
+      "label": "best_value"
+    },
+	{
+      "type": "text",
+      "id": "tital",
+      "label": "tital"
+    },
+	{
+      "type": "text",
+      "id": "price",
+      "label": "price"
+    },
+	{
+      "type": "text",
+      "id": "save",
+      "label": "save"
+    },
+	{
+      "type": "text",
+      "id": "free-shipping",
+      "label": "free-shipping"
+    },
+	{
+      "type": "text",
+      "id": "money_back",
+      "label": "money_back"
+    },
+	{
+      "type": "text",
+      "id": "combo-button",
+      "label": "combo-button"
+    },
+	{
+      "type": "url",
+      "id": "combo-button-link",
+      "label": "combo button link"
+    },
+	{
+      "type": "image_picker",
+      "id": "payment",
+      "label": "payment"
+    }
+	]
+  	}],
+
+"presets": [
+    {
+      "category": "Image",
+      "name": "image with text-combo",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

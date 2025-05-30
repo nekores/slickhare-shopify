@@ -1,0 +1,166 @@
+
+<style>
+.multislide-reel-slideshow {
+    position: relative;
+}
+  .multislide-reel-slideshow .owl-theme .owl-nav {
+    margin-top: 10px;
+    position: absolute;
+    width: 100%;
+    top: 47%;
+}
+  .multislide-reel-slideshow {
+    {% if section.settings.bgcolor !=blank %}
+    background-color:{{section.settings.bgcolor}};
+    {% else %}
+    background-color:black;
+    {% endif %}
+    padding-top: 44px;
+    padding-bottom: 44px;
+}
+  button.owl-prev, button.owl-next {
+    position: absolute;
+    left: 0;
+    font-size: 20px !important;
+    background: gray !important;
+    color: #fff !important;
+    width: 30px;
+    height: 30px;
+}
+button.owl-next {
+    left: unset;
+    right: 0;
+}
+
+  .sectionHeadingSlide h1 {
+   
+    padding-bottom: 40px;
+    font-size: 50px;
+    font-weight: 600;
+    line-height: 59px;
+    letter-spacing: 0.03em;
+    text-align: center;
+    {% if section.settings.headingColor !=blank %}
+    color:{{section.settings.headingColor}};
+    {% else %}
+    color: #373737;
+    {% endif %}
+}
+</style>
+<div class="sectionHeadingSlide">
+  {% if section.settings.heading !=blank%}
+  <h1>{{ section.settings.heading }}</h1>
+  {% endif %}  
+</div>
+<div id="owl-slideshow-1" class="owl-carousel owl-theme">
+
+          {% for block in section.blocks %}
+          <div class="item">
+           {%- if block.settings.link != blank -%} 
+            <a href="{{ block.settings.link }}">
+            {%- endif -%}  
+            <picture>
+              {% if block.settings.image-mob %}
+              <source media="(max-width:768px)" srcset="{{ block.settings.image-mob | img_url:"master" }}">
+              {% endif %}
+              
+              <img src="{{ block.settings.image | img_url:"master" }}" style="width:100%;">
+            </picture>
+            </a>
+      	  </div>
+         
+          {% endfor %}
+
+       </div>
+
+  
+  {% schema %}
+  {
+    "name": "New Slideshow",
+    "class":"multislide-reel-slideshow",
+    "settings": [
+      {
+        "type":"text",
+        "id":"heading",
+        "label":"Section Heading"
+      },
+        {
+        "type":"color",
+        "id":"headingColor",
+        "label":"Heading Color"
+      },
+       {
+        "type":"color",
+        "id":"bgcolor",
+        "label":"Background Color"
+      }
+    ],
+"max_blocks": 15,
+  "blocks": [
+    {
+	  "type": "image",
+      "name": "Image slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+		{
+          "type": "image_picker",
+          "id": "image-mob",
+          "label": "Image Mobile"
+        },
+		{
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Add a button"
+		     
+        }
+]
+
+}],
+"presets": [{
+    "name": "New Slideshow",
+    "category": "Image"
+    
+  }]
+  }
+{% endschema %}
+  
+
+<script>
+  
+  
+$('#owl-slideshow-1').owlCarousel({
+    loop:true,
+  autoplay:true,
+    autoplayTimeout:5000,
+    autoplayHoverPause:true,
+  dots: false,
+    margin:10,
+    responsiveClass:true,
+    responsive:{
+        0:{
+            items:1,
+            nav:true
+        },
+        600:{
+            items:3,
+            nav:false
+        },
+        1000:{
+            items:5,
+            nav:true,
+            loop:true
+        }
+    }
+})
+
+</script>

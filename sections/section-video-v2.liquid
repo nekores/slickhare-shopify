@@ -1,0 +1,164 @@
+<style>
+ .Template-v2-video-section {
+    background-color: white;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 75px;
+    padding-bottom: 75px;
+}
+  .Template-v2-video-section .mainContentWrapper .heading h1{
+    font-size: 50px;
+    font-weight: 600;
+    line-height: 59px;
+    letter-spacing: 0.03em;
+    text-align: center;
+    color: #373737;
+
+  }
+   .mainContentWrapper .paragrap p{
+    text-align:center;
+    color:#747474;
+     
+  }
+.video-section-wrapper .video {
+    width: inherit;
+
+}
+
+  
+  .video--image_with_play{
+    opacity:1;
+    display:block;
+  }
+.videoContainer {
+    padding-left:0rem;
+    margin-top: 20px;
+    padding-right: 0rem;
+}
+ .videoContainer .video{
+   height:100%;
+ }
+  @media only screen and (min-width:976px) {
+.videoContainer{
+   padding-left: 5rem;
+   padding-right: 5rem;
+   height:543px;
+  }
+}
+</style>
+<div class="one-whole" data-section-id="{{ section.id }}"  data-section-type="Template-v2-video-section">
+   
+  <div class="mainContentWrapper"> 
+    <div class="heading"> 
+       <h1>{{ section.settings.sectionHeading }}</h1>
+    </div>
+     <div class="paragrap"> 
+       <p>{{ section.settings.sectionDescripton }}</p>
+    </div>
+  <div class="videoContainer"> 
+  
+     <div class="video-with-text {% if section.settings.full_width %}video-with-text--full-width{% else %}{% endif %} color-scheme-{{ section.settings.color_scheme }}">
+  <div class="video-with-text__grid color-{{ section.settings.color_scheme }} grid grid--gapless grid--1-col grid--2-col-tablet gradient">
+    <div class="grid__item">
+      <div class="video-with-text__media image-with-text__media--{{ section.settings.height }} media">
+  
+<div class="videoContainer" data-section-id="{{ section.id }}" data-section-type="video-section">
+  {%- if section.settings.video_link != blank -%}
+    
+    <div class="video-section-wrapper
+                video-section-wrapper--{{ section.settings.height }}
+                video-section-wrapper--min-height
+                {% if section.settings.style == 'background' %} video-background-wrapper
+                  {% unless section.settings.show_overlay %} video-background-wrapper--no-overlay{% endunless %}
+                {% endif %}
+                video-section-wrapper--{{ section.id }}"
+                data-desktop-height="{{ desktop_height }}"
+                data-mobile-height="{{ mobile_height }}">
+
+      <button type="button"
+              class="text-link video-control__close-wrapper
+              {% if section.settings.style == 'background' %} video-control__close-background{% endif %}"
+              data-controls="Video-{{ section.id }}">
+        <span class="video-control video-control__close">
+          {% include 'icon-close' %}
+          <span class="icon__fallback-text">{{ 'sections.video.close' | t: video_title: '[video_title]' }}</span>
+        </span>
+      </button>
+      {%- if section.settings.video_link != blank -%}
+        <div id="Video-{{ section.id }}" style="display:block;position:relative;"
+            class="video{% if section.settings.style == 'background' %} video--background{% endif %}
+            video--{{ section.id }}"
+            data-id="{{ section.settings.video_link.id }}"
+            data-type="{{ section.settings.video_link.id}}"></div>
+      {%- endif -%}
+
+    </div>
+  {%- else -%}
+    <div class="placeholder-noblocks">
+      {{ 'homepage.onboarding.no_content' | t }}
+    </div>
+  {%- endif -%}
+</div>
+      </div>
+    </div>
+ 
+    </div>
+  </div>
+</div>
+  
+  </div>
+  </div>
+  
+
+
+{% schema %}
+{
+  "name": {
+    
+    "en": "Video-Section-v2"
+  },
+  "class": "index-section Template-v2-video-section",
+  "settings": [
+       {
+      "type": "text",
+      "id": "sectionHeading",
+      "label":"Heading",
+      "default": "video Intro"
+    },
+    {
+      "type": "richtext",
+      "id": "sectionDescripton",
+      "label":"Section Description"
+     
+    },
+    {
+      "type": "video_url",
+      "id": "video_link",
+      "label": {
+        "en": "Video link"
+      },
+      "accept": [
+        "youtube",
+        "vimeo"
+      ],
+      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+    }
+    
+  
+  ],
+  "presets": [
+    {
+      "name": {
+       
+        "en": "Section Video v2"
+      
+      },
+      "category": {
+       
+        "en": "Video"
+       
+      }
+    }
+  ]
+}
+{% endschema %}

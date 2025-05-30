@@ -1,0 +1,66 @@
+<style>
+.new-product-style {
+    margin: auto;
+    text-align: right;
+    background: #d3a63f;
+    color: black;
+    padding: 10px 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
+  </style>
+<h3 class="new-product-style"> <marquee direction="{{ section.settings.marqueeDirection}}" Scrollamount={{section.settings.marqueespeed}}>{{ section.settings.textHeading }}</marquee> </h3>
+
+{% schema %}
+{
+  "name": "marquee-left-right",
+  "settings": [
+    {
+      "type": "text",
+      "id": "textHeading",
+      "label":"Marquee Text"
+    }
+    ,
+    {
+      "type": "range",
+      "id": "marqueespeed",
+      "label":"Set Marquee Speed",
+      "min": 1,
+      "max": 10,
+      "step":1,
+      "default":2
+    },
+    {
+  "type": "select",
+  "id": "marqueeDirection",
+  "label": "Choose Direction",
+  "options": [
+    {
+      "value": "right",
+      "label": "Left To Right"
+    },
+   {
+      "value": "left",
+      "label": "Right To Left"
+    }
+  ],
+  "default": "left"
+}
+  ],
+  "presets": [
+    {
+      "name": "marquee-left-right"
+      
+  
+    }
+  ]
+      
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

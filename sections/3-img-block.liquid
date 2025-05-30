@@ -1,0 +1,72 @@
+
+<style>
+  .img-block {
+    display: flex;
+    justify-content: center;
+    gap: 2%;
+}
+  .img-container {
+    flex: 0 0 32%;
+    max-width: 30%;
+}
+  .img-block .img-container img {
+    width: 100%;
+}
+  a.btn {
+    margin: 3rem;
+    padding: 1.5rem 3rem;
+    background: #d3a640;
+    color: #000;
+}
+  a.btn:not([disabled]):hover {
+    color: #000;
+    background-color: #d3a640;
+    opacity: 0.9;
+}
+</style>
+
+
+
+<div class="3-img-block">
+  <div class="img-block">
+    {% for block in section.blocks %}
+    <div class= "img-container">
+	<div class="img"><img src="{{block.settings.image |img_url: '350x'}}" ></div>
+  	</div>
+    
+    {% endfor %}
+	
+  </div>
+  <center><a href="/pages/all-products" class="btn">Shop now</a></center>
+</div>
+
+
+
+{% schema %}
+  {
+  "name": "3-img-block",
+  "settings": [],
+"max_blocks": 8,
+  "blocks": [
+{
+	  "type": "image",
+      "name": "Image slide",
+      "settings": [
+    
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+	
+  ]
+}],
+  "presets": [
+    {
+      "category": "Image",
+      "name": "3-img-block",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

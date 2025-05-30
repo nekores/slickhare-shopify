@@ -1,0 +1,138 @@
+
+<style>
+#shopify-section-template--15028525072428__Multi-slide-slideshow {
+    padding-bottom: 3rem;
+    background: #fff;
+}
+  button.owl-prev, button.owl-next {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    font-size: 20px !important;
+    background: #ffffffbf !important;
+    color: black !important;
+    width: 30px;
+    height: 30px;
+}
+button.owl-next {
+    left: unset;
+    right: 0;
+}
+  div#shopify-section-Multi-slide-slideshow {
+    padding-bottom: 3rem;
+    background: #fff;
+}
+  .owl-stage-outer {
+    padding-top: 3rem;
+}
+  .item {
+    display: flex;
+    justify-content: center;
+    flex: 1 1 auto;
+}
+  .item picture img { 
+  max-height: 100%;
+    min-width: 100%;
+    object-fit: cover;
+  }
+  @media only screen and (max-width: 800px){
+  div#shopify-section-Multi-slide-slideshow {
+    padding-bottom: 0;
+}
+  }
+</style>
+
+<div id="owl-slideshow-1" class="owl-carousel owl-theme">
+
+          {% for block in section.blocks %}
+          <div class="item">
+           {%- if block.settings.link != blank -%} 
+            <a href="{{ block.settings.link }}">
+            {%- endif -%}  
+            <picture>
+              {% if block.settings.image-mob %}
+              <source media="(max-width:768px)" srcset="{{ block.settings.image-mob | img_url:"master" }}">
+              {% endif %}
+              
+              <img src="{{ block.settings.image | img_url:"master" }}" style="width: 261.8px; height: 327px; object-fit: cover;">
+            </picture>
+            </a>
+      	  </div>
+         
+          {% endfor %}
+
+       </div>
+
+  
+  {% schema %}
+  {
+    "name": "Multi-slide-slideshow",
+    "settings": [],
+"max_blocks": 15,
+  "blocks": [
+    {
+	  "type": "image",
+      "name": "Image slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+		{
+          "type": "image_picker",
+          "id": "image-mob",
+          "label": "Image Mobile"
+        },
+		{
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Add a button"
+		     
+        },
+		{
+          "type": "text",
+          "id": "width",
+          "label": "width",
+          "default": "auto"
+		     
+        }
+]
+
+}]
+  }
+{% endschema %}
+  
+
+<script>
+  
+  
+$('#owl-slideshow-1').owlCarousel({
+    loop:true,
+  dots: false,
+    margin:10,
+    responsiveClass:true,
+    responsive:{
+        0:{
+            items:1,
+            nav:true
+        },
+        600:{
+            items:3,
+            nav:false
+        },
+        1000:{
+            items:5,
+            nav:true,
+            loop:true
+        }
+    }
+})
+
+</script>

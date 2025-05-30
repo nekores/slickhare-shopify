@@ -1,0 +1,105 @@
+{{ content_for_index }}
+
+<style>
+  button.owl-prev, button.owl-next {
+    position: absolute;
+    left: 0;
+    font-size: 20px !important;
+    background: gray !important;
+    color: #fff !important;
+    width: 30px;
+    height: 30px;
+}
+button.owl-next {
+    left: unset;
+    right: 0;
+}
+</style>
+
+{% comment %}
+<div class="owl-carousel owl-theme" id ="owl-slideshow-1">
+    <div class="item">
+      <img src="https://images.squarespace-cdn.com/content/v1/5ef4669944a7277065cd53b7/1602844995923-8Q98TGIFJ879MRRULM3L/ke17ZwdGBToddI8pDm48kEfVMFsX7Z13vS26S3AFPFhZw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVEf4EbnSyyDU-t0gApJWdXubcdc07fCbKp2JtAHxVSFf5u3E9Ef3XsXP1C_826c-iU/Spin-SM.gif?format=300w">
+    </div>
+        <div class="item">
+      <img src="https://images.squarespace-cdn.com/content/v1/5ef4669944a7277065cd53b7/1602844995923-8Q98TGIFJ879MRRULM3L/ke17ZwdGBToddI8pDm48kEfVMFsX7Z13vS26S3AFPFhZw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVEf4EbnSyyDU-t0gApJWdXubcdc07fCbKp2JtAHxVSFf5u3E9Ef3XsXP1C_826c-iU/Spin-SM.gif?format=300w">
+    </div>
+        <div class="item">
+      <img src="https://images.squarespace-cdn.com/content/v1/5ef4669944a7277065cd53b7/1602844995923-8Q98TGIFJ879MRRULM3L/ke17ZwdGBToddI8pDm48kEfVMFsX7Z13vS26S3AFPFhZw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVEf4EbnSyyDU-t0gApJWdXubcdc07fCbKp2JtAHxVSFf5u3E9Ef3XsXP1C_826c-iU/Spin-SM.gif?format=300w">
+    </div>
+        <div class="item">
+      <img src="https://images.squarespace-cdn.com/content/v1/5ef4669944a7277065cd53b7/1602844995923-8Q98TGIFJ879MRRULM3L/ke17ZwdGBToddI8pDm48kEfVMFsX7Z13vS26S3AFPFhZw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVEf4EbnSyyDU-t0gApJWdXubcdc07fCbKp2JtAHxVSFf5u3E9Ef3XsXP1C_826c-iU/Spin-SM.gif?format=300w">
+    </div>
+        <div class="item">
+      <img src="https://images.squarespace-cdn.com/content/v1/5ef4669944a7277065cd53b7/1602844995923-8Q98TGIFJ879MRRULM3L/ke17ZwdGBToddI8pDm48kEfVMFsX7Z13vS26S3AFPFhZw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVEf4EbnSyyDU-t0gApJWdXubcdc07fCbKp2JtAHxVSFf5u3E9Ef3XsXP1C_826c-iU/Spin-SM.gif?format=300w">
+    </div>
+        <div class="item">
+      <img src="https://images.squarespace-cdn.com/content/v1/5ef4669944a7277065cd53b7/1602844995923-8Q98TGIFJ879MRRULM3L/ke17ZwdGBToddI8pDm48kEfVMFsX7Z13vS26S3AFPFhZw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVEf4EbnSyyDU-t0gApJWdXubcdc07fCbKp2JtAHxVSFf5u3E9Ef3XsXP1C_826c-iU/Spin-SM.gif?format=300w">
+    </div>
+        <div class="item">
+      <img src="https://images.squarespace-cdn.com/content/v1/5ef4669944a7277065cd53b7/1602844995923-8Q98TGIFJ879MRRULM3L/ke17ZwdGBToddI8pDm48kEfVMFsX7Z13vS26S3AFPFhZw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVEf4EbnSyyDU-t0gApJWdXubcdc07fCbKp2JtAHxVSFf5u3E9Ef3XsXP1C_826c-iU/Spin-SM.gif?format=300w">
+    </div>
+        <div class="item">
+      <img src="https://images.squarespace-cdn.com/content/v1/5ef4669944a7277065cd53b7/1602844995923-8Q98TGIFJ879MRRULM3L/ke17ZwdGBToddI8pDm48kEfVMFsX7Z13vS26S3AFPFhZw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVEf4EbnSyyDU-t0gApJWdXubcdc07fCbKp2JtAHxVSFf5u3E9Ef3XsXP1C_826c-iU/Spin-SM.gif?format=300w">
+    </div>
+        <div class="item">
+      <img src="https://images.squarespace-cdn.com/content/v1/5ef4669944a7277065cd53b7/1602844995923-8Q98TGIFJ879MRRULM3L/ke17ZwdGBToddI8pDm48kEfVMFsX7Z13vS26S3AFPFhZw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVEf4EbnSyyDU-t0gApJWdXubcdc07fCbKp2JtAHxVSFf5u3E9Ef3XsXP1C_826c-iU/Spin-SM.gif?format=300w">
+    </div>
+        <div class="item">
+      <img src="https://images.squarespace-cdn.com/content/v1/5ef4669944a7277065cd53b7/1602844995923-8Q98TGIFJ879MRRULM3L/ke17ZwdGBToddI8pDm48kEfVMFsX7Z13vS26S3AFPFhZw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVEf4EbnSyyDU-t0gApJWdXubcdc07fCbKp2JtAHxVSFf5u3E9Ef3XsXP1C_826c-iU/Spin-SM.gif?format=300w">
+    </div>
+        <div class="item">
+      <img src="https://images.squarespace-cdn.com/content/v1/5ef4669944a7277065cd53b7/1602844995923-8Q98TGIFJ879MRRULM3L/ke17ZwdGBToddI8pDm48kEfVMFsX7Z13vS26S3AFPFhZw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVEf4EbnSyyDU-t0gApJWdXubcdc07fCbKp2JtAHxVSFf5u3E9Ef3XsXP1C_826c-iU/Spin-SM.gif?format=300w">
+    </div>
+    
+  
+<!-- </div>
+
+<section>
+  <div>
+    <h2>
+      About us
+    </h2>
+    <p>
+      Crafted from the finest natural ingredients on the planet, Slickhare was established to create the best a man can get from a hair product. Born from the city but from humble beginnings, slick knows what it takes to be the coolest rabbit in the room. From stylish, classy easy-going…
+    </p>
+  </div>
+  <div>
+    <img src="https://images.squarespace-cdn.com/content/v1/5ef4669944a7277065cd53b7/1602838352405-JRUG5B8AEFDS8M87I2ZS/ke17ZwdGBToddI8pDm48kGIKV33kMxe_ULoavJ4in4FZw-zPPgdn4jUwVcJE1ZvWEtT5uBSRWt4vQZAgTJucoTqqXjS3CfNDSuuf31e0tVEQ6OglhpPM44qfCatpYIFAIahAAK1LR1s_S6jwqlcY4T-3CTWZQ124CTRPXn-dnvM/image-asset.gif" >
+    
+  </div>
+</section> -->
+
+<script>
+  
+  
+$('#owl-slideshow-1').owlCarousel({
+    loop:false,
+  dots: false,
+    margin:10,
+    responsiveClass:true,
+    responsive:{
+        0:{
+            items:1,
+            nav:true,
+            loop:false
+            
+        },
+        600:{
+            items:3,
+            nav:false,
+           loop:false
+        },
+        1000:{
+            items:5,
+            nav:true,
+            loop:false
+        }
+    }
+})
+
+</script>
+{% endcomment %}
+  {% comment %}
+{% render 'judgeme_widgets', widget_type: 'judgeme_featured_carousel', concierge_install: true, auto_install: true %}
+{% endcomment %}

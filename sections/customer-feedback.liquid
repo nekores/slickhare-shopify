@@ -1,0 +1,44 @@
+<style>
+ 
+  #wc_review_section .wc_review_top_title h2 {
+    color: #000;
+}
+  .wc_wf_cls.wc_tab_links li.wc_active a, li.wc_active a:hover {
+    color: #000;
+    border-bottom: 2px solid #D3A640 !important;
+}
+  .wc_review_top_title.wc_wf_cls h2 {
+    font-size: 3rem;
+    text-transform: none;
+    color: black;
+    letter-spacing: normal;
+    margin: 2rem 0;
+    line-height: 1.2208;
+    text-align: center !important;
+    width: 100% !important;
+    margin: 0;
+}
+/*   main#MainContent {
+    background: #fff;
+} */
+  .wc_active span {
+    color: #000 !important;
+}
+  .page-width.review {
+    width: 100% !important;
+    max-width: 100%;
+    padding: 0 5rem;
+    background: #fff;
+}
+  @media only screen and (max-width: 800px){
+  .wc_review_top_title.wc_wf_cls h2 {
+    font-size: 2rem;
+  }
+    .page-width.review {
+    padding: 1rem;
+}
+  }
+</style>
+<div class="page-width review">
+	<div id="wc_review_section" class="wc_review_main_content" data-url="{{ shop.url }}" data-handle="{{ product.handle }}" data-product_id="{{ product.id }}" data-limit="0"></div>    
+</div>

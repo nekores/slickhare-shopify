@@ -1,0 +1,185 @@
+
+<style>
+/*   url(//cdn.shopify.com/s/files/1/0335/6327/9404/products/IMG_0734.jpg?v=1663709474) */
+.funnel-background-overlay-content {
+      background-image:url("{{section.settings.bgImage |img_url:'master'}}") ;
+    background-size: cover;
+    background-position: center center;
+   padding-top: 100px;
+    padding-bottom: 100px !important;
+    background-repeat: no-repeat;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-blend-mode: overlay;
+}
+  
+  .funnel-background-overlay-content .feature-row{
+    justify-content:center;
+    
+  }
+  .funnel-background-overlay-content .featured-row__subtext p{
+    color: #FFF;
+    text-align: center;
+    font-family: "Oswald", sans-serif;
+    font-size: 33px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+    padding:0;
+    margin-bottom:30px;
+}
+
+  .funnel-background-overlay-content .feature-row h2.h3 {
+    color: #FFF;
+    text-align: center;
+    font-family: "Oswald", sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+    padding:0;
+    margin-bottom:30px;
+}
+ .funnel-background-overlay-content .product-form__cart-submit{
+  border-radius: 6.863px;
+  border: 1.373px solid #D3A640;
+  background: #D3A640;
+  padding:20px 70px;
+ }
+   .funnel-background-overlay-content .product-form__cart-submit{
+      color: #FFF;
+      text-align: center;
+      font-family: "Oswald", sans-serif;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      letter-spacing: 0.686px;
+      text-transform:capitalize;
+   }
+   @media only screen and (max-width: 750px) {
+  .feature-row h2.h3 {
+    font-size: 2.6rem;
+}
+   }
+        @media only screen and (max-width:768px) {
+          .funnel-background-overlay-content{
+            padding-left:20px;
+            padding-right:20px;
+            padding-top:80px;
+            padding-bottom:80px !important;
+    }
+              .funnel-background-overlay-content .feature-row h2.h3{
+      font-size:32px;
+      line-height:normal;
+    }
+          .funnel-background-overlay-content .product-form__cart-submit{
+            padding: 15px 50px;
+            font-size: 18px;
+          }
+      }
+
+</style>
+
+<div class="page-width">
+  <div class="feature-row" style="justify-content:center">
+   <div class="contentWrapper">
+     {%- assign product = all_products[section.settings.product] -%}
+ 
+      {% if section.settings.sectionHeading != blank %}
+        
+        <h2 class="h3">{{ section.settings.sectionHeading }}</h2>
+      {% endif %}
+      {% if section.settings.sectionDescripton != blank %}
+        <div class="rte rte-setting featured-row__subtext">{{ section.settings.sectionDescripton }}</div>
+      {% endif %}
+   
+
+    <div class="text-center" style="padding-bottom:40px">
+    {% if section.settings.btntitle !=blank %}
+      
+      <div class="product-form__item product-form__item--submit">
+                <a href="{{ section.settings.btnUrl }}" class="btn product-form__cart-submit" style="width:fit-content;margin:0px auto">
+                  <span>
+             
+                {{ section.settings.btntitle }}
+      
+                   </span>
+                 
+                </a>
+                
+              </div>
+      {% endif %}
+      
+    </div>
+
+      
+    </div>
+
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name":"Funnel BG Overlay Content",
+  "class": "funnel-background-overlay-content",
+  "settings": [
+       {
+      "type": "text",
+      "id": "sectionHeading",
+      "label":"Heading",
+      "default": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "sectionDescripton",
+      "label":"Section Description"
+     
+    },
+      {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+      {
+      "type": "text",
+      "id": "btntitle",
+      "label": "Button Label"
+    },
+    {
+        "type": "url",
+        "id": "btnUrl",
+        "label": "Button Link"
+        
+      },
+      {
+        "type": "image_picker",
+        "id": "bgImage",
+        "label": "Select Background Image"
+   
+      },
+    {
+        "type": "color",
+        "id": "colorID",
+        "label": "Select Background Overlay",
+        "default": "#000000"
+      
+        
+      }
+    
+  
+  ],
+  "presets": [
+    {
+      "name":"Funnel BG Overlay Content"
+    
+    }
+  ]
+}
+{% endschema %}
+

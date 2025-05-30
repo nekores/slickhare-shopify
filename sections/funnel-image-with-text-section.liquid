@@ -1,0 +1,259 @@
+<style>
+  .main-funnel-image-text-section {
+    background: #F9F6EF;
+    padding-top: 80px;
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-bottom: 80px;
+}
+  .main-funnel-image-text-section .container{
+    max-width:1920px;
+    margin:0px auto;
+  }
+
+.main-funnel-image-text-section .row {
+    display: flex;
+    width: 100%;
+    align-items:center;
+    margin-bottom:72px;
+}
+  .main-funnel-image-text-section .section_heading{
+    margin-bottom:80px;
+  }
+.main-funnel-image-text-section .section_heading h1{
+   color: #100;
+  text-align: center;
+  font-family: "Oswald", sans-serif;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+}
+  .image_with_text_wrapper_content .text_heading{
+    margin-bottom:26px;
+  }
+  .image_with_text_wrapper_content .text_heading h4{
+    color: #100;
+    text-align:left;
+    font-family: "Oswald", sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+  }
+    .image_with_text_wrapper_content .content_description{
+      max-width:585px;
+    }
+   .image_with_text_wrapper_content .content_description p{
+    color: rgba(0, 0, 0, 0.80);
+    font-family:  "Oswald", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+  }
+  .main-funnel-image-text-section .featured_image_wrapper {
+    display: flex;
+    justify-content: center;
+}
+  .main-funnel-image-text-section .featured_image_wrapper img {
+    max-width: 638px;
+    width:100%;
+}
+  .flex-order{
+    display:flex;
+    justify-content:center;
+  }
+
+     @media only screen and (max-width:1300px) {
+  .main-funnel-image-text-section .section_heading h1{
+     font-size:36px;
+     line-height:46px;
+   }
+    .image_with_text_wrapper_content .text_heading h4{
+         font-size:36px;
+     line-height:46px;
+    }
+       .image_with_text_wrapper_content .content_description p{
+         font-size:18px;
+         line-height:normal;
+       }
+      .main-funnel-image-text-section{
+        padding:50px;
+      }
+       .main-funnel-image-text-section .featured_image_wrapper img{
+         max-width:80%;
+       }
+
+}
+
+    @media only screen and (max-width:768px) {
+     .main-funnel-image-text-section{
+         padding:20px;
+      }
+     .main-funnel-image-text-section .section_heading h1{
+          font-size:32px;
+          line-height: normal;
+      }
+      .image_with_text_wrapper_content .text_heading h4{
+        font-size:24px;
+        line-height:normal;
+      }
+      .main-funnel-image-text-section .row.column-reverse.column-reverse{
+        flex-direction:column-reverse;
+      }
+      .image_with_text_wrapper_content {
+    margin-top: 30px;
+}
+      .main-funnel-image-text-section .featured_image_wrapper{
+        justify-content:center !important;
+      }
+      .main-funnel-image-text-section .featured_image_wrapper img{
+        max-width:100%;
+      }
+    }
+     @media only screen and (max-width:492px) {
+          .main-funnel-image-text-section .row .col-sm-12{
+              width:100%;
+         }
+         .main-funnel-image-text-section .row{
+               flex-direction:column;
+         }
+       .main-funnel-image-text-section .section_heading{
+         margin-bottom:40px;
+       }
+      
+      }
+  
+</style>
+<div class="main-funnel-image-text-section">
+   <div class="container">
+      {% if section.settings.heading !=blank %}
+        <div class="section_heading">
+           <h1>{{ section.settings.heading }}</h1>
+        </div>
+      {% endif %}
+     {% for block in section.blocks %}
+       {% if block.settings.featured_position == "right" %}
+     <div class="row column-reverse">
+         <div class="col-lg-6 col-md-6 col-sm-12">
+           <div class="image_with_text_wrapper_content">
+               <div class="text_heading">
+                   <h4>{{ block.settings.heading }}</h4>
+               </div>
+              <div class="content_description">
+                {{ block.settings.content }}
+              </div>
+           </div>
+       </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          {% if block.settings.image !=blank %}
+         <div class="featured_image_wrapper">
+            <img src="{{ block.settings.image |img_url:'master' }}"/>
+         </div>
+          {% endif %}
+       </div>
+
+   
+
+     </div>
+        {% else %}
+     <div class="row">
+
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          {% if block.settings.image !=blank %}
+         <div class="featured_image_wrapper" style="justify-content:flex-start">
+            <img src="{{ block.settings.image |img_url:'master' }}"/>
+         </div>
+        {% endif %}
+       </div>
+         <div class="col-lg-6 col-md-6 col-sm-12">
+           <div class="image_with_text_wrapper_content flex-order">
+               <div class="content_wrapper">
+               <div class="text_heading">
+                   <h4>{{ block.settings.heading }}</h4>
+               </div>
+              <div class="content_description">
+                {{ block.settings.content }}
+              </div>
+               </div>
+           </div>
+       </div>
+   
+
+     </div>
+
+         {% endif %}
+       {% endfor %}
+
+
+      
+
+   </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Funnel Image Text Section",
+    "class":"funnel-image-text-section",
+    "settings": [
+      {
+        "type":"text",
+        "id":"heading",
+        "label":"Section Heading",
+        "default":"What’s Inside Our Magic Beard Growth Kit?"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"image-with-text",
+        "name":"Funnel Product Block",
+        "settings":[
+          {
+            "type":"text",
+            "id":"heading",
+            "label":"Funnel Product Heading"
+          },
+          {
+            "type":"richtext",
+            "id":"content",
+            "label":"Funnel Product Content"
+          },
+          {
+            "type":"image_picker",
+            "id":"image",
+            "label":"Funnel Product Image"
+          },
+          {
+            "type": "select",
+            "id": "featured_position",
+            "label": "Product Image Position",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "right"
+        }
+
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name":"Funnel Image Text Section"
+      }
+    ]
+  }
+{% endschema %}

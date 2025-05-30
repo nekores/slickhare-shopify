@@ -1,0 +1,340 @@
+<style>
+  h1.heading {
+    font-size: 68px;
+    font-weight: 500;
+    color: #d3a640;
+    line-height: 84px;
+    
+}
+  .head-with-richTextV2 {
+    {% if section.settings.colorBG !=blank %}
+     background-color:{{section.settings.colorBG}};
+    {% else %}  
+    background-color:#000;
+    {% endif %}
+}
+  .head-with-richTextV2 .product-form__cart-submit{
+      width:auto !important;
+  }
+  p {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 32px;
+    color: #d3a640;
+}
+  .rich-text-btn {
+    display: flex;
+    justify-content: center;
+    margin: 2.5rem;
+}
+  a.rich-btn {
+    padding: 16px 36px;
+    font-size: 18px;
+    font-weight: 500;
+    color: black;
+    background: #d3a640;
+    border-color: #d3a640;
+}
+
+  a.rich-btn:hover {
+    opacity: .8;
+    color: black;
+}
+.view-product {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+  .shopify-buy__option-select-wrapper{
+    display:none;
+  }
+  
+  @media only screen and (min-width: 750px){
+#shopify-section-16191055331525e772{
+    padding-top: 5.5rem;
+    padding-bottom: 20px;
+}
+    .rich-text__text--medium.rte-setting.text-center {
+    width: 60%;
+    margin: 0px auto;
+}
+  } 
+  @media only screen and (max-width: 750px){
+  h1.heading {
+    font-size: 2.5rem;
+    line-height: 3.2rem;
+}
+    .grid__item {
+    margin: 1.5rem;
+      margin-bottom: 0;
+}
+    .grid {
+    display: flex;
+    justify-content: center;
+      margin-top: 1rem;
+}
+  
+  div#shopify-section-16191055331525e772 {
+    padding: 0;
+}
+    h1.heading {
+    font-size: 2rem;
+    line-height: 2.2rem;
+    font-weight: 600;
+}
+    a.rich-btn {
+    padding: 17px 58px;
+    }
+    div#shopify-section-head-with-richtext {
+    padding: 10px 0;
+}
+  } 
+</style>
+
+{% if section.settings.section_title != blank %}
+<section class="contact-us-section">
+<div class="rich-text">
+  <div class="grid">
+    <div class="grid__item ">
+      {% if section.settings.section_title != blank %}
+        <div class="rich-text__heading--{{ section.settings.text_size }} text-center">
+          <h1 class="heading">{{ section.settings.section_title | escape }}</h1>
+        </div>
+      {% endif %}
+      {% if section.settings.text != blank %}
+        <div class="rich-text__text--{{ section.settings.text_size }} rte-setting text-center">{{ section.settings.text }}</div>
+      {% endif %}
+      {% assign productids=all_products[section.settings.productId] %}
+      {% if section.settings.button_label != blank and section.settings.productId != blank %}
+      	<div class="rich-text-btn">
+        <a  type="button"  data-id="{{ productids.variants.first.id }}" 
+          class="btn product-form__cart-submit add-to-cart-atc"
+          aria-label="{{ ariaLabel }}">
+          {{- section.settings.button_label | escape -}}
+        </a>
+      </div>
+      {% endif %} 
+{%  comment %}
+  <div class="view-product" id="productId" value="{{ product.id }}"> {{section.settings.view-product}} </div>
+{% endcomment %}
+    </div>
+  </div>
+</div>
+
+</section>
+{% endif %}
+<script>
+
+  $(document).on("click",".add-to-cart-atc",function(){ 
+    var selectedID=$(this).data('id');
+    addItemToCart(selectedID , 1);    // paste your id product number
+    console.log("clicked");
+  });
+
+  function addItemToCart(variant_id, qty) {
+    data = {
+      "id": variant_id,
+      "quantity": qty
+    }
+    
+    jQuery.ajax({
+      type: 'POST',
+      url: '/cart/add.js',
+      data: data,
+      dataType: 'json',
+      success: function() { 
+         console.log("success");
+        $("#badgeCounter").load(" #badgeCounter");
+         $(".Icon--cart").trigger("click");
+         $("#testWrapper").load(" #testWrapper");
+         $("#CartSubtotal").load(" #CartSubtotal");
+      }
+    });
+    document.documentElement.dispatchEvent(new CustomEvent('cart:refresh', {
+    	bubbles: true    // same code for prestige theme   
+ 	 }));
+  }
+</script>
+
+{% schema %}
+{
+  "name": {
+    "cs": "Formát RTF",
+    "da": "RTF",
+    "de": "Rich Text",
+    "en": "Heading-richtext-add-cart",
+    "es": "Texto enriquecido",
+    "fi": "Rich text",
+    "fr": "Texte enrichi",
+    "it": "Rich text",
+    "ja": "リッチテキスト",
+    "ko": "Rich text",
+    "nb": "Rich text",
+    "nl": "Tekst met opmaak",
+    "pl": "Tekst sformatowany",
+    "pt-BR": "Rich text",
+    "pt-PT": "Texto formatado",
+    "sv": "Rich text",
+    "th": "Rich Text",
+    "tr": "Zengin metin",
+    "vi": "Văn bản đa dạng thức",
+    "zh-CN": "富文本",
+    "zh-TW": "RTF 文字"
+  },
+  "class": "index-section head-with-richTextV2",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": {
+        "cs": "Zobrazení na šířku",
+        "da": "Bred visning",
+        "de": "Breitbild-Display",
+        "en": "Wide display",
+        "es": "Pantalla ancha",
+        "fi": "Laaja näyttö",
+        "fr": "Affichage large",
+        "it": "Visualizzazione ampia",
+        "ja": "ワイドディスプレイ",
+        "ko": "너비 표시",
+        "nb": "Bred visning",
+        "nl": "Brede weergave",
+        "pl": "Szerokie wyświetlanie",
+        "pt-BR": "Exibição ampla",
+        "pt-PT": "Exibição ampla",
+        "sv": "Breddvisning",
+        "th": "การแสดงผลแบบกว้าง",
+        "tr": "Geniş görünüm",
+        "vi": "Hiển thị rộng",
+        "zh-CN": "宽显示屏",
+        "zh-TW": "寬螢幕"
+      }
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": {
+        "cs": "Nadpis",
+        "da": "Overskrift",
+        "de": "Titel",
+        "en": "Heading",
+        "es": "Título",
+        "fi": "Otsake",
+        "fr": "En-tête",
+        "it": "Heading",
+        "ja": "見出し",
+        "ko": "제목",
+        "nb": "Overskrift",
+        "nl": "Kop",
+        "pl": "Nagłówek",
+        "pt-BR": "Título",
+        "pt-PT": "Título",
+        "sv": "Rubrik",
+        "th": "ส่วนหัว",
+        "tr": "Başlık",
+        "vi": "Tiêu đề",
+        "zh-CN": "标题",
+        "zh-TW": "標題"
+      }
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": {
+        "cs": "Text",
+        "da": "Tekst",
+        "de": "Text",
+        "en": "Text",
+        "es": "Texto",
+        "fi": "Teksti",
+        "fr": "Texte",
+        "it": "Testo",
+        "ja": "テキスト",
+        "ko": "텍스트",
+        "nb": "Tekst",
+        "nl": "Tekst",
+        "pl": "Tekst",
+        "pt-BR": "Texto",
+        "pt-PT": "Texto",
+        "sv": "Text",
+        "th": "ข้อความ",
+        "tr": "Metin",
+        "vi": "Văn bản",
+        "zh-CN": "文本",
+        "zh-TW": "文字"
+      }
+    },
+    {
+      "type": "color",
+      "id": "colorBG",
+      "label":"Section Background Color"
+    
+    },
+    {
+      "type": "product",
+      "id": "productId",
+      "label":"Add To cart Product"
+     }
+    ,
+ 	{
+      "type": "text",
+      "id": "button_label",
+      "label": {
+       "en": "Atc Button label",
+        "es": "Etiqueta de botón",
+        "fi": "Tekstipainike",
+        "fr": "Texte du bouton",
+        "it": "Etichetta pulsante",
+        "ja": "ボタンのラベル",
+        "ko": "버튼 레이블",
+        "nb": "Knappetikett",
+        "nl": "Knoplabel",
+        "pl": "Przycisk z etykietą",
+        "pt-BR": "Etiqueta de botão",
+        "pt-PT": "Etiqueta do botão",
+        "sv": "Knappetikett",
+        "th": "ป้ายกำกับปุ่ม",
+        "tr": "Düğme etiketi",
+        "vi": "Nhãn nút",
+        "zh-CN": "按钮标签",
+        "zh-TW": "按鈕標籤"
+      }
+    }
+   
+  ],
+  "presets": [
+    {
+      "name": {
+     
+        "en": "Heading Richtext Add to cart",
+        "vi": "Văn bản đa dạng thức",
+        "zh-CN": "富文本",
+        "zh-TW": "RTF 文字"
+      },
+      "category": {
+        "cs": "Text",
+        "da": "Tekst",
+        "de": "Text",
+        "en": "Text",
+        "es": "Texto",
+        "fi": "Teksti",
+        "fr": "Texte",
+        "it": "Testo",
+        "ja": "テキスト",
+        "ko": "텍스트",
+        "nb": "Tekst",
+        "nl": "Tekst",
+        "pl": "Tekst",
+        "pt-BR": "Texto",
+        "pt-PT": "Texto",
+        "sv": "Text",
+        "th": "ข้อความ",
+        "tr": "Metin",
+        "vi": "Văn bản",
+        "zh-CN": "文本",
+        "zh-TW": "文字"
+      }
+    }
+  ]
+}
+{% endschema %}

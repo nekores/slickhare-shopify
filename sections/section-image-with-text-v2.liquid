@@ -1,0 +1,382 @@
+<style>
+
+  .section-image-with-text-block-v2 {
+    {% if section.settings.bgColor !=blank %}
+    background-color:{{section.settings.bgColor}};
+    {% else %}
+    background: #F5F5F5;
+    {% endif %}
+    padding: 4rem;
+    padding-top: 55px;
+}
+  .feature_img_root{
+    position:relative;
+  }
+  .feature__imag{
+    z-index: 2;
+    position: relative;
+  }
+
+  .section-image-with-text-block-v2 .feature_img_bdr{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+    left: 20px;
+    top: 12px;
+    display:none;
+    border: 8px solid;
+
+  }
+  
+
+/*   div#shopify-section-img-with-text-block {
+    background: #fff;
+} */
+section.container {
+  align-items: stretch;
+}
+.img_with_txt{
+display:flex;
+justify-content:space-between;
+
+}
+  .img-txt_container{
+    width:50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+  }
+
+.img_txt{
+display: flex;
+justify-content: center;
+margin:2em 0;
+ width:100%; 
+}
+
+.txt h3 {
+    text-align: left;
+    margin: 10px 3rem;
+    font-size: 3rem;
+    color: #333333;
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 47px;
+    letter-spacing: 0em;
+   
+
+}
+  .txt .textsubsituate {
+    text-align: left;
+    margin: 0 3rem;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 23px;
+    letter-spacing: 0.03em;
+    text-align: left;
+    color:#858585;
+
+}
+  .txt p {
+    text-align: left;
+    margin: 0 3rem;
+    color:#333333;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 31px;
+    letter-spacing: 0em;
+ 
+}
+
+  .txt{
+    margin:1em 0;
+  }
+.brand{
+text-align: center;
+}
+  .img_txt img {
+    width: 90%;
+}
+  .img-txt_container:nth-child(even) .img_txt {
+    justify-content: flex-end;
+}
+  .img-txt_container:nth-child(odd) .img_txt {
+    justify-content: flex-start;
+}
+  .img-txt-heading h2 {
+    padding-bottom:40px;
+    font-size: 50px;
+    font-weight: 600;
+    line-height: 59px;
+    letter-spacing: 0.03em;
+    text-align: center;
+    color: #373737;  
+    
+
+}
+  @media only screen and (max-width: 800px){
+ .section-image-with-text-block-v2{
+   padding:1rem;
+ }
+    
+    .txt .textsubsituate{
+      margin:0px 0px;
+    }
+    .txt h3{
+      margin: 10px 0rem;
+    }
+    .txt .btnWrapper{
+      margin-bottom:45px;
+      margin-left:0px;
+    }
+    .img_with_txt{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    margin:0;
+  }
+    .img-with-text_container:nth-child(even) .img_with_txt {
+    flex-direction: column-reverse;
+}
+  
+  .img-txt_container{
+    width:100%;
+  }
+    section.container {
+    padding: 1rem;
+}
+  .img_txt img {
+    width: 100%;
+} 
+
+    .txt p {
+    font-size: 1.1rem;
+    margin: 1.3rem 0 0;
+}
+    
+    .img-txt-heading h2 {
+    font-size: 50px;
+    font-weight: 600;
+    line-height: 59px;
+    letter-spacing: 0.03em;
+    text-align: center;
+    color: #373737;
+    padding-bottom:40px;
+}
+    
+}
+.readMorebtn {
+    background: #000000;
+    width: auto;
+    color: white;
+    padding: 11px 50px;
+    font-style: normal;
+    font-weight: 700;
+   font-size: 22px;
+   line-height: 31px;
+   letter-spacing: 0.4px;
+  text-transform: capitalize;
+}
+  .btnWrapper {
+    margin-left: 50px;
+    margin-top: 30px;
+    position: relative;
+}
+  
+ 
+  {% if section.id=="ebd75200-3e9a-45ca-9c77-35a547d96b52" %}
+.flexer p:before {
+     position: absolute;
+    height: 12px;
+    content: "";
+    display: flex;
+    width: 12px;
+    left: -30px;
+    top: 12px;
+    border-radius: 50%;
+  {% if section.settings.bulletColor !=blank %}
+    background:{{ section.settings.bulletColor }}; 
+    {% else %}  
+    background: #333333;
+    {% endif %}
+}
+  .txt p{
+    position:relative;
+    margin-bottom: 18px;
+    
+  }
+    @media only screen and (max-width: 600px) {
+  .txt p{
+    margin-left: 20px;
+  }
+}
+  {% endif %}
+</style>
+
+{% if section.blocks.size > 0 %}
+<section class="container {{ section.id }}">
+  <div class="img-txt-heading">
+    <h2>{{ section.settings.heading }}</h2>
+    <div>
+  {% for block in section.blocks %}
+  <div class="img-with-text_container">
+    {%- if block.settings.image_position == 'right' -%}
+    <div class="img_with_txt">
+  
+  <div class= "img-txt_container">
+    <div class="txt_container">
+<div class="txt">
+ <span class="textsubsituate">{{ block.settings.subtitle }}</span>   
+<h3>{{block.settings.title}}</h3>
+<div class="flexer">
+
+{{block.settings.discription }}
+</div>
+  {% if block.settings.btnWrapper!=blank %}    
+  <div class="btnWrapper">
+<a href="{{ section.settings.btnWrapperurl}}"class="readMorebtn">{{ block.settings.btnWrapper }}</a>
+ </div>
+      {% endif %}
+
+  
+</div>
+    </div>
+  </div>
+      <div class= "img-txt_container">
+     
+       <div class="feature_img_root"> 
+  <img src="{{block.settings.image |img_url: 'master'}}" class="feature__imag" />
+         <div class="feature_img_bdr"></div>
+      </div>
+  </div>
+</div>
+    {%- else -%}
+    
+<div class="img_with_txt">
+  <div class= "img-txt_container">
+    <div class="feature_img_root"> 
+  <img src="{{block.settings.image |img_url: 'master'}}" class="feature__imag" />
+          <div class="feature_img_bdr"></div>
+      </div>
+  </div>
+  <div class= "img-txt_container">
+    <div class="txt_container">
+<div class="txt">
+ <span class="textsubsituate">{{ block.settings.subtitle }}</span>   
+<h3>{{block.settings.title}}</h3>
+      
+<div class="flexer">
+
+{{block.settings.discription }}
+</div>
+  
+  {% if block.settings.btnWrapper!=blank %}    
+  <div class="btnWrapper">
+<a href="{{ block.settings.btnWrapperurl}}"class="readMorebtn">{{ block.settings.btnWrapper }}</a>
+ </div>
+      {% endif %}
+</div>
+    </div>
+  </div>
+  </div>
+  {%- endif -%}
+
+  </div>
+  {% endfor %}
+
+</section>
+
+{%- endif -%}
+
+{% schema %}
+  {
+  "name": "Image with Text Block V2",
+  "class": "index-section section-image-with-text-block-v2",  
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "color",
+      "id": "bulletColor",
+      "label": "Bullet Color"
+     
+    },
+     {
+      "type": "color",
+      "id": "bgColor",
+      "label": "BACKGROUND COLOR"
+     }
+    ],
+"max_blocks": 8,
+  "blocks": [
+      {
+	  "type": "image",
+      "name": "Image slide",
+      "settings": [
+    
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Sub Title",
+      "default":"Product"
+    },
+	{
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+	{
+      "type": "richtext",
+      "id": "discription",
+      "label": "Discription"
+    },
+	{
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "text",
+      "id": "btnWrapper",
+      "label": "Button Label"
+      
+    },
+      {
+      "type": "url",
+      "id": "btnWrapperurl",
+      "label": "Button Link"
+     
+    }
+  ]
+}],
+  "presets": [
+    {
+      "category": "Image",
+      "name": "Image-with-text-v2",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
+

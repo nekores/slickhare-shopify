@@ -1,0 +1,592 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"  crossorigin="anonymous" />
+
+
+<style>
+
+   #shopify-section-{{ section.id }} {
+    padding-top: calc({{ section.settings.padding_top }}px * 0.75);
+    padding-bottom: calc({{ section.settings.padding_bottom }}px  * 0.75);
+  }
+  .gallery-section-v2{
+    {% if section.settings.bgColor !=blank %}
+   background-color:{{section.settings.bgColor}};
+     {% else %} 
+    background-color:white;
+      {% endif %}
+    padding:25px;
+  }
+
+  .gallery-section-v2 .grid__item {
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+  .gallery-section-v2 .sectionHeading h1{
+    padding: 50px;
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 36px;
+    color: rgba(51, 51, 51, 1);
+    letter-spacing: 0.03em;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+  }
+ .gallery-section-v2 .image-bar__item{
+   border-radius:5px;
+ }
+  
+</style>
+<div>
+  <div class="sectionHeading">
+    {% if section.settings.heading !=blank %}
+     <h2 class="custom-carousel-title">{{ section.settings.heading }}</h2>
+     {% endif %} 
+   </div>
+  
+<div class="grid grid--no-gutters image-bar image-bar--{{ section.settings.section_height }}">
+  {% case section.blocks.size %}
+    {% when 1 %}
+      {%- assign column_size = '' -%}
+    {% when 2 %}
+      {%- assign column_size = 'medium-up--one-half' -%}
+    {% when 3 %}
+      {%- assign column_size = 'medium-up--one-third' -%}
+    {% else %}
+      {%- assign column_size = 'medium-up--two-eighths' -%}
+  {% endcase %}
+
+  {% for block in section.blocks %}
+    <div class="grid__item {{ column_size }} js" {{ block.shopify_attributes }}>
+      {% if block.settings.linkUndefined == blank %}
+        <a class="image-bar__link" href="{{ block.settings.image|img_url:'master'}}" title="{{ block.settings.cta_label | escape }}">
+          <div class="image-bar__item box ratio-container lazyload"
+               data-bgset="{% include 'bgset', image: block.settings.image %}"
+               data-sizes="auto"
+               data-parent-fit="cover"
+               style="background-position: {{ block.settings.alignment }};"
+               data-image-loading-animation>
+      
+      {% else %}
+        <div class="image-bar__item">
+      {% endif %}
+      <div class="image-bar__content{% if block.settings.cta_label != blank or block.settings.link != blank %} {% endif %}">
+        {% if block.settings.image == blank %}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+        {% comment %}
+        {% if block.settings.cta_label != blank %}
+          <div class="image-bar__text">
+          
+            <h3 class="image-bar__caption">{{ block.settings.cta_label | escape }}</h3>
+      
+          </div>
+        {% endif %}
+         {% endcomment %}
+    
+      </div>
+      {% if block.settings.linkUndefined == blank %}
+        </div></a>
+      {% else %}
+        </div>
+      {% endif %}
+    
+    </div>
+    <noscript>
+      <div class="grid__item {{ column_size }}" {{ block.shopify_attributes }}>
+        <div class="image-bar__item image-bar__item--{{ block.id }}" style="background-image: url({{ block.settings.image | img_url: '2048x' }});"></div>
+      </div>
+    </noscript>
+  {% endfor %}
+</div>
+
+  
+<!-- {% if section.blocks.size == 0 %}
+  {% include 'no-blocks' %}
+{% endif %} -->
+{% comment %}
+<a href="/pages/all-products" class="btn">Shop now</a>
+{% endcomment %}
+  </div>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" crossorigin="anonymous"></script> 
+  <script>
+    $(document).ready(function() {
+	$('.image-bar--medium').magnificPopup({
+		delegate: 'a',
+		type: 'image',
+		tLoading: 'Loading image #%curr%...',
+		mainClass: 'mfp-img-mobile',
+		gallery: {
+			enabled: true,
+			navigateByImgClick: true,
+			preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		},
+		image: {
+			tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+			titleSrc: function(item) {
+				return item.el.attr('title') + '<small>By Slick Hare</small>';
+			}
+		}
+	});
+});
+  </script>
+{% schema %}
+{
+  "name": {
+    "cs": "Galerie",
+    "da": "Galleri",
+    "de": "Galerie",
+    "en": "Gallery",
+    "es": "Galería",
+    "fi": "Galleria",
+    "fr": "Galerie",
+    "it": "Galleria",
+    "ja": "ギャラリー",
+    "ko": "갤러리",
+    "nb": "Galleri",
+    "nl": "Galerie",
+    "pl": "Galeria",
+    "pt-BR": "Galeria",
+    "pt-PT": "Galeria",
+    "sv": "Galleri",
+    "th": "แกลเลอรี",
+    "tr": "Galeri",
+    "vi": "Bộ sưu tập ảnh",
+    "zh-CN": "图库",
+    "zh-TW": "圖庫"
+  },
+  "class": "index-section gallery-section-v2",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type":"text",
+      "id":"heading",
+      "label":"Section Heading"
+      
+    },
+     {
+      "type":"color",
+      "id":"bgColor",
+      "label":"Section BG Color"
+      
+    },
+    {
+      "type": "select",
+      "id": "section_height",
+      "label": {
+        "cs": "Výška sekce",
+        "da": "Højde på afsnit",
+        "de": "Bereichs-Höhe",
+        "en": "Section height",
+        "es": "Altura de la sección",
+        "fi": "Osan korkeus",
+        "fr": "Hauteur de la section",
+        "it": "Altezza sezione",
+        "ja": "セクションの高さ",
+        "ko": "섹션 높이",
+        "nb": "Høyde på del",
+        "nl": "Sectiehoogte",
+        "pl": "Wysokość sekcji",
+        "pt-BR": "Altura da seção",
+        "pt-PT": "Altura da secção",
+        "sv": "Sektionshöjd",
+        "th": "ความสูงของส่วน",
+        "tr": "Bölüm yüksekliği",
+        "vi": "Chiều cao mục",
+        "zh-CN": "分区高度",
+        "zh-TW": "區塊高度"
+      },
+      "default": "medium",
+      "options": [
+        {
+          "label": {
+            "cs": "Extra malá",
+            "da": "Ekstra lille",
+            "de": "Extra klein",
+            "en": "Extra Small",
+            "es": "Extra pequeña",
+            "fi": "Erikoispieni",
+            "fr": "Très petite",
+            "it": "Molto piccola",
+            "ja": "極小",
+            "ko": "특소",
+            "nb": "Ekstra liten",
+            "nl": "Extra klein",
+            "pl": "Bardzo mała",
+            "pt-BR": "Muito pequeno",
+            "pt-PT": "Extra pequeno",
+            "sv": "Extra liten",
+            "th": "ขนาดเล็กพิเศษ",
+            "tr": "Çok Küçük",
+            "vi": "Cực nhỏ",
+            "zh-CN": "特小",
+            "zh-TW": "超小型"
+          },
+          "value": "x-small"
+        },
+        {
+          "label": {
+            "cs": "Malá",
+            "da": "Lille",
+            "de": "Klein",
+            "en": "Small",
+            "es": "Pequeña",
+            "fi": "Pieni",
+            "fr": "Petite",
+            "it": "Piccolo",
+            "ja": "小",
+            "ko": "스몰",
+            "nb": "Liten",
+            "nl": "Klein",
+            "pl": "Mała",
+            "pt-BR": "Pequeno",
+            "pt-PT": "Pequeno",
+            "sv": "Liten",
+            "th": "เล็ก",
+            "tr": "Küçük",
+            "vi": "Nhỏ",
+            "zh-CN": "小",
+            "zh-TW": "小型"
+          },
+          "value": "small"
+        },
+        {
+          "label": {
+            "cs": "Střední",
+            "da": "Medium",
+            "de": "Mittel",
+            "en": "Medium",
+            "es": "Mediana",
+            "fi": "Keskisuuri",
+            "fr": "Moyenne",
+            "it": "Medio",
+            "ja": "中",
+            "ko": "보통",
+            "nb": "Middels",
+            "nl": "Gemiddeld",
+            "pl": "Średnia",
+            "pt-BR": "Médio",
+            "pt-PT": "Médio",
+            "sv": "Medium",
+            "th": "ปานกลาง",
+            "tr": "Orta",
+            "vi": "Trung bình",
+            "zh-CN": "中等",
+            "zh-TW": "中等"
+          },
+          "value": "medium"
+        },
+        {
+          "label": {
+            "cs": "Velká",
+            "da": "Stor",
+            "de": "Groß",
+            "en": "Large",
+            "es": "Grande",
+            "fi": "Suuri",
+            "fr": "Grande",
+            "it": "Grande",
+            "ja": "大",
+            "ko": "라지",
+            "nb": "Stor",
+            "nl": "Groot",
+            "pl": "Duża",
+            "pt-BR": "Grande",
+            "pt-PT": "Grande",
+            "sv": "Stor",
+            "th": "ใหญ่",
+            "tr": "Büyük",
+            "vi": "Lớn",
+            "zh-CN": "大",
+            "zh-TW": "大型"
+          },
+          "value": "large"
+        },
+        {
+          "label": {
+            "cs": "Extra velká",
+            "da": "Ekstra stor",
+            "de": "Extra groß",
+            "en": "Extra Large",
+            "es": "Extra grande",
+            "fi": "Erikoissuuri",
+            "fr": "Très grande",
+            "it": "Molto grande",
+            "ja": "特大",
+            "ko": "특대",
+            "nb": "Ekstra stort",
+            "nl": "Extra groot",
+            "pl": "Bardzo duża",
+            "pt-BR": "Muito grande",
+            "pt-PT": "Extra grande",
+            "sv": "Extra stor",
+            "th": "ขนาดใหญ่พิเศษ",
+            "tr": "Çok Büyük",
+            "vi": "Cực lớn",
+            "zh-CN": "特大",
+            "zh-TW": "超大型"
+          },
+          "value": "x-large"
+        },
+        
+      ]
+    },
+     {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": {
+        "cs": "Obrázek",
+        "da": "Billede",
+        "de": "Foto",
+        "en": "Image",
+        "es": "Imagen",
+        "fi": "Kuva",
+        "fr": "Image",
+        "it": "Immagine",
+        "ja": "画像",
+        "ko": "이미지",
+        "nb": "Bilde",
+        "nl": "Afbeelding",
+        "pl": "Obraz",
+        "pt-BR": "Imagem",
+        "pt-PT": "Imagem",
+        "sv": "Bild",
+        "th": "รูปภาพ",
+        "tr": "Görsel",
+        "vi": "Hình ảnh",
+        "zh-CN": "图片",
+        "zh-TW": "圖片"
+      },
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": {
+            "cs": "Obrázek",
+            "da": "Billede",
+            "de": "Foto",
+            "en": "Image",
+            "es": "Imagen",
+            "fi": "Kuva",
+            "fr": "Image",
+            "it": "Immagine",
+            "ja": "画像",
+            "ko": "이미지",
+            "nb": "Bilde",
+            "nl": "Afbeelding",
+            "pl": "Obraz",
+            "pt-BR": "Imagem",
+            "pt-PT": "Imagem",
+            "sv": "Bild",
+            "th": "รูปภาพ",
+            "tr": "Görsel",
+            "vi": "Hình ảnh",
+            "zh-CN": "图片",
+            "zh-TW": "圖片"
+          }
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": {
+            "cs": "Zarovnání obrázku",
+            "da": "Justering af billede",
+            "de": "Fotoausrichtung",
+            "en": "Image alignment",
+            "es": "Alineación de imagen",
+            "fi": "Kuvan tasaus",
+            "fr": "Alignement de l'image",
+            "it": "Allineamento immagine",
+            "ja": "画像アラインメント",
+            "ko": "이미지 정렬",
+            "nb": "Bildejustering",
+            "nl": "Afbeelding uitlijnen",
+            "pl": "Wyrównanie obrazu",
+            "pt-BR": "Alinhamento da imagem",
+            "pt-PT": "Alinhamento da imagem",
+            "sv": "Bildjustering",
+            "th": "การจัดวางรูปภาพ",
+            "tr": "Görsel hizalaması",
+            "vi": "Căn chỉnh hình ảnh",
+            "zh-CN": "图片对齐方式",
+            "zh-TW": "圖片對齊"
+          },
+          "default": "center",
+          "options": [
+            {
+              "value": "top",
+              "label": {
+                "cs": "Nahoru",
+                "da": "Top",
+                "de": "Oben",
+                "en": "Top",
+                "es": "Superior",
+                "fi": "Ylös",
+                "fr": "Haut",
+                "it": "Alto",
+                "ja": "上",
+                "ko": "위쪽",
+                "nb": "Topp",
+                "nl": "Boven",
+                "pl": "Do góry",
+                "pt-BR": "Acima",
+                "pt-PT": "Acima",
+                "sv": "Högst upp",
+                "th": "ด้านบน",
+                "tr": "Üst",
+                "vi": "Bên trên",
+                "zh-CN": "顶部",
+                "zh-TW": "頂部"
+              }
+            },
+            {
+              "value": "center",
+              "label": {
+                "cs": "Na střed",
+                "da": "I midten",
+                "de": "Mitte",
+                "en": "Middle",
+                "es": "Centrada",
+                "fi": "Keskelle",
+                "fr": "Milieu",
+                "it": "Centrale",
+                "ja": "中央",
+                "ko": "중간",
+                "nb": "Midten",
+                "nl": "Midden",
+                "pl": "Do środka",
+                "pt-BR": "Meio",
+                "pt-PT": "Meio",
+                "sv": "Mitten",
+                "th": "ตรงกลาง",
+                "tr": "Orta",
+                "vi": "Ở giữa",
+                "zh-CN": "中间",
+                "zh-TW": "中央"
+              }
+            },
+            {
+              "value": "bottom",
+              "label": {
+                "cs": "Dolů",
+                "da": "Bund",
+                "de": "Unten",
+                "en": "Bottom",
+                "es": "Inferior",
+                "fi": "Alas",
+                "fr": "Bas",
+                "it": "Basso",
+                "ja": "下",
+                "ko": "아래쪽",
+                "nb": "Bunn",
+                "nl": "Onder",
+                "pl": "Do dołu",
+                "pt-BR": "Abaixo",
+                "pt-PT": "Abaixo",
+                "sv": "Längst ner",
+                "th": "ด้านล่าง",
+                "tr": "Alt",
+                "vi": "Bên dưới",
+                "zh-CN": "底部",
+                "zh-TW": "底部"
+              }
+            }
+          ]
+        },
+        
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": {
+            "cs": "Titulek",
+            "da": "Billedtekst",
+            "de": "Unterschrift",
+            "en": "Caption",
+            "es": "Leyenda",
+            "fi": "Kuvateksti",
+            "fr": "Légende",
+            "it": "Didascalia",
+            "ja": "キャプション",
+            "ko": "캡션",
+            "nb": "Bildetekst",
+            "nl": "Bijschrift",
+            "pl": "Napisy",
+            "pt-BR": "Legenda",
+            "pt-PT": "Legenda",
+            "sv": "Rubrik",
+            "th": "คำบรรยาย",
+            "tr": "Alt yazı",
+            "vi": "Phụ đề",
+            "zh-CN": "字幕",
+            "zh-TW": "說明"
+          }
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": {
+      
+        "en": "Gallery V2"
+      
+      },
+      "category": {
+        "cs": "Obrázek",
+        "da": "Billede",
+        "de": "Foto",
+        "en": "Image",
+        "es": "Imagen",
+        "fi": "Kuva",
+        "fr": "Image",
+        "it": "Immagine",
+        "ja": "画像",
+        "ko": "이미지",
+        "nb": "Bilde",
+        "nl": "Afbeelding",
+        "pl": "Obraz",
+        "pt-BR": "Imagem",
+        "pt-PT": "Imagem",
+        "sv": "Bild",
+        "th": "รูปภาพ",
+        "tr": "Görsel",
+        "vi": "Hình ảnh",
+        "zh-CN": "图片",
+        "zh-TW": "圖片"
+      },
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

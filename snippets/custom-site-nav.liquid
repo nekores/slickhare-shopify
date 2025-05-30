@@ -1,0 +1,292 @@
+{% comment %}
+    Renders a list of menu items
+    Accepts:
+    - linklist: {Object} Linklist Liquid object (required)
+    - wrapper_class: {String} CSS wrapper class for the navigation (optional)
+
+    Usage:
+    {% include 'custom-site-nav', linklist: section.settings.main_linklist, wrapper_class: 'site-nav--centered' %}
+{% endcomment %}
+<style> 
+.site-nav__dropdown{
+    top:80px !important;
+    background: transparent;
+    padding-top: 46px;
+    padding-left:0px;
+    padding-right:0px;
+}
+  [data-section-id="header"]{
+    position:relative;
+    z-index: 99999;
+  }
+  .site-header{
+   box-shadow: 1px 3px 6px 0px #95959554;
+    }
+ul.middle-menu-list.one {
+    border-right: 1px solid rgba(185, 164, 102, 0.4);
+}
+  {% if section.settings.megamenu==true %}
+  .site-nav__dropdown .sub-menu-inner-page{
+      background:{{section.settings.megabackground}};
+      background-image:url("https://cdn.shopify.com/s/files/1/0335/6327/9404/files/mega_menu_bg.png?v=1669109491");
+      padding-top:48px;
+      background-size:contain;
+      border-bottom:1px solid #D2BA73;
+     
+  }
+ 
+    {% endif %}
+    .site-header .grid--table>.grid__item{
+      vertical-align:middle;
+    }
+  @media only screen and (min-width: 750px){
+.site-header {
+    padding:15px 0px !important;
+    border-bottom:0px solid #D2BA73; 
+  
+}
+  .site-header .site-header__mobile-nav{
+    padding: 8px 55px !important;
+  
+}
+  }
+  @media only screen and (max-width: 769px) {
+ .site-nav__dropdown .middle-menu .middle-menu-list a.site-nav__child-link{
+   font-size:14px;
+ }
+    
+    .customCollection .middle-menu-list{
+      flex-direction:column;
+    }
+    .site-nav__dropdown .middle-menu{
+        flex-flow: row wrap;
+    flex-grow: 1;
+    }
+    
+}
+ @media only screen and (max-width:1079px) {
+ .customCollection .middle-menu-list{
+ flex-wrap:wrap;
+ }
+    
+}
+  @media only screen and (min-width: 750px){
+ul#SiteNav {
+    text-align: center;
+}
+}
+  .btnWrapperMenu {
+    position: relative;
+    margin: 30px 0px;
+}
+.btnWrapperMenu .readMorebtnMenu {
+    padding: 11px 58px;
+    background-color:transparent;
+    color: #d6b456;
+    border: 1px solid #d6b456;
+    transition:all 1s;
+  
+}
+.btnWrapperMenu .readMorebtnMenu:hover{
+  background-color:#d6b456;
+  color:black;
+  border: 1px solid #d6b456;
+  transition:all 1s;
+}
+.readMorebtnMenu svg.bi.bi-chevron-double-right{
+  transform: translateX(0px);
+  transition:all 0.5s;
+}
+  .btnWrapperMenu .readMorebtnMenu:hover svg.bi.bi-chevron-double-right{
+    transform: translateX(10px);
+    transition:all 0.5s;
+    color:black;
+  }
+
+  
+    .site-nav__dropdown .middle-menu .middle-menu-list span.main-bold-title {
+    padding-right: 0;
+    position: relative;
+    width: fit-content;
+}
+ 
+  .site-nav__dropdown .middle-menu .middle-menu-list span.main-bold-title:before{
+    width:100%;
+  }
+  li.site-nav--has-dropdown.mainlevelwrapper1 {
+    position: relative;
+}
+.menulevel1 {
+    max-width:300px;
+    min-width:300px;
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 0.9375rem #0000001a;
+    left: -100%;
+    position: absolute;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-top: -30px;
+}
+.menulevel1 li {
+    padding: 0.625rem 2rem;
+    cursor:pointer;
+}
+.menulevel1 li a{
+color:#000;
+}
+.menulevel1 li:hover a{
+  color:#e5c23c;
+}
+.menulevel1 li:hover{
+  background-color:#00000008;
+}
+</style>
+<ul class="site-nav list--inline {{ nav_alignment }}" id="SiteNav">
+
+{% for link in linklists[section.settings.main_linklist].links %}
+
+    {% comment %}
+    Check if third-level nav exists on each parent link.
+    {% endcomment %}
+    {%- assign three_level_nav = false -%}
+    {%- assign child_list_handle = link.title | handleize -%}
+
+        {% if linklists[child_list_handle].links != blank %}
+          {% for childlink in linklists[child_list_handle].links %}
+            {% assign grand_child_list_handle = childlink.title | handleize %}
+            {% if linklists[grand_child_list_handle].links != blank %}
+            {%- assign three_level_nav = true -%}
+            {% endif %}
+          {% endfor %}
+        {% endif %}   
+
+
+<!--  ADD Link level Condition Here -->
+
+
+  {% if linklists[child_list_handle].links != blank %}
+
+        <li class="site-nav--has-dropdown{% if three_level_nav %} site-nav--has-centered-dropdown{% endif %}{% if link.active %} site-nav--active{% endif %} {% if link.levels==1 %}mainlevelwrapper1{% endif %}" aria-has-popup="true" aria-controls="SiteNavLabel-{{ child_list_handle }}">
+          <a href="{{ link.url }}" class="site-nav__link  site-nav__link--main">
+          <span class="site-nav__label">{{ link.title }}</span>
+          {% include 'icon-chevron-down' %}
+          <span class="visually-hidden">{{ 'layout.navigation.expand' | t }}</span>
+          </a>
+
+       {% if link.levels ==2 %}
+ <div class="site-nav__dropdown" id="SiteNavLabel-{{ child_list_handle }}" aria-expanded="false">
+         
+    
+        <div class="sub-menu-inner-page">
+         {% assign image_block = false %}
+          {% assign linktitle = link.title | downcase %}
+        {% for block in section.blocks %}
+          {%- assign val = block.settings.mega_link | downcase -%}
+          {% if val == linktitle %}
+          {% if block.settings.menu_enable %}
+            {% assign image_block = true %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+  
+    <div class="middle-menu {% if image_block == false %}middle-menu-full{% endif %}">
+        {% for childlink in linklists[child_list_handle].links %}
+            {% if childlink.links != blank %}
+            {% for grandlink in childlink.links %}
+                {% assign valitem = forloop.length %}
+             {% endfor %}
+
+        <ul class="middle-menu-list {% cycle "one", "two"%} {% if valitem >= 15 %}col-2{%endif%}">
+          <p class="" data-id="mega-parent-{{ childlink.handle }}">
+            <span class="site-nav__link main-bold-title">
+            {{ childlink.title | escape }}
+            </span>
+          </p>
+              {% assign item_count = 1 %}
+        {% for grandlink in childlink.links %}
+        <li class="site-nav__childlist-item">
+        <a href="{{ grandlink.url }}" class="site-nav__child-link" >
+        {{ grandlink.title }}
+        </a>
+        </li>
+      {% endfor %}
+              
+         <div class="btnWrapperMenu">
+        <a href="{{ childlink.url }}" class="readMorebtnMenu">Go To Collection {% render'cheveron-right' %}</a>
+         </div>
+    </ul>
+
+    {% endif %}
+  {% endfor %}
+
+
+  
+</div>
+
+      {% if image_block == true %}
+   <div class="image-section mega-list mega-list-logo">
+        {% for block in section.blocks %}
+            {%- assign val = block.settings.mega_link | handleize -%}
+          {% if val == child_list_handle %}
+          {% if block.settings.menu_enable %}
+        {% unless block.settings.link == blank %}<a href="{{ block.settings.link }}"></a>{% endunless %}
+          <div class="img-box">
+            <img src="{{ block.settings.image | img_url: '500x500' }}">
+          <div class="text__section">
+          {% unless block.settings.title == blank %}<h3>{{ block.settings.title }}</h3>{% endunless %}
+          {% unless block.settings.subtitle == blank %}<p>{{ block.settings.subtitle }}</p>{% endunless %}
+          </div>
+         </div>
+          {% unless block.settings.link == blank %}</a>{% endunless %}
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+ </div>
+  {% endif %}
+    
+    
+  </div>
+  </div>
+{% elsif link.levels == 1 %}
+ <div class="site-nav__dropdown {% if link.levels ==1 %}menulevel1{% endif %}" id="SiteNavLabel-{{ child_list_handle }}" aria-expanded="false">
+     <ul class="middle-menu-list {% cycle "one", "two"%} {% if valitem >= 15 %}col-2{%endif%}">
+       
+         {% for grandlink in linklists[child_list_handle].links %}
+        <li class="site-nav__childlist-item">
+        <a href="{{ grandlink.url }}" class="site-nav__child-link" >
+        {{ grandlink.title }}
+        </a>
+        </li>
+      {% endfor %}
+              
+        
+    </ul>
+ 
+</div>
+          
+       {% endif %}
+
+
+          
+  </li>
+{% else %}
+    
+    <li {% if link.active %}class="site-nav--active"{% endif %}>
+    <a href="{{ link.url }}" class="site-nav__link site-nav__link--main">{{ link.title }}</a>
+    </li>
+{% endif %} 
+  
+
+
+
+  
+<!-- Linklist endif ended -->
+{% endfor %} 
+<!--  Final 1st For Tag Ended Here -->
+</ul>
+
+  
+
+
+

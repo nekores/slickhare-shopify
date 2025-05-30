@@ -1,0 +1,50 @@
+{% comment %}
+    Renders a product card using "Grid" style
+    Accepts:
+    - max_height: {Number} Maximum height of the product's image (required)
+    - product: {Object} Product Liquid object (required)
+    - show_vendor: {Boolean} Show the product's vendor depending on the section setting (optional)
+
+    Usage:
+    {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
+{% endcomment %}
+
+
+<div class="grid-view-item{% unless product.available %} grid-view-item--sold-out{% endunless %} product-card text-center">
+  <a href="{{ product.url }}">
+
+        {% capture img_id %}ProductCardImage-{{ section.id }}-{{ product.id }}{% endcapture %}
+        {% capture wrapper_id %}ProductCardImageWrapper-{{ section.id }}-{{ product.id }}{% endcapture %}
+        {%- assign preview_image = product.featured_media.preview_image -%}
+        {%- assign img_url = preview_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      
+        {% unless preview_image == blank %}
+          {% include 'image-style', image: preview_image, height: max_height, wrapper_id: wrapper_id, img_id: img_id %}
+        {% endunless %}
+
+      <div class="product-card__image-with-placeholder-wrapper" data-image-loading-animation style="background-image:url('{{ preview_image |img_url:'master'}}');    background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;height:300px;
+        object-fit: cover;">
+        <div id="{{ wrapper_id }}" class="grid-view-item__image-wrapper product-card__image-wrapper {% if product.compare_at_price > product.price %}price--on-sale{% endif %} js">
+          <div style="padding-top:100%">
+          
+          </div>
+        </div>
+      </div>
+
+      <noscript>
+        {% capture image_size %}{{ max_height }}x{{ max_height }}{% endcapture %}
+        <img class="grid-view-item__image" src="{{ preview_image | img_url: image_size, scale: 2 }}" alt="{{ preview_image.alt }}" style="max-width: {{ max_height | times: preview_image.aspect_ratio }}px;">
+      </noscript>
+
+      <div class="shopify-buy__product__title" aria-hidden="true">{{ product.title }}</div>
+
+        <center>{% include 'product-price-listing', product: product %}</center>
+        <div class="btnWrapper">
+      
+        <a class="btn add-to-cart-atc"  data-id="{{ product.variants.first.id }}" style="text-transform:capitalize">Add to cart</a>
+        <a class="btn" href="{{ product.url }}"  style="text-transform:capitalize">{% render 'eyeicon' %}</a>
+        </div>
+  </a>
+</div>

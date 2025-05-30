@@ -1,0 +1,671 @@
+<style>
+  .homepage-hero-carousel-v2 {
+    {% if section.settings.colorID !=blank %}
+      background-color:{{ section.settings.colorID }};
+    {% endif %}
+    padding-bottom: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position:relative;
+    z-index:1;
+    overflow:hidden;
+    height:calc(100vh - 150px);
+    align-items: center;
+    display: flex !important;
+    justify-content: center;
+  }
+
+  .homepage-hero-carousel-v2 .swiper-slide:before {
+    content: "";
+    width: 100%;
+    background-color: var(--overlayColor);
+    height: 100%;
+    position: absolute;
+    padding-top: 0;
+    z-index:-1;
+    opacity: var(--overlayOpacity);
+  }
+
+  .imageSection img.image_fluid {
+    position: relative;
+    top: 0px;
+  }
+
+  img.image_fluid {
+    width: 100%;
+    height: 100%;
+  }
+
+  .imageSection {
+    position: relative;
+  }
+
+  .homepage-hero-carousel-v2 .content_block_item{
+    padding-top:0 !important;
+    flex-direction:row;
+    width:100%;
+    height:100%;
+    align-items:center;
+  }
+
+  .content_block_item {
+    display: flex;
+    justify-content: space-around;
+    margin: 0px auto;
+    padding-top:50px;
+    align-items:center;
+  }
+
+   .homepage-hero-carousel-v2 .mainContainer{
+    padding-top:0 !important;
+    flex-direction:row;
+    width:100%;
+    height:100%;
+    align-items:center;
+  }
+     .homepage-hero-carousel-v2 .content_block_item{
+    padding-top:0 !important;
+    flex-direction:row;
+    width:100%;
+    height:100%;
+    align-items:center;
+  }
+  
+   .mainContainer {
+    display: flex;
+    justify-content: space-around;
+    margin: 0px auto;
+    padding-top:50px;
+    align-items:center;
+}
+  .content_block_item{
+     display: flex;
+    justify-content: space-around;
+    margin: 0px auto;
+    padding-top:50px;
+    align-items:center;
+  }
+
+  .homepage-hero-carousel-v2 .contentSection {
+       padding-left: 100px;
+   flex-basis:80%;
+   z-index:0;
+  width:100%;
+  }
+  .block_content_section{
+    flex-basis:80%;
+    z-index:0;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .homepage-hero-carousel-v2 .block_content_section h1 {
+    line-height: 72px;
+    font-size:40px;
+    letter-spacing: 0.3px;
+    text-align: center;
+    color:#fff;
+    font-weight: 800;
+    margin: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  .homepage-hero-carousel-v2 .contentSection h1 {
+max-width:47rem;
+line-height: 72px;
+font-size:53px;  
+letter-spacing: 0.3px;
+text-align: left;
+margin-bottom: 50px;
+color:#fff;
+
+font-weight: 800;
+opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 1s ease, transform 1s ease;    
+}
+
+  .homepage-hero-carousel-v2 .block_content_section p {
+    line-height: 72px;
+    font-size:20px;
+    letter-spacing: 0.3px;
+    text-align: center;
+    color:#fff;
+    font-weight: 800;
+    margin: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .homepage-hero-carousel-v2 .swiper-slide-active .block_content_section p,
+  .homepage-hero-carousel-v2 .swiper-slide-active .block_content_section h1 {
+    opacity: 1;
+    transform: translateX(0);
+  }
+    .homepage-hero-carousel-v2 .swiper-slide-active .contentSection p,
+  .homepage-hero-carousel-v2 .swiper-slide-active .contentSection h1 {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+   .homepage-hero-carousel-v2 .contentSection .readMorebtn {
+     background:{{ section.settings.button_bg}};
+    width: auto;
+    color:{{ section.settings.button_color}};
+    padding: 11px 50px;
+font-size: 22px;
+font-weight: 700;
+line-height: 31px;
+letter-spacing: 0em;
+text-align: left;
+  }
+  .homepage-hero-carousel-v2 .block_content_section .readMorebtn {
+    z-index: 9;
+    background:{{ section.settings.button_bg}};
+    font-family:"ITC Avant Garde Gothic", sans-serif;
+    height: auto;
+    width: auto;
+    font-weight:700 !important;
+   color:{{ section.settings.button_color}};
+    text-decoration: none;
+    white-space: nowrap;
+    min-height: 0px;
+    min-width: 0px;
+    max-height: none;
+    max-width: none;
+    text-align: left;
+    line-height:31px;
+    letter-spacing: 0px;
+    font-weight: 500;
+    font-size: 22px;
+    padding:11px 50px;
+    backdrop-filter: none;
+    filter: none;
+    transform-origin: 50% 50%;
+    opacity: 1;
+    transform: translate(0px, 0px);
+    visibility: visible;
+    border-width: 0px;
+    border-radius: 0px;
+    display:flex;
+  }
+
+  .btnWrapper-home-v2 {
+      margin-top: 30px;
+      position: relative;
+  }
+
+  .swiper {
+    width: 100%;
+    height:100%;
+  }
+
+  .homepage_hero_carousel_wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+  }
+
+  @media only screen and (max-width:768px) {
+    .homepage-hero-carousel-v2 .contentSection h1{
+      font-size:36px;
+      text-align: center;
+      line-height:40px;
+      margin-bottom: 16px;
+    }
+
+    .homepage-hero-carousel-v2 .block_content_section p{
+      font-size:18px;
+      line-height:24px;
+    }
+   
+    .homepage-hero-carousel-v2 .contentSection{
+      padding-left:0;
+    }
+      .homepage-hero-carousel-v2 .block_content_section h1{
+      font-size:32px;
+      text-align: center;
+      line-height:40px;
+      margin-bottom: 16px;
+    }
+
+    .homepage-hero-carousel-v2 .block_content_section{
+      padding-left:0;
+    }
+
+    
+
+    .homepage-hero-carousel-v2 .readMorebtn{
+      margin:0px auto;
+    }
+
+    .mainContainer {
+      display: flex;
+      justify-content: space-around;
+      padding-top:0px;
+      margin: 0px auto;
+      align-items: center;
+      flex-direction: column;
+      overflow:hidden;
+    }
+
+    .contentSection {
+      width: 100%;
+      padding: 60px;
+      padding-right: 0;
+    }
+
+    .imageSection img.image_fluid {
+      position: relative;
+      width: 90%;
+    }
+
+    .imageSection{
+      text-align:center;
+    }
+
+    .homepage-hero-carousel-v2 .imageSection{
+      display:none;
+    }
+
+    .homepage-hero-carousel-v2 .mainContainer {
+      margin-top:0px;
+    }
+  }
+
+  @media only screen and (max-width:375px) {
+    .homepage-hero-carousel-v2 .block_content_section{
+      padding-left:15px;
+    }
+
+    .homepage-hero-carousel-v2 .block_content_section h1{
+      font-size: 45px;
+      text-align: center;
+      line-height:52px;
+    }
+     .homepage-hero-carousel-v2 .contentSection{
+    padding-left:15px;
+   }
+     .homepage-hero-carousel-v2 .contentSection h1{
+       font-size: 45px;
+       text-align: center;
+       line-height:52px;
+     }
+
+    .homepage-hero-carousel-v2 .btnWrapper-home-v2{
+      display:flex;
+    }
+
+    .homepage-hero-carousel-v2 .readMorebtn{
+      margin:0px auto;
+    }
+
+    .two-productsection-v2 .sectionBlock2:before{
+      border-right:0px solid transparent;
+    }
+
+    .hompage-twoproduct-v2 .contentWrapper{
+      padding:0;
+    }
+
+    .hompage-twoproduct-v2 .block_content_section h1{
+      margin-left:0 !important;
+    }
+    .hompage-twoproduct-v2 .contentSection h1{
+       margin-left:0 !important;
+     }
+
+    .btnWrapper .readMorebtn{
+      font-size:12px;
+    }
+  }
+</style>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+>
+<link rel="preload" as="image" href="{{section.settings.sectionImage1 | img_url:'master'}}">
+
+<div class="homepage_hero_carousel_wrapper">
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      {% comment %}
+      {% if section.settings.sectionHeading !=blank or section.settings.sectionSubHeading or section.settings.btntitle !=blank %}
+      <div
+        class="swiper-slide" 
+         {% if section.settings.sectionHeading !=blank or section.settings.sectionSubHeading or section.settings.btntitle !=blank %} style="display:none" {% else %} style="--overlayColor:{{ section.settings.overlay }}; --overlayOpacity:{{ section.settings.overlayOpacity }};" {% endif %}
+      >
+        {% if section.settings.sectionImage1 != blank %}
+          <img
+            style="position:absolute;z-index:-9;width: 100%;height: 100%;object-fit: cover"
+            fetchpriority="High"
+            src="{{section.settings.sectionImage1 | img_url:'master'}}"
+          >
+        {% endif %}
+        <div class="mainContainer">
+          <div class="contentSection" style="display:flex;justify-content:{{ section.settings.content_position }}">
+            <div class="content_alignment_wrap">
+            <div class="imageSection">
+              {% if section.settings.sectionImage != blank %}
+                <img
+                  style="height: 60px; width: auto;"
+                  class="image_fluid"
+                  src="{{ section.settings.sectionImage |img_url:'master' }}"
+                >
+              {% endif %}
+            </div>
+            {% if section.settings.sectionHeading != blank %}
+              <h1 class="sectionHeading">
+                {{ section.settings.sectionHeading }}
+              </h1>
+            {% endif %}
+            {% if section.settings.sectionSubHeading != blank %}
+              <p class="sectionSubHeading">
+                {{ section.settings.sectionSubHeading }}
+              </p>
+            {% endif %}
+            {% if section.settings.btntitle != blank %}
+              <div class="btnWrapper-home-v2">
+                <a href="{{ section.settings.btnUrl}}" class="readMorebtn">{{ section.settings.btntitle }}</a>
+              </div>
+            {% endif %}
+            
+          </div>
+        </div>
+          </div>
+      </div>
+      {%  endif %}
+      {% endcomment %}
+      
+      {% for block in section.blocks %}
+        <div
+          class="swiper-slide"
+          style="--overlayColor:{{ block.settings.overlay }}; --overlayOpacity:{{ block.settings.overlayOpacity }};"
+        >
+          {% if block.settings.sectionImage1 != blank %}
+            <img
+              style="position:absolute;z-index:-9;width: 100%;height: 100%;object-fit: cover"
+              fetchpriority="High"
+              src="{{block.settings.sectionImage1 | img_url:'master'}}"
+            >
+          {% endif %}
+          <div class="content_block_item">
+            <div class="content_alignment" style="display:flex;width:100%;justify-content:{{ block.settings.content_position }}">
+            <div class="block_content_section">
+              <div class="imageSection">
+                {% if block.settings.sectionImage != blank %}
+                  <img
+                    style="height: 60px; width: auto;"
+                    class="image_fluid"
+                    src="{{ block.settings.sectionImage |img_url:'master' }}"
+                  >
+                {% endif %}
+              </div>
+              {% if block.settings.sectionHeading != blank %}
+                <h1 class="sectionHeading">
+                  {{ block.settings.sectionHeading }}
+                </h1>
+              {% endif %}
+              {% if block.settings.sectionSubHeading != blank %}
+                <p class="sectionSubHeading">
+                  {{ block.settings.sectionSubHeading }}
+                </p>
+              {% endif %}
+              {% if block.settings.btntitle != blank %}
+                <div class="btnWrapper-home-v2">
+                  <a href="{{ block.settings.btnUrl}}" class="readMorebtn">{{ block.settings.btntitle }}</a>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div style="position: absolute; right: 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 60px; top: 50%; transform: translateY(-50%); z-index: 999;">
+      <!-- If we need navigation buttons -->
+      <div class="button-prev" style="cursor: pointer;">
+        <img src="https://curly.qodeinteractive.com/wp-content/themes/curly/assets/img/arrow-top-light.png">
+      </div>
+      <div class="button-next" style="cursor: pointer;">
+        <img
+          src="https://curly.qodeinteractive.com/wp-content/themes/curly/assets/img/arrow-top-light.png"
+          style="transform: rotate(180deg);"
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const swiper = new Swiper('.swiper', {
+      direction: 'horizontal',
+      loop: true,
+      navigation: {
+        nextEl: '.button-next',
+        prevEl: '.button-prev',
+      },
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Homepage Hero Carousel",
+  "class": "index-section homepage-hero-carousel-v2",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content Area"
+    },
+    {
+      "type": "text",
+      "id": "sectionHeading",
+      "label": "Heading",
+      "default": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "sectionSubHeading",
+      "label": "Sub Heading",
+      "default": "Sub Heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "sectionImage",
+      "label": "Small Image"
+    },
+
+    {
+      "type": "text",
+      "id": "btntitle",
+      "label": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "btnUrl",
+      "label": "Button Link"
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "Vertical alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+  },
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+
+    {
+      "type": "color",
+      "id": "colorID",
+      "label": "Select Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "overlay",
+      "label": "Select Background Overlay",
+      "default": "#000000"
+    },
+      {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button Background",
+      "default": "#D6B462"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button Color",
+      "default": "#fff"
+    },
+
+    {
+      "type": "range",
+      "id": "overlayOpacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "label": "Overlay Opacity",
+      "default": 0
+    },
+    {
+      "type": "image_picker",
+      "id": "sectionImage1",
+      "label": "Select Background Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "boxShadows",
+      "label": "Box Shadow"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slider",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "text",
+          "id": "sectionHeading",
+          "label": "Heading",
+          "default": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "sectionSubHeading",
+          "label": "Sub Heading",
+          "default": "Sub Heading"
+        },
+        {
+          "type": "image_picker",
+          "id": "sectionImage",
+          "label": "Small Image"
+        },
+
+        {
+          "type": "text",
+          "id": "btntitle",
+          "label": "Button Label"
+        },
+        {
+          "type": "url",
+          "id": "btnUrl",
+          "label": "Button Link"
+        },
+        {
+        "type": "select",
+        "id": "content_position",
+        "label": "Vertical alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "end",
+            "label": "Right"
+          }
+        ],
+        "default": "center"
+        },
+        {
+          "type": "header",
+          "content": "Section Settings"
+        },
+
+        {
+          "type": "color",
+          "id": "colorID",
+          "label": "Select Background Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "overlay",
+          "label": "Select Background Overlay",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "overlayOpacity",
+          "min": 0,
+          "max": 1,
+          "step": 0.1,
+          "label": "Overlay Opacity",
+          "default": 0
+        },
+        {
+          "type": "image_picker",
+          "id": "sectionImage1",
+          "label": "Select Background Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "boxShadows",
+          "label": "Box Shadow"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homepage Hero Carousel"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}

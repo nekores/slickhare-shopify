@@ -1,0 +1,66 @@
+<section class="image-gallery-container">
+<!-- <h2 class="image-gallery-heading"> Our Testimonial </h2> -->
+
+<div class="image-gallery-content">
+  <img src="https://cdn.shopify.com/s/files/1/0335/6327/9404/files/Gonzalez_Wedding_170-min.jpg?v=1636236980">
+  <img src="https://cdn.shopify.com/s/files/1/0335/6327/9404/files/IMG_6715-min.jpg?v=1636237082">
+  <img src="https://cdn.shopify.com/s/files/1/0335/6327/9404/files/Screenshot_2021-11-07_at_3.22.39_AM.png?v=1636237394">
+  <img src="https://cdn.shopify.com/s/files/1/0335/6327/9404/files/Screenshot_2021-11-07_at_3.22.26_AM.png?v=1636237393">
+  <img src="https://cdn.shopify.com/s/files/1/0335/6327/9404/files/Screenshot_2021-11-07_at_3.23.12_AM.png?v=1636237416">
+  <img src="https://cdn.shopify.com/s/files/1/0335/6327/9404/files/IMG_6328-min.jpg?v=1636237199">
+  <img src="https://cdn.shopify.com/s/files/1/0335/6327/9404/files/Screenshot_2021-11-08_at_8.20.42_PM.png?v=1636384900">
+    <img src="https://cdn.shopify.com/s/files/1/0335/6327/9404/files/Screenshot_2021-11-08_at_8.20.56_PM.png?v=1636384900">
+  
+</div>
+</section>
+<style>
+  .image-gallery-content {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(2,auto);
+    grid-gap: 15px;
+}
+  section.image-gallery-container {
+    padding: 3rem 6rem;
+}
+  h2.image-gallery-heading {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 500;
+    text-transform: unset;
+}
+  .booknowsection3 {
+    background: #fff;
+}
+  @media only screen and (max-width: 750px){
+  section.image-gallery-container {
+    padding: 1rem;
+}
+ h2.image-gallery-heading {
+    font-size: 32px;
+} 
+     }
+  @media only screen and (max-width: 768px){
+    .image-gallery-content {
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(4,auto);
+    grid-gap: 8px;
+}
+  }
+</style>
+
+
+
+{% schema %}
+  {
+    "name": "Section name",
+	"class": "booknowsection3",
+    "settings": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,343 @@
+<style>
+  .hompage-aboutus-v2 {
+    {% if section.settings.colorID !=blank %}
+    background:{{section.settings.colorID}};
+    {% else %}
+   background:white;
+    {% endif %}
+    {% if section.settings.sectionImage !=blank %}
+     background-image:url("{{ section.settings.sectionImage |img_url:'master' }}"); 
+     background-repeat:no-repeat;
+     background-size:cover;
+     background-position:center center;
+    {% endif %}
+    {% if section.settings.logo_aligment == "ON" %}
+    z-index:-1;
+    {% endif %}
+      
+    padding-bottom:80px;
+    position:relative;
+  
+}
+  {% if section.settings.logo_aligment == "ON" %}
+  .hompage-aboutus-v2:before{
+        content: "";
+    width: 100%;
+    {% if section.settings.overlay !=blank %}
+    background-color:{{ section.settings.overlay }};
+    {% endif %}
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index:-1;
+    opacity: 0.4;
+  }
+ {% endif %}
+  
+  img.image_fluid {
+    width: 100%;
+    height: 100%;
+}
+  .imageSection {
+    position: relative;
+}
+  
+  .hompage-aboutus-v2 .mainContainer {
+    display: flex;
+    justify-content: center;
+   margin: 0px auto; 
+    max-width:1500px;
+}
+.hompage-aboutus-v2 .contentSection {
+    padding: 70px;
+    padding-left:0px;
+    flex-basis:50%;
+    padding-right:0;
+}
+.hompage-aboutus-v2 .contentSection h3{
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 36px;
+    color: rgba(51, 51, 51, 1);
+    letter-spacing: 0.03em;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+  .readMorebtn {
+  background: #000000;
+  width: auto;
+  color: white;
+  padding: 11px 50px;
+  font-size:16px;
+  font-weight: 700;
+  line-height: 31px;
+  letter-spacing: 0em;
+  text-align: left;
+
+}
+  .btnWrapper-about-v2 {
+   
+    margin-top: 30px;
+    position: relative;
+}
+    .hompage-aboutus-v2 .image1 img.image_fluid {
+    width:100%;
+    max-width:450px;
+}
+  .image1 img.image_fluid {
+    width:60%;
+}
+    .image2 img.image_fluid {
+    width:80% !important;
+}
+.contentWrapper {
+    padding: 40px;
+    border: 4px solid rgba(214, 180, 98, 0.95);
+    padding-bottom: 50px;
+    padding-right: 118px;
+}
+.image2 {
+    margin-left: -90px;
+    margin-top: -16px;
+}
+  .image1 {
+    padding-left: 16px;
+}
+  .contentWrapper p {
+    color: rgba(51, 51, 51);
+    font-size: 20px;
+    line-height: 36px;
+    margin: 0;
+}
+  .about-use-v2 .imageSection {
+    margin-top: -40px;
+    width:30%;
+}
+  @media only screen and (max-width:768px) {
+  .hompage-aboutus-v2 .mainContainer {
+display: block;
+justify-content: center;
+margin: 0px auto;
+margin: 30px;
+}
+    .hompage-aboutus-v2 .image2 img.image_fluid {
+      width: 100% !important;
+    }
+    
+    .hompage-aboutus-v2 .contentSection {
+/* padding: 70px; */
+padding-left: 100px;
+/* flex-basis: 50%; */
+/* padding-right: 0; */
+padding: 0;
+}
+    .contentSection {
+/* padding-left: 100px; */
+/* flex-basis: 80%; */
+}
+    .contentWrapper {
+padding: 40px;
+border: 4px solid rgba(214, 180, 98, 0.95);
+padding-bottom: 50px;
+padding-right: 118px;
+padding: 0;
+padding: 30px;
+}
+    .about-use-v2 .imageSection {
+/* margin-top: -40px; */
+display: flex;
+margin-top: 10px;
+/* justify-content: space-between; */
+gap: 12px;
+      width: 100%;
+      flex-direction: column;
+}
+    .image1 {
+/* padding-left: 16px; */
+}
+    .imageSection img.image_fluid {
+/* position: relative; */
+/* top: 20px; */
+}
+    .aboutsectionImage .image1 img.image_fluid {
+ width:auto;
+      max-width: 100% !important;
+}
+     .aboutsectionImage .image1{
+       padding-left:0px;
+     }
+  .aboutsectionImage .image1{
+       padding-left:0px;
+     }
+    
+   .aboutsectionImage .image2 {
+margin-left:0px; 
+ margin-top:0px; 
+}
+    .aboutsectionImage img.image_fluid {
+ position:unset; 
+ top:0px; 
+}
+    .aboutsectionImage .image2 img.image_fluid {
+ width:auto;
+}
+
+
+    
+}
+</style>
+<div class="mainContainer about-use-v2"> 
+
+      <div class="contentSection">
+        <div class="contentWrapper">
+          {% if section.settings.sectionHeading !=blank %}
+       <h3 class="sectionHeading">  
+         {{ section.settings.sectionHeading }}
+       </h3>
+        {% endif %} 
+      {% if section.settings.sectiondescription !=blank %}
+       <p>
+        {{ section.settings.sectiondescription }}
+       </p>
+        {% endif %}
+        {% if section.settings.btntitle !=blank %}
+ <div class="btnWrapper-about-v2">
+    <a href="{{ section.settings.btnUrl}}"class="readMorebtn">{{ section.settings.btntitle }}</a>
+ </div>
+          {% endif %}
+        </div>
+        
+      </div>
+       <div class="imageSection aboutsectionImage"> 
+         {% if section.settings.Image1 !=blank %}
+         <div class="image1"> 
+                <img class="image_fluid" src="{{ section.settings.Image1|img_url:'master' }}"/>
+         
+         </div>
+           {% endif %}
+              {% if section.settings.Image2 !=blank %}
+          <div class="image2">
+                   <img class="image_fluid" src="{{ section.settings.Image2|img_url:'master' }}"/>
+          </div>
+           {% endif %}
+         
+       
+       </div>
+
+
+ </div>
+
+
+{% schema %}
+{
+  "name": {
+    
+    "en": "Homepage-Aboutus-v2"
+  },
+  "class": "index-section hompage-aboutus-v2",
+  "settings": [
+         {
+        "type": "header",
+        "content":"Content Area"
+      },
+       {
+      "type": "text",
+      "id": "sectionHeading",
+      "label":"Heading",
+      "default": "Heading"
+      },
+     {
+      "type": "richtext",
+      "id": "sectiondescription",
+      "label":"Content"
+     
+      },
+      {
+        "type": "image_picker",
+        "id": "Image1",
+        "label": "Image 1"
+   
+      },
+     {
+        "type": "image_picker",
+        "id": "Image2",
+        "label": "Image 2"
+   
+      },
+   
+      {
+      "type": "text",
+      "id": "btntitle",
+      "label": "Button Label"
+      },
+      {
+        "type": "url",
+        "id": "btnUrl",
+        "label": "Button Link"
+        
+      },
+      {
+        "type": "header",
+        "content":"Section Settings"
+        
+      },
+     
+     {
+        "type": "color",
+        "id": "colorID",
+        "label": "Select Background Color",
+        "default": "#000000"
+      },
+    {
+  "type": "radio",
+  "id": "logo_aligment",
+  "label": "Overlay",
+  "options": [
+    {
+      "value": "ON",
+      "label": "ON"
+    },
+    {
+      "value": "OFF",
+      "label": "OFF"
+    }
+  ],
+  "default": "OFF"
+},
+     {
+        "type": "color",
+        "id": "overlay",
+        "label": "Select Background Overlay",
+        "default": "#000000"
+      },
+      {
+        "type": "image_picker",
+        "id": "sectionImage",
+        "label": "Select Background Image"
+   
+      }
+  
+  ],
+  "presets": [
+    {
+      "name": {
+       
+        "en": "Homepage About Us V2"
+      
+      },
+      "category": {
+       
+        "en": "Homepage"
+       
+      }
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

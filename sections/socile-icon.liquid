@@ -1,0 +1,73 @@
+<style>
+ .social-icons__link-contact > svg {
+    color: #fff;
+}
+  .social-icons__item-contact {
+    padding: 0px 10px;
+}
+  .grid__item > div p {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #d3a640;
+}
+</style>
+
+
+
+{%- assign social_icons = false -%}
+
+{%- if
+  settings.social_twitter_link != blank
+  or settings.social_facebook_link != blank
+  or settings.social_pinterest_link != blank
+  or settings.social_instagram_link != blank
+  or settings.social_tumblr_link != blank
+  or settings.social_snapchat_link != blank
+  or settings.social_youtube_link != blank
+   or settings.social_tiktok_link != blank
+  or settings.social_vimeo_link != blank
+  or request.page_type == 'article'
+  or request.page_type == 'blog'
+-%}
+  {%- assign social_icons = true -%}
+{%- endif -%}
+
+{%- assign socials = "Facebook Twitter Pinterest Instagram Tumblr Snapchat YouTube Vimeo Tiktok" | split: ' ' -%}
+
+{%- if social_icons -%}
+	<div class="Social-icon">
+          <ul class="list--inline site-footer__social-icons social-icons site-footer__icon-list">
+            {%- for social in socials -%}
+              {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
+              {%- assign icon_link = social | prepend: 'icon-' | downcase -%}
+              {%- if settings[social_link] != blank -%}
+                <li class="social-icons__item-contact">
+                  <a class="social-icons__link-contact" href="{{ settings[social_link] | escape }}" aria-describedby="a11y-external-message">
+                    {%- include icon_link -%}
+                    <span class="icon__fallback-text">{{ social }}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+                     <li class="social-icons__item-contact f">
+                <a class="social-icons__link-contact" href="mailto:slickharegrooming@gmail.com">
+                  <svg class="icon" xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 479.058 479.058" height="512" viewBox="0 0 479.058 479.058" width="512"><path d="m434.146 59.882h-389.234c-24.766 0-44.912 20.146-44.912 44.912v269.47c0 24.766 20.146 44.912 44.912 44.912h389.234c24.766 0 44.912-20.146 44.912-44.912v-269.47c0-24.766-20.146-44.912-44.912-44.912zm0 29.941c2.034 0 3.969.422 5.738 1.159l-200.355 173.649-200.356-173.649c1.769-.736 3.704-1.159 5.738-1.159zm0 299.411h-389.234c-8.26 0-14.971-6.71-14.971-14.971v-251.648l199.778 173.141c2.822 2.441 6.316 3.655 9.81 3.655s6.988-1.213 9.81-3.655l199.778-173.141v251.649c-.001 8.26-6.711 14.97-14.971 14.97z"/></svg>
+                  <span class="icon__fallback-text">Email</span>
+                </a>
+              </li>
+             
+            {%- if request.page_type == 'blog' or request.page_type == 'article' -%}
+              <li>
+                <a class="social-icons__link-contact" href="{{ shop.url }}{{ blog.url }}.atom">
+                  {% include 'icon-rss' %}
+                  <span class="icon__fallback-text">RSS</span>
+                </a>
+              </li>
+            {%- endif -%}
+          </ul>
+</div>
+        {%- endif -%}
+
+
+
+

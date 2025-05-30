@@ -1,0 +1,216 @@
+
+{% if section.blocks.size > 0 %}
+<section class="container">
+  <div class="img-txt-heading">
+    <h1>{{ section.settings.title_heading }}</h1>
+    <div>
+  {% for block in section.blocks %}
+  <div class="img-with-text_container">
+    {%- if block.settings.image_position == 'right' -%}
+    <div class="img_with_txt">
+  
+  <div class= "img-txt_container">
+    <div class="txt_container">
+<div class="txt">
+<h3>{{block.settings.title}}</h3>
+<p>{{block.settings.discription}}</p>
+</div>
+    </div>
+  </div>
+      <div class= "img-txt_container">
+<!-- <div class="img_txt"> -->
+  <img src="{{block.settings.image |img_url: 'master'}}" >
+<!--         </div> -->
+  </div>
+</div>
+    {%- else -%}
+<div class="img_with_txt">
+  <div class= "img-txt_container">
+<!-- <div class="img_txt"> -->
+  <img src="{{block.settings.image |img_url: 'master'}}" >
+<!--     </div> -->
+  </div>
+  <div class= "img-txt_container">
+    <div class="txt_container">
+<div class="txt">
+<h3>{{block.settings.title}}</h3>
+<p>{{block.settings.discription}}</p>
+</div>
+    </div>
+  </div>
+  </div>
+  {%- endif -%}
+
+  </div>
+  {% endfor %}
+
+</section>
+
+{%- endif -%}
+
+{% schema %}
+  {
+  "name": "img-with-text-block",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title_heading",
+      "label": "Heading"
+    }
+    ],
+"max_blocks": 8,
+  "blocks": [
+{
+	  "type": "image",
+      "name": "Image slide",
+      "settings": [
+    
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+	{
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+	{
+      "type": "richtext",
+      "id": "discription",
+      "label": "Discription"
+    },
+	{
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    }
+  ]
+}],
+  "presets": [
+    {
+      "category": "Image",
+      "name": "img-with-text-block",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
+
+
+<style>
+/*   div#shopify-section-img-with-text-block {
+    background: #fff;
+} */
+section.container {
+    background: #fff;
+  	padding: 4rem;
+  align-items: stretch;
+}
+.img_with_txt{
+display:flex;
+justify-content:space-between;
+
+}
+  .img-txt_container{
+    width:50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+  }
+
+.img_txt{
+display: flex;
+justify-content: center;
+margin:2em 0;
+ width:100%; 
+}
+
+.txt h3 {
+    text-align: left;
+    margin: 1em;
+    font-size: 3rem;
+    color: #a8781a;
+}
+  .txt p {
+    text-align: left;
+    margin: 0 3rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #a8781a;
+}
+
+  .txt{
+    margin:1em 0;
+  }
+.brand{
+text-align: center;
+}
+  .img_txt img {
+    width: 90%;
+}
+  .img-txt_container:nth-child(even) .img_txt {
+    justify-content: flex-end;
+}
+  .img-txt_container:nth-child(odd) .img_txt {
+    justify-content: flex-start;
+}
+  .img-txt-heading h1 {
+    text-align: center;
+    font-size: 4rem;
+    font-weight: 500;
+    line-height: 5rem;
+    color: #000;
+}
+  @media only screen and (max-width: 800px){
+  .img_with_txt{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    margin:0;
+  }
+    .img-with-text_container:nth-child(even) .img_with_txt {
+    flex-direction: column-reverse;
+}
+  
+  .img-txt_container{
+    width:100%;
+  }
+    section.container {
+    padding: 1rem;
+}
+  .img_txt img {
+    width: 100%;
+} 
+    .txt h3 {
+    font-size: 2rem;
+    margin: 0;
+}
+    .txt p {
+    font-size: 1.1rem;
+    margin: 1.3rem 0 0;
+}
+    
+    .img-txt-heading h1 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 3rem;
+    color: #000;
+}
+    
+}
+  
+</style>

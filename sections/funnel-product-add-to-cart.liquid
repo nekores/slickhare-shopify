@@ -1,0 +1,457 @@
+<style>
+  .main-funnel-product-add-to-cart {
+    background: #FFF;
+    padding-top: 80px;
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-bottom: 80px;
+}
+  .main-funnel-product-add-to-cart .container{
+    max-width:1920px;
+    margin:0px auto;
+  }
+
+.main-funnel-product-add-to-cart .row {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    flex-wrap:wrap;
+    
+}
+  .main-funnel-product-add-to-cart .section_heading h1{
+     font-family:"Oswald", sans-serif;
+     font-size:48px;
+     font-weight:700;
+     line-height:71.14px;
+     color:#110000;
+     text-align:center;
+     margin-bottom:80px;
+  }
+ .section_heading {
+    width: 100%;
+}
+  .product_gallery_wrapper {
+    max-width:700px;
+}
+.slider_nav{
+  max-width:590px;
+}
+  .product_media_item img {
+    width: 100%;
+}
+  .slider_nav {
+    padding-top: 20px;
+}
+    /* the slides */
+  .slider_nav .slick-slide {
+      margin: 0 15px;
+  }
+
+  /* the parent */
+  .slider_nav .slick-list {
+      margin: 0 -15px;
+  }
+  .product_content_wrapper{
+    padding-top:20px;
+    padding-bottom:20px;
+  }
+  .product_title h1{
+    font-family:"Oswald", sans-serif;
+     font-size:40px;
+     font-weight:600;
+     line-height:59.28px;
+     color:#000;
+      letter-spacing:0.5px;
+  }
+   .product_description{
+    font-family:"Oswald", sans-serif;
+     font-size:24px;
+     font-weight:400;
+     line-height:35.57px;
+     letter-spacing:0.5px;
+     color:#000;
+      max-width:701px;
+  }
+  .product_description p{
+    font-family:"Oswald", sans-serif;
+     font-size:24px;
+     font-weight:400;
+     line-height:35.57px;
+     letter-spacing:0.5px;
+     color:#000;
+     max-width:701px;
+  }
+  .rating_widget {
+    margin-top: 20px;
+}
+  .product_sale_price {
+     font-family:"Oswald", sans-serif;
+     font-size:50px;
+     font-weight:500;
+     line-height:74.1px;
+     color:#000;
+     letter-spacing:0.5px;
+}
+  .product_compaire_at_price {
+     font-family:"Oswald", sans-serif;
+     font-size:40px;
+     font-weight:400;
+     line-height:59.28px;
+     color:#23232399;
+     letter-spacing:0.5px;
+    margin-top:5px;
+}
+  .product_price_container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+  .percentage_label {
+    padding: 6px 12px 6px 12px;
+    background: #30DA41;
+    border-radius: 4px;
+    margin-top: 7px;
+
+     font-family:"Oswald", sans-serif;
+     font-size:22px;
+     font-weight:400;
+     line-height:32.6px;
+     color:#fff;
+}
+.add_to_cart_btn{
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+background:transparent;
+width:fit-content;
+border: 1px solid #D3A640;
+min-width:212px;
+}
+  .add_to_cart_btn a{
+      padding: 12px 32px;
+      width:100%;
+      color: #D3A640;
+      text-align: center;
+      font-family: "Oswald", sans-serif;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      letter-spacing: 0.5px;
+      cursor:pointer;
+  }
+  .add_to_cart_wrapper {
+    margin-top: 40px;
+}
+  .add_to_cart_wrapper {
+    margin-top: 40px;
+    display: flex;
+    gap: 23px;
+}
+  .add_to_cart_wrapper form{
+    display: flex;
+    gap: 23px;
+}
+  .direct_checkout{
+   background-color:#D3A640; 
+   width:fit-content;
+   min-width:212px;
+  }
+  .direct_checkout a{
+    
+  padding: 12px 32px;
+  width:100%;
+  color: #FFF;
+  text-align: center;
+  font-family:"Oswald", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.5px;
+  display:block;
+  cursor:pointer;
+  }
+  .sort_description h4,.sort_description h1,.sort_description h2,.sort_description h3,.sort_description h5,.sort_description h6{
+    color: rgba(0, 0, 0, 0.80);
+    font-family: "Oswald", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.5px;
+  }
+  
+  .sort_description ul li{
+     color: rgba(0, 0, 0, 0.80);
+    font-family: "Oswald", sans-serif;;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.5px;
+    list-style: disc;
+    margin-bottom:10px;
+  }
+  .sort_description {
+    margin-top: 30px;
+}
+  .sort_description ul{
+    padding-left: 30px;
+}
+
+    @media only screen and (max-width:1300px) {
+  .main-funnel-product-add-to-cart .section_heading h1{
+     font-size:36px;
+     line-height:46px;
+   }
+      .product_title h1{
+         font-size:36px;
+         line-height:46px;
+      }
+      .product_description{
+        font-size:18px;
+        line-height:normal;
+      }
+      .product_gallery_wrapper {
+    max-width: 80%;
+}
+      .main-funnel-product-add-to-cart{
+        padding:50px;
+      }
+
+}
+
+    @media only screen and (max-width:992px) {
+   
+      .main-funnel-product-add-to-cart .add_to_cart_btn{
+        width:fit-content;
+      }
+
+    }
+
+        @media only screen and (max-width:768px) {
+     .main-funnel-product-add-to-cart{
+         padding:20px;
+      }
+       .main-funnel-product-add-to-cart .section_heading h1{
+         margin-bottom:40px;
+       }   
+          .main-funnel-product-add-to-cart .col-md-12{
+            width:100%;
+          }
+      .main-funnel-product-add-to-cart .product_gallery_wrapper{
+        margin:0px auto;
+         max-width:100%;
+      }
+    .main-funnel-product-add-to-cart .section_heading h1{
+          font-size: 32px;
+          line-height: normal;
+      }
+      .product_title h1{
+        font-size: 24px;
+        line-height: 46px;
+      }
+      .product_sale_price{
+        font-size:24px;
+        line-height:normal;
+      }
+      .product_compaire_at_price{
+        font-size:24px;
+        line-height:normal;
+        margin-top:0;
+      }
+      .percentage_label{
+        font-size:18px;
+        line-height:normal;
+        margin-top:0;
+        padding:2px 12px 2px 12px;
+      }
+      .main-funnel-product-add-to-cart .add_to_cart_btn{
+        min-width:fit-content;
+        width:50%;
+      }
+      .direct_checkout{
+        min-width:fit-content;
+        width:100%;
+      }
+          .add_to_cart_wrapper form{
+            width:50%;
+          }
+    }
+</style>
+<div class="main-funnel-product-add-to-cart">
+   <div class="container">
+        {% if section.settings.heading !=blank %}
+        <div class="section_heading">
+           <h1>{{ section.settings.heading }}</h1>
+        </div>
+       {% endif %}
+     <div class="row">
+      <div class="col-lg-6 col-md-12">
+         <div class="product_gallery_wrapper">
+           {% assign product=section.settings.product %}
+         {%- for media in product.media -%}
+             <div class="product_media_item">
+                <img src="{{ media.preview_image |img_url:'master' }}"/>
+             </div>
+          {%- endfor -%}
+
+     
+         </div>
+      <div class="slider_nav">
+               {%- for media in product.media -%}
+             <div class="product_media_item">
+                <img src="{{ media.preview_image |img_url:'100x' }}"/>
+             </div>
+          {%- endfor -%}
+           </div>
+       </div>
+        <div class="col-lg-6 col-md-12">
+           <div class="product_content_wrapper">
+              <div class="product_title">
+                 <h1>{{ product.title }}</h1>
+              </div>
+              <div class="product_description">
+                 {{ product.description }}
+              </div>
+             <div class="rating_widget">
+               {% render "rating-widget" %}
+             </div>
+             <div class="product_price_container">
+                <div class="product_sale_price"> <span>{{ product.price |money }}</span></div>
+                <div class="product_compaire_at_price"> <span><strike>{{ product.compare_at_price |money }}</strike></span></div>
+               <div class="product_discount_percentage">  {% if product.compare_at_price_max > product.price %} <div class="percentage_label">{{ product.compare_at_price_max | minus: product.price | times: 100.0 | divided_by: product.compare_at_price_max | money_without_currency | times: 100 | remove: '.0'}}%</div>{% endif %}
+</div>
+             </div>
+
+             <div class="add_to_cart_wrapper">
+               <div class="add_to_cart_btn">
+                 <a class="add-btn add-to-cart-atc" data-id="{{ product.variants.first.id }}">Add To Cart</a>
+              </div> 
+               <form action="/cart" method="post" id="addToCart">
+    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" />
+    <input type="submit" value="GO" name="checkout" style="display: none;"  />
+   
+
+              <div class="direct_checkout">
+                 <a>Buy Now</a>
+              </div>         
+</form>
+            
+        
+             </div>
+
+             <div class="sort_description">
+               {{ section.settings.ingrdient }}
+            </div>
+             
+
+           </div>
+       </div>
+
+     </div>
+
+   </div>
+</div>
+<script>
+ $('.product_gallery_wrapper').slick({
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  fade: false,
+  arrows:false,
+  asNavFor: '.slider_nav'
+});
+$('.slider_nav').slick({
+  slidesToShow:4,
+  slidesToScroll:4,
+  asNavFor: '.product_gallery_wrapper',
+  dots: true,
+  centerMode: false,
+  focusOnSelect: true,
+  arrows: true
+});
+  
+   $('.direct_checkout a').on('click', function(e) {
+        var form = $('#addToCart');
+        e.preventDefault()
+
+        $.ajax({
+            type: 'POST',                             
+            url: '/cart/add.js',
+            dataType: 'json',                               
+            data: form.serialize(),
+            success: function(data) {
+                form.find('input[name="checkout"]').trigger('click');
+            }
+        });
+    })
+
+    
+ $(document).on("click",".add-to-cart-atc",function(e){ 
+  e.preventDefault();
+    var selectedID=$(this).data('id');
+    addItemToCart(selectedID , 1);    // paste your id product number
+    console.log("clicked");
+  });
+
+  function addItemToCart(variant_id, qty) {
+   var propertyData= $(".propertyData").val();
+    data = {
+      "id": variant_id,
+      "quantity": qty,
+       properties: {
+       'Free':propertyData
+      }
+    }
+    
+    jQuery.ajax({
+      type: 'POST',
+      url: '/cart/add.js',
+      data: data,
+      dataType: 'json',
+      success: function() { 
+         console.log("success");
+        $("#badgeCounter").load(" #badgeCounter");
+         $(".Icon--cart").trigger("click");
+         $("#testWrapper").load(" #testWrapper");
+         $("#CartSubtotal").load(" #CartSubtotal");
+      }
+    });
+    document.documentElement.dispatchEvent(new CustomEvent('cart:refresh', {
+    	bubbles: true    // same code for prestige theme   
+ 	 }));
+  }
+ 
+</script>
+{% schema %}
+  {
+    "name": "Funnel Product ATC",
+    "class":"funnel-product-add-to-cart",
+    "settings": [
+      {
+        "type":"text",
+        "id":"heading",
+        "label":"Section Heading",
+        "default":"Level Up Your Beard Game - Magic Beard Kit"
+      },
+      {
+        "type":"product",
+        "id":"product",
+        "label":"Choose Funnel Product"
+      },
+      {
+        "type":"richtext",
+        "id":"ingrdient",
+        "label":"Sort Description"
+      }
+    ],
+    "presets": [
+      {
+        "name":"Funnel Product ATC"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,328 @@
+<style>
+.hompage-header-v2 {
+    {% if section.settings.colorID !=blank %}
+   background-color:{{ section.settings.colorID }};
+     {% endif %} 
+    padding-bottom: 0;
+  {% comment %}
+    {% if section.settings.sectionImage1 !=blank %}
+    background: url("{{ section.settings.sectionImage1 | img_url:'master'}}");
+    {% endif  %}
+    {% endcomment %}
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position:relative;
+    z-index:1;
+    overflow:hidden;
+    {% if section.settings.boxShadows %}
+    /*box-shadow: inset 0px -5px 40px 10px rgb(255 255 255);*/
+    {% endif %} 
+     height:calc(100vh - 150px);
+    align-items: center;
+    display: flex !important;
+    justify-content: center;
+}
+ 
+
+  .hompage-header-v2:before {
+    content: "";
+    width: 100%;
+    {% if section.settings.overlay !=blank %}
+    background-color:{{ section.settings.overlay }};
+    {% endif %}
+    height: 100%;
+    position: absolute;
+    padding-top: 0;
+    z-index:-1;
+    {% if section.settings.overlayOpacity > 0.10 %}
+    opacity:{{section.settings.overlayOpacity}};
+    {% else %} 
+    opacity:0;
+    {% endif %}
+    
+ 
+}
+  .imageSection img.image_fluid {
+    position: relative;
+    top: 0px;
+}
+  .hompage-header-v2 .imageSection img.image_fluid{
+    opacity:40%;
+  }
+  
+  img.image_fluid {
+    width: 100%;
+    height: 100%;
+}
+  .imageSection {
+    position: relative;
+}
+  .hompage-header-v2 .mainContainer{
+    padding-top:0 !important;
+    flex-direction:row;
+    width:100%;
+  }
+  
+   .mainContainer {
+    display: flex;
+    justify-content: space-around;
+    margin: 0px auto;
+    padding-top:50px;
+    align-items:center;
+    
+    
+}
+.hompage-header-v2 .contentSection {
+   padding-left: 100px;
+   flex-basis:80%;
+   z-index:0;
+  width:100%;
+}
+.hompage-header-v2 .contentSection h1 {
+max-width:47rem;
+line-height: 72px;
+font-size:53px;  
+letter-spacing: 0.3px;
+text-align: left;
+margin-bottom: 50px;
+color:#fff;
+
+font-weight: 800;
+}
+  .hompage-header-v2 .readMorebtn {
+    background:#D6B462;
+    width: auto;
+    color: white;
+    padding: 11px 50px;
+  
+font-size: 22px;
+font-weight: 700;
+line-height: 31px;
+letter-spacing: 0em;
+text-align: left;
+
+}
+  .btnWrapper-home-v2 {
+   
+    margin-top: 30px;
+    position: relative;
+}
+  @media only screen and (max-width:768px) {
+  .hompage-header-v2 .contentSection h1{
+       font-size:36px;
+       text-align: center;
+       line-height:40px;
+        margin-bottom: 16px;
+       }
+.hompage-header-v2 .contentSection{
+padding-left:0;
+}
+       .hompage-header-v2 .btnWrapper-home-v2{
+       display:flex;
+     }
+     .hompage-header-v2 .readMorebtn{
+       margin:0px auto;
+     }
+
+    
+.mainContainer {
+display: flex;
+justify-content: space-around;
+padding-top:0px;
+margin: 0px auto;
+align-items: center;
+flex-direction: column;
+overflow:hidden;
+}
+.contentSection {
+/* padding-left: 100px; */
+width: 100%;
+padding: 60px;
+padding-right: 0;
+}
+    
+.imageSection img.image_fluid {
+position: relative;
+/* top: 20px; */
+width: 90%;
+} 
+    .imageSection{
+      text-align:center;
+    }
+
+
+    .hompage-header-v2 .imageSection{
+      display:none;
+    }
+    .hompage-header-v2 .mainContainer {
+      margin-top:0px;
+  
+      
+    }
+}
+
+
+   @media only screen and (max-width:375px) {
+  .hompage-header-v2 .contentSection{
+    padding-left:15px;
+   }
+     .hompage-header-v2 .contentSection h1{
+       font-size: 45px;
+       text-align: center;
+       line-height:52px;
+     }
+     .hompage-header-v2 .btnWrapper-home-v2{
+       display:flex;
+     }
+     .hompage-header-v2 .readMorebtn{
+       margin:0px auto;
+     }
+
+     .two-productsection-v2 .sectionBlock2:before{
+       border-right:0px solid transparent;
+     }
+     .hompage-twoproduct-v2 .contentWrapper{
+       padding:0;
+     }
+     .hompage-twoproduct-v2 .contentSection h1{
+       margin-left:0 !important;
+     }
+     .btnWrapper .readMorebtn{
+     font-size:12px;
+     }
+  }
+
+</style>
+ <link rel="preload" as="image" href="{{section.settings.sectionImage1 | img_url:'master'}}">
+   {% if section.settings.sectionImage1 !=blank %}
+     <img style="position:absolute;z-index:-9;width: 100%;height: 100%;object-fit: cover"  fetchpriority="High" src="{{section.settings.sectionImage1 | img_url:'master'}}"/>   
+   {% endif %}
+<div class="mainContainer"> 
+  
+{{ section.settings.bgimage}}
+
+ 
+
+      <div class="contentSection">
+        {% if section.settings.sectionHeading !=blank %}
+       <h1 class="sectionHeading">  
+        {{ section.settings.sectionHeading }}
+       </h1>
+          {% endif %}   
+          {% if section.settings.btntitle !=blank %}
+     <div class="btnWrapper-home-v2">
+    <a href="{{ section.settings.btnUrl}}"class="readMorebtn">{{ section.settings.btntitle }}</a>
+ </div>
+            {% endif %}
+      </div>
+       <div class="imageSection"> 
+         {% if section.settings.sectionImage !=blank %}
+           
+        <img class="image_fluid" style="opacity:0"src="{{ section.settings.sectionImage |img_url:'master' }}"/>
+         {% endif %}
+       </div>
+
+
+ </div>
+
+
+{% schema %}
+{
+  "name": {
+    
+    "en": "Homepage-header-v2"
+  },
+  "class": "index-section hompage-header-v2",
+  "settings": [
+      {
+        "type": "header",
+        "content":"Content Area"
+      },
+       {
+      "type": "text",
+      "id": "sectionHeading",
+      "label":"Heading",
+      "default": "Heading"
+      },
+      {
+        "type": "image_picker",
+        "id": "sectionImage",
+        "label": "Select Right side Image"
+   
+      },
+   
+      {
+      "type": "text",
+      "id": "btntitle",
+      "label": "Button Label"
+    },
+    {
+        "type": "url",
+        "id": "btnUrl",
+        "label": "Button Link"
+        
+      },
+      {
+        "type": "header",
+        "content":"Section Settings"
+        
+      },
+     
+     {
+        "type": "color",
+        "id": "colorID",
+        "label": "Select Background Color",
+        "default": "#000000"
+      },
+     {
+        "type": "color",
+        "id": "overlay",
+        "label": "Select Background Overlay",
+        "default": "#000000"
+      },
+     {
+      "type": "range",
+      "id": "overlayOpacity",
+      "min":0.10,
+      "max":0.90,
+      "step":0.10,
+      "label": "Overlay Opacity",
+      "default":0.10
+      },
+      {
+        "type": "image_picker",
+        "id": "sectionImage1",
+        "label": "Select Background Image"
+   
+      },
+     {
+        "type": "checkbox",
+        "id": "boxShadows",
+        "label":"Box Shadow"
+   
+      }
+    
+  ],
+  "presets": [
+    {
+      "name": {
+       
+        "en": "Homepage Header V2"
+      
+      },
+      "category": {
+       
+        "en": "Homepage"
+       
+      }
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

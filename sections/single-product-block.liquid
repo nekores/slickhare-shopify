@@ -1,0 +1,47 @@
+
+{% assign product = all_products[section.settings.product] %}
+
+
+<div style="display:flex;align-item:center">
+  <div>
+<!--     <img src="{{ product.featured_image |img_url:'master'}}">
+    <h2>{{ product.title }}</h2>
+    <p>{{ product.price }}</p>
+    <a class="btn" href="{{ product.url }}">View Product</a> -->
+    {% include 'product-card-list', product: product, show_vendor: false %}
+    
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+{% schema %}
+  {
+    "name": "single-product-block",
+    "settings": [
+{
+	  "type": "product",
+      "id": "product",
+      "label":"product"
+}],
+  "presets": [
+    {
+      "name": "single-product-block",
+      "category": "product"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,220 @@
+<style>
+  .main-funnel-happy-customers {
+    background:#F9F6EF;;
+    padding-top: 80px;
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-bottom: 80px;
+}
+  .main-funnel-happy-customers .container{
+    max-width:1920px;
+    margin:0px auto;
+  }
+
+.main-funnel-happy-customers .row {
+    display: grid;
+    width: 100%;
+    align-items: center;
+    gap: 50px;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.main-funnel-happy-customers .col-lg-4 {
+    max-width: 33.33%;
+    width:31.33%;
+}
+.main-funnel-happy-customers .section_heading h1{
+   color: #100;
+  text-align: center;
+  font-family: "Oswald", sans-serif;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+  margin-bottom:23px;
+}
+  .section_description p{
+    color: rgba(0, 0, 0, 0.80);
+    text-align: center;
+    font-family:  "Oswald", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.5px;
+  }
+.section_description {
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin-bottom:64px;
+}
+  .sub_description p{
+    color: rgba(0, 0, 0, 0.80);
+    font-family:"Oswald", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.5px;
+  }
+
+  .before_after_wrapper {
+    display: flex;
+    gap: 21px;
+}
+  .author_name_wrapper h4{
+    color: #000;
+    text-align: center;
+    font-family: "Oswald", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+  }
+  .author_name_wrapper {
+    margin-top: 28px;
+}
+  .sub_description {
+    margin-bottom: 32px;
+}
+         @media only screen and (max-width:768px) {
+         .main-funnel-happy-customers{
+           padding:20px;
+         }
+           .main-funnel-happy-customers .section_heading h1{
+             font-size:32px;
+             line-height:normal;
+           }
+           .main-funnel-happy-customers .row{
+             gap:25px;
+           }
+           .section_description{
+             margin-bottom:30px;
+           }
+           .section_description p{
+             font-size:18px;
+             line-height:normal;
+           }
+           .sub_description p{
+             font-size:18px;
+             line-height:normal;
+           }
+      }
+  @media only screen and (max-width:592px) {
+    .main-funnel-happy-customers .row{
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+</style>
+<div class="main-funnel-happy-customers">
+   <div class="container">
+
+     {% if section.settings.heading !=blank %}
+        <div class="section_heading">
+           <h1>{{ section.settings.heading }}</h1>
+        </div>
+     {% endif %}
+     {% if section.settings.content !=blank %}
+       <div class="section_description">
+         {{ section.settings.content }}
+       </div>
+     {% endif %}
+     {%  if section.settings.content_block !=blank %}
+     <div class="sub_description">
+       {{ section.settings.content_block }}
+     </div>
+     {%  endif %}
+     <div class="row">
+
+       {% for block in section.blocks %}
+         <div class="col-lg-12">
+           <div class="result_card_wrapper">
+              <div class="before_after_wrapper">
+                {% if block.settings.customer_before !=blank %}
+                  <div class="before_image">
+                     <img src="{{ block.settings.customer_before |img_url:'master'}}"/>
+                  </div>
+                {% endif %}
+                {% if block.settings.customer_after !=blank %}
+                  <div class="after_image">
+                     <img src="{{ block.settings.customer_after |img_url:'master' }}"/>
+                  </div>
+                {% endif %}
+              </div>
+             {% if block.settings.heading !=blank %}
+              <div class="author_name_wrapper">
+                 <h4>{{ block.settings.heading }}</h4>
+              </div>
+              {% endif %}
+           </div>
+       </div>
+         {% endfor %}
+  
+  
+     </div>
+
+     
+
+   </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Funnel Happy Customers",
+    "class":"funnel-happy-customers",
+    "settings": [
+      {
+        "type":"text",
+        "id":"heading",
+        "label":"Section Heading",
+        "default":"More Than 90% Of People Grew Better Beard"
+      },
+      {
+        "type":"richtext",
+        "id":"content",
+        "label":"Section Description"
+      },
+     {
+        "type":"richtext",
+        "id":"content_block",
+        "label":"Happy Customers Description"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"happy_customers",
+        "name":"Happy Customers",
+        "settings":[
+          {
+            "type":"text",
+            "id":"heading",
+            "label":"Customer Name"
+          },
+          {
+            "type":"image_picker",
+            "id":"customer_before",
+            "label":"Customer Before Image"
+          },
+         
+         {
+            "type":"image_picker",
+            "id":"customer_after",
+            "label":"Customer After Image"
+          }
+          
+
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name":"Funnel Happy Customers"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,332 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --rich-section-background-color: {{ section.settings.background_color }};
+    background-color: var(--rich-section-background-color, white);
+
+  }
+
+  .section-{{ section.id }}-padding {
+    padding-top: calc({{ section.settings.padding_top }}px * 0.75);
+    padding-bottom: calc({{ section.settings.padding_bottom }}px  * 0.75);
+    padding-left:20px;
+    padding-right:20px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    .highlight-section__cta.mobile-only {
+      display: none;
+    }
+  }
+
+  .highlight-section__container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .highlight-section__heading {
+    text-align: var(--highlight-section-text-alignment, left);
+    font-size:30px;
+    font-weight: 800;
+    line-height: 42px;
+    color: rgba(51, 51, 51, 1);
+    letter-spacing: 0.03em;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .highlight-section_content__wrapper {
+    display: flex;
+    flex-direction: var(--highlight-section-alignment, row);
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .highlight-section__content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+    max-width: 50%;
+  }
+ #shopify-section-{{ section.id }} .highlight-section__content p{
+    color:{{ section.settings.content_color}};
+    font-size: 18px;
+    line-height: 24px;
+   font-family: "Montserrat", serif;
+  }
+   #shopify-section-{{ section.id }} .highlight-section__content h4{
+    color:{{ section.settings.content_color}};
+     
+  }
+     #shopify-section-{{ section.id }} .highlight-section__content ul li{
+    color:{{ section.settings.content_color}};
+    font-size: 18px;
+    line-height: 24px;   
+     font-family: "Montserrat", serif;  
+  }
+
+  .highlight-section__image {
+    width: 100%;
+  }
+
+  .highlight-section__image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .highlight-section__cta {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--highlight-section-cta-background-color, #ffffff);
+    color: var(--highlight-section-cta-text-color, #000000);
+    border: 1px solid var(--highlight-section-cta-border-color, #000000);
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    width:80%;
+    background:transparent;
+
+  }
+  .highlight-section__cta:hover{
+    background-color:#e5c966;
+    color:#fff !important;
+    border-color:#e5c966;
+  }
+
+  @media screen and (max-width: 750px) {
+    .highlight-section__heading{
+      font-size:24px;
+      line-height:normal;
+    }
+    .highlight-section__container{
+      padding-left:0;
+      padding-right:0;
+    }
+    .highlight-section_content__wrapper {
+      flex-direction: column;
+    }
+
+    .highlight-section__content {
+      max-width: 100%;
+      
+    }
+
+    .highlight-section__cta.desktop-only {
+      display: none;
+    }
+    .highlight-section__cta.mobile-only{
+      display:block;
+      width:100%;
+    }
+     #shopify-section-{{ section.id }} .highlight-section__content p{
+        font-size: 16px;
+        line-height: 20px;
+     }
+     #shopify-section-{{ section.id }} .highlight-section__content ul li{
+       font-size: 16px;
+        line-height: 20px;
+     }
+   
+    
+  }
+{%- endstyle -%}
+
+<section id="shopify-section-{{ section.id }}" class="highlight-section section-{{ section.id }}-padding">
+  <div class="highlight-section__container">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'heading' %}
+          <h2 class="highlight-section__heading" style="--highlight-section-text-alignment: {{ block.settings.text_alignment }}">{{ block.settings.heading | escape }}</h2>
+      {% endcase %}
+    {% endfor %}
+    <div class="highlight-section_content__wrapper" style="--highlight-section-alignment: {{ section.settings.content_alignment }};">
+      <div class="highlight-section__content">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'image' %}
+              <div class="highlight-section__image">
+                {{ block.settings.image | image_url: width: block.settings.image.width, height: block.settings.image.height | image_tag }}
+              </div>
+            {% when 'cta' %}
+              <a href="{{ block.settings.url }}" class="highlight-section__cta desktop-only" style="--highlight-section-cta-background-color: {{ block.settings.background_color }}; --highlight-section-cta-text-color: {{ block.settings.text_color }}; --highlight-section-cta-border-color: {{ block.settings.border_color }}">{{ block.settings.text }}</a>
+          {% endcase %}
+        {% endfor %}
+      </div>
+      <div class="highlight-section__content">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'content' %}
+              <div>
+                {{ block.settings.content }}
+              </div>
+            {% when 'cta' %}
+              <a href="{{ block.settings.url }}" class="highlight-section__cta mobile-only" style="--highlight-section-cta-background-color: {{ block.settings.background_color }}; --highlight-section-cta-text-color: {{ block.settings.text_color }}; --highlight-section-cta-border-color: {{ block.settings.border_color }}">{{ block.settings.text }}</a>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Highlight Image Text",
+  "settings": [
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "options": [
+        {
+          "value": "row",
+          "label": "Left"
+        },
+        {
+          "value": "row-reverse",
+          "label": "Right"
+        }
+      ],
+      "default": "row",
+      "label": "Content Alignment"
+    },
+     {
+      "type": "color",
+      "id": "content_color",
+      "label": "Content Color",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left",
+          "label": "Text alignment"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "name": "Call to Action",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Border Color",
+          "default": "#000000"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "name": "Content",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Highlight Image Text"
+    }
+  ]
+}
+{% endschema %}
