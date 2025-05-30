@@ -100,6 +100,48 @@ font-weight: 500;
     {% endif %}
   {% endif %}
 
+  <!-- SEO Meta Tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{ page_description | default: shop.description | strip_html | truncatewords: 155 }}">
+  <meta name="keywords" content="{{ shop.metafields.global.keywords | default: shop.name }}">
+  <meta name="robots" content="index, follow">
+  <meta property="og:site_name" content="{{ shop.name }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  <meta property="og:type" content="{% if template contains 'product' %}product{% else %}website{% endif %}">
+  <meta property="og:title" content="{{ page_title | strip_html }}">
+  <meta property="og:description" content="{{ page_description | default: shop.description | strip_html | truncatewords: 155 }}">
+  {% if template contains 'product' %}
+    <meta property="og:price:amount" content="{{ product.price | money_without_currency | strip_html }}">
+    <meta property="og:price:currency" content="{{ shop.currency }}">
+  {% endif %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page_title | strip_html }}">
+  <meta name="twitter:description" content="{{ page_description | default: shop.description | strip_html | truncatewords: 155 }}">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{ canonical_url }}">
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "{% if template contains 'product' %}Product{% else %}WebSite{% endif %}",
+    "name": "{{ shop.name }}",
+    "url": "{{ shop.url }}",
+    {% if template contains 'product' %}
+    "description": "{{ product.description | strip_html | truncatewords: 155 }}",
+    "image": "{{ product.featured_image | img_url: '1024x1024' }}",
+    "offers": {
+      "@type": "Offer",
+      "price": "{{ product.price | money_without_currency | strip_html }}",
+      "priceCurrency": "{{ shop.currency }}",
+      "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}"
+    }
+    {% endif %}
+  }
+  </script>
+
   <header class="site-header{% if section.settings.align_logo == 'left' %} logo--left{% else %} logo--center{% endif %}" role="banner">
     <div class="grid grid--no-gutters grid--table site-header__mobile-nav">
       {% if section.settings.align_logo == 'center' %}
