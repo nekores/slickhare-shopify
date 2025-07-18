@@ -1,0 +1,30 @@
+{% schema %}
+{
+  "name": "Main Page Sections",
+  "max_blocks": 20,
+  "blocks": [
+    {
+      "type": "judgeme-reviews-home",
+      "name": "Judge.me Reviews"
+    },
+    {
+      "type": "funnel-frequently-asked-question",
+      "name": "FAQ Section"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Main Page Sections"
+    }
+  ]
+}
+{% endschema %}
+
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'judgeme-reviews-home' %}
+      {% section 'judgeme-reviews-home' %}
+    {% when 'funnel-frequently-asked-question' %}
+      {% section 'funnel-frequently-asked-question' %}
+  {% endcase %}
+{% endfor %} 
