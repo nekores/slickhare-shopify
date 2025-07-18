@@ -1,537 +1,526 @@
 <style>
-/*   .offer-popup-main-container{
-    display: none;
-  } */
-   .offer-popup-main-container.active{
-    display: block;
+  /*   .offer-popup-main-container{
+      display: none;
+    } */
+     .offer-popup-main-container.active{
+      display: block;
+    }
+    .offer-popup-main-container .combo-container {
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      max-width: 80%;
+      margin: 0 auto;
+      padding-top: 15px;
   }
-  .offer-popup-main-container .combo-container {
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    gap: 0;
-    max-width: 80%;
-    margin: 0 auto;
-    padding-top: 15px;
-}
-  .offer-popup-main-container .combo-grid-content {
-    width: 30%;
-    padding: 1.5rem 0;
-    border: 3px solid #000;
-    border-radius: 2rem;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    background: #fff;
-}
- 
-  .combo-heading h3 {
-    color: #000;
-    font-size: 68px;
-    font-weight: 500;
-    line-height: 84px;
-    text-align: center;
-    padding: 1rem 0;
-}
-  .offer-popup-main-container .combo-main {
-    background: #000;
-    box-shadow: 5px 5px 32px 8px rgb(255 255 255 / 40%);
-    border-radius: 20px;
-    overflow-y: auto;
-    height: 100%;
-    width: 100%;
-    padding: 3rem 0px;
-}
-  .combo-grid{
-    padding: 1rem;
+    .offer-popup-main-container .combo-grid-content {
+      width: 30%;
+      padding: 1.5rem 0;
+      border: 3px solid #000;
+      border-radius: 2rem;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      background: #fff;
   }
-  .combo-best_value h3 {
-    text-align: center;
-    background: #d3a640;
-    color: #000;
-    margin: 1rem 0;
-    font-weight: 600;
-}
-  .combo-best_value {
-    width: 100%;
-    background: #d3a640;
-}
-  
-  .combo-grid-content h4 {
-    color: #000;
-    font-size: 1.2rem;
-    text-align: center;
-    font-weight: 600;
-    padding: 1rem;
-    line-height: 1.9rem;
-}
-  .combo-grid img {
-    width: 100%;
-}
-  .combo-grid h5 {
-    color: #000;
-    font-size: 1.2rem;
-    text-align: center;
-    font-weight: 500;
-    margin: 1rem 0;
-}
- .combo-save h3 {
-    width: 100%;
-    text-align: center;
-    color: #fff;
-    background: #000;
-    padding: 1rem 0;
-}
-  .combo-save{
-    width: 100%;
-  }
- .combo-save h5 {
-    font-size: 1.5rem;
-    color: #000;
-    text-align: center;
-}
- .combo-save p {
-    color: #000;
-    text-align: center;
-}
-  .payment {
-margin-top: 1rem;
-width: 100%;
-text-align: center;
-}
 
-.payment img {
-max-width: 100%;
-border: 0;
-width: auto;
-}
-  .combo-grid {
-    width: 100%;
-}
-  
+    .combo-heading h3 {
+      color: #000;
+      font-size: 68px;
+      font-weight: 500;
+      line-height: 84px;
+      text-align: center;
+      padding: 1rem 0;
+  }
+    .offer-popup-main-container .combo-main {
+      background: #000;
+      box-shadow: 5px 5px 32px 8px rgb(255 255 255 / 40%);
+      border-radius: 20px;
+      overflow-y: auto;
+      height: 100%;
+      width: 100%;
+      padding: 3rem 0px;
+  }
+    .combo-grid{
+      padding: 1rem;
+    }
+    .combo-best_value h3 {
+      text-align: center;
+      background: #d3a640;
+      color: #000;
+      margin: 1rem 0;
+      font-weight: 600;
+  }
+    .combo-best_value {
+      width: 100%;
+      background: #d3a640;
+  }
 
-  .combo-grid-content{
-   box-sizing: border-box; 
-box-shadow: 1px 2px 20px 0px #818181;
-border: 3px solid #000;
-}
-  .badge {
-    position: absolute;
-    left: -3rem;
-    top: -3rem;
-    width: 7rem;
-    height: 7rem;
-}
-  .combo-grid-content {
-    position: relative;
-}
-  .badge {
-    position: absolute;
-    left: -1.2rem;
-    top: 1rem;
-    width: 7rem;
-    height: 7rem;
-}
-  
-  @media only screen and (max-width: 800px){
-  .combo-container {
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-}
-   .combo-grid-content {
-    width: 90%;
-     margin: 1.5rem;
-} .combo-heading h3 {
-    font-size: 2rem;
-    font-weight: 600;
-    padding: 0;
-    line-height: 3rem;
-}
-  .badge {
-    position: absolute;
-    left: -1rem;
-    top: 1rem;
-    width: 7rem;
-    height: 7rem;
-}  
+    .combo-grid-content h4 {
+      color: #000;
+      font-size: 1.2rem;
+      text-align: center;
+      font-weight: 600;
+      padding: 1rem;
+      line-height: 1.9rem;
+  }
+    .combo-grid img {
+      width: 100%;
+  }
+    .combo-grid h5 {
+      color: #000;
+      font-size: 1.2rem;
+      text-align: center;
+      font-weight: 500;
+      margin: 1rem 0;
+  }
+   .combo-save h3 {
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      background: #000;
+      padding: 1rem 0;
+  }
+    .combo-save{
+      width: 100%;
+    }
+   .combo-save h5 {
+      font-size: 1.5rem;
+      color: #000;
+      text-align: center;
+  }
+   .combo-save p {
+      color: #000;
+      text-align: center;
+  }
+    .payment {
+  margin-top: 1rem;
+  width: 100%;
+  text-align: center;
+  }
+
+  .payment img {
+  max-width: 100%;
+  border: 0;
+  width: auto;
+  }
+    .combo-grid {
+      width: 100%;
   }
 
 
-  @font-face {
-  font-family: Helvetica;
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-  src: url("https://fonts.shopifycdn.com/helvetica/helvetica_n7.39bee04bd277a9c4e94e2fd42d53f4e3c0afb8a5.woff2?h1=c2xpY2toYXJlLmNvbQ&hmac=5ad35ebab426caa06247b29f46604c0e37c1dfe3d7bccc93af61a70d6e3ccd9d") format("woff2"),
-       url("https://fonts.shopifycdn.com/helvetica/helvetica_n7.b95359461a6788d5549e702cb2123bc40c227e49.woff?h1=c2xpY2toYXJlLmNvbQ&hmac=7a24769a71c394708e792bd64255dcba8d57123426fd7b065ed7597e4eed4939") format("woff");
-}
-  
-  .offer-popup-main-container  .offer-popup-main-container {
-    display: none;
-} 
-  .offer-popup-main-container #shopify-section-offer-popup {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0,0,0,0.5);
-    z-index:99999;
-}  
-
-   .offer-popup-main-container section.combo-product-card {
-    width: 80%;
-    height: max-content;
-    background: unset;
-    margin: auto;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    max-width: 970px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-  
-    @media only screen and (min-width: 1200px){
-  .combo-grid-content:nth-child(odd) {
-    transform: scale(0.9);
-}
-
+    .combo-grid-content{
+     box-sizing: border-box;
+  box-shadow: 1px 2px 20px 0px #818181;
+  border: 3px solid #000;
   }
-  @media only screen and (max-width: 1200px){
-        .offer-popup-main-container section.combo-product-card {
-        width: 80%;
-      }
+    .badge {
+      position: absolute;
+      left: -3rem;
+      top: -3rem;
+      width: 7rem;
+      height: 7rem;
   }
- .offer-popup-main-container span.offer-popup-close {
-    font-size: 2rem;
-    background: #fff;
-    color: #000;
-    float: right;
-    margin-right: 1rem;
-    position: absolute;
-    right: 0;
-    width: 35px;
-    height: 36px;
-    display: flex;
-    justify-content: center;
-    line-height: 1;
-    border-radius: 50%;
-   cursor: pointer;
-   top: 14px;
-}
-  .offer-popup-main-container .combo-heading h3 {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 60px;
-    line-height: 1;
-    text-align: center;
-    color: #D2BA73;
-    padding: 0;
-}
-  .offer-popup-heading-container h4 {
-    font-family: Aladin;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 30px !important;
-    line-height: 35px !important;
-    text-align: center;
-    letter-spacing: 0.07em;
-    color: #D2BA73;
-}
-.offer-popup-heading-container p {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 15px;
-    text-align: center;
-    color: #D2BA73;
-    margin-bottom: 5px;
-}
-.coupn-code-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 0 15px;
-    border-bottom: 4px solid #D2BA73;
-}
-.coupn-code-container h6 {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 25px;
-    line-height: 29px;
-    text-align: center;
-    letter-spacing: 0.1em;
-    color: #D2BA73;
-    opacity: 1;
-    margin: 0;
-}
-.coupn-code-container span.coupn-code {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 15px;
-    line-height: 15px;
-    text-align: center;
-    color: #FFFFFF;
-    background: #CF2A2A;
-    border-radius: 7px;
-    padding: 6px 15px;
-    margin-left: 10px;
-}  
-.offer-popup-main-container h3 {
-    font-size: 14px;
-    margin: 8px 0;
-}
-
-.offer-popup-main-container h4 {
-    font-size: 14px;
-    line-height: 1.2;
-    padding: 10px;
-    margin-bottom: 0;
-}
-.offer-popup-main-container .combo-grid {
-    padding: 0 10px;
-}
-.offer-popup-main-container .combo-grid img {
-    width: 100%;
-    max-width: 150px;
-    object-fit: cover;
-    margin: 0 auto;
-    position: absolute;
-}
-.offer-popup-main-container .combo_img {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    padding-bottom: 100%;
-}
-.offer-popup-main-container .combo-grid h5 {
-    margin: 5px 0;
-    font-size: 13px;
-}  
-.offer-popup-main-container .combo-save h3 {
-    font-size: 14px;
-    margin: 0;
-    padding: 7px 0;
-}
-.offer-popup-main-container .combo-save p {
-    font-size: 12px;
-    line-height: 1;
-    margin-top: 7px;
-}
-.offer-popup-main-container .shopify-buy__btn-wrapper {
-    margin-top: 10px;
-}  
-.offer-popup-main-container .payment {
-    margin-top: 5px;
-} 
-.offer-popup-main-container .payment img {
-    width: 100%;
-} 
-.offer-popup-main-container .badge {
-    position: absolute;
-    left: -0.5rem;
-    top: 1.4rem;
-    width: 3rem;
-    height: 2rem;
-}
-p.offer-popup-inner-text {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    text-align: left;
-    color: #D2BA73;
-    max-width: 70%;
-    margin: 15px auto 0;
-    line-height: 18px;
-}  
- @media only screen and (min-width: 768px) and (max-width: 1000px){  
-.offer-popup-main-container .badge{
- top: 0.7rem; 
-}
-   .offer-popup-main-container .combo-container {
-    flex-direction: unset;
-}
-  .offer-popup-main-container .combo-grid-content {
-    margin: 0;
-    border-radius: 15px;
-    padding: 16px 0;
-}
- }
-@media only screen and (min-width: 768px){  
-  .desktop-hide {
-    display: none;
-}
-}
-@media only screen and (max-width: 767px){  
-.offer-popup-main-container .combo-container {
-    flex-direction: unset;
-    max-width: 100%;
-}
-  .offer-popup-main-container .combo-grid-content {
-    margin: 0;
-    border-radius: 15px;
-    padding: 8px 0;
-}
-  .offer-popup-main-container .combo-heading h3 {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 5px 0;
-}
-  .offer-popup-heading-container h4 {
-    font-size: 16px !important;
-    line-height: 1 !important;
-    padding: 5px;
-}
-  .offer-popup-heading-container p {
-    font-size: 12px;
-    margin: 0;
-    font-weight: 500;
-}
-  .coupn-code-container {
-    padding: 8px;
-    border-bottom: 2px solid #D2BA73;
-}
-  .coupn-code-container h6 {
-    font-size: 14px;
-    line-height: 1;
-}
-  .coupn-code-container span.coupn-code {
-    font-size: 13px;
-    margin-left: 7px;
-    padding: 5px 15px;
-}
-  .offer-popup-main-container section.combo-product-card {
-    width: 95%;
-    min-height: 70vh;
-}
-.offer-popup-main-container h3 {
-    font-size: 10px;
-    margin: 4px;
-    line-height: 1;
-} 
-.offer-popup-main-container h4 {
-    font-size: 8px;
-    padding: 3px;
-}
-.offer-popup-main-container .combo-grid {
-    padding: 0 5px;
-}
-.offer-popup-main-container .combo-grid img {
-    max-width: 90px;
-}
-.offer-popup-main-container .combo-grid h5 {
-    margin: 0 0 3px;
-    font-size: 9px;
-}
-.offer-popup-main-container .combo-save h3 {
-    font-size: 10px;
-    padding: 4px 0;
-}
-  .offer-popup-main-container .combo-save p {
-    font-size: 8px;
-    margin-top: 4px;
-}
-.offer-popup-main-container .badge {
-    width: 1.8rem;
-    top: 0.4rem;
-    left: -0.3rem;
-} 
-.offer-popup-main-container span.offer-popup-close {
-    font-size: 1.5rem;
-    width: 27px;
-    height: 27px;
-    font-weight: 500;
-}  
-  .offer-popup-main-container .combo-product a {
-    padding: 14.5px 4px !important;
-    font-size: 8px !important;
-    margin-top: 10px !important;
-}
-.mobile-hide {
-/*     display: none; */
-}
-@media(max-width: 767px){
-  .mobile-hide iframe{
-    min-height: 70px !important;
+    .combo-grid-content {
+      position: relative;
   }
-}
-p.offer-popup-inner-text {
-    font-size: 15px;
-    line-height: 18px;
-    font-weight: 600;
-    max-width: 90%;
-} 
-}
+    .badge {
+      position: absolute;
+      left: -1.2rem;
+      top: 1rem;
+      width: 7rem;
+      height: 7rem;
+  }
 
-  .btn.btn-signupButton{
-        background: #d3a640;
-    font-weight: bold;
-    text-transform: capitalize;
+    @media only screen and (max-width: 800px){
+    .combo-container {
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+  }
+     .combo-grid-content {
+      width: 90%;
+       margin: 1.5rem;
+  } .combo-heading h3 {
+      font-size: 2rem;
+      font-weight: 600;
+      padding: 0;
+      line-height: 3rem;
+  }
+    .badge {
+      position: absolute;
+      left: -1rem;
+      top: 1rem;
+      width: 7rem;
+      height: 7rem;
+  }
+    }
+
+
+    @font-face {
     font-family: Helvetica;
-    margin: 8px 0 0;
-    padding: 12px;
-    font-size: 19px;
-    color: #fff;
-    margin: auto;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    max-width: 200px;
-    align-content: center;
-    padding: 15px;
-    margin-top: 50px;
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url("https://fonts.shopifycdn.com/helvetica/helvetica_n7.39bee04bd277a9c4e94e2fd42d53f4e3c0afb8a5.woff2?h1=c2xpY2toYXJlLmNvbQ&hmac=5ad35ebab426caa06247b29f46604c0e37c1dfe3d7bccc93af61a70d6e3ccd9d") format("woff2"),
+         url("https://fonts.shopifycdn.com/helvetica/helvetica_n7.b95359461a6788d5549e702cb2123bc40c227e49.woff?h1=c2xpY2toYXJlLmNvbQ&hmac=7a24769a71c394708e792bd64255dcba8d57123426fd7b065ed7597e4eed4939") format("woff");
   }
-  .offer-popup-bg-image{
-    height: 490px;
-    width: 100%;
-    background-image: url(https://cdn.shopify.com/s/files/1/0335/6327/9404/files/33_83d446cb-5b60-4a77-b7d7-1b152aef14b4.png?v=1669623324);
-    background-size: cover;
-    background-repeat: no-repeat;
-}
- 
+
+    .offer-popup-main-container  .offer-popup-main-container {
+      display: none;
+  }
+    .offer-popup-main-container #shopify-section-offer-popup {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.5);
+      z-index:99999;
+  }
+
+     .offer-popup-main-container section.combo-product-card {
+      width: 80%;
+      height: max-content;
+      background: unset;
+      margin: auto;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      max-width: 970px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+      @media only screen and (min-width: 1200px){
+    .combo-grid-content:nth-child(odd) {
+      transform: scale(0.9);
+  }
+
+    }
+    @media only screen and (max-width: 1200px){
+          .offer-popup-main-container section.combo-product-card {
+          width: 80%;
+        }
+    }
+   .offer-popup-main-container span.offer-popup-close {
+      font-size: 2rem;
+      background: #fff;
+      color: #000;
+      float: right;
+      margin-right: 1rem;
+      position: absolute;
+      right: 0;
+      width: 35px;
+      height: 36px;
+      display: flex;
+      justify-content: center;
+      line-height: 1;
+      border-radius: 50%;
+     cursor: pointer;
+     top: 14px;
+  }
+    .offer-popup-main-container .combo-heading h3 {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 60px;
+      line-height: 1;
+      text-align: center;
+      color: #D2BA73;
+      padding: 0;
+  }
+    .offer-popup-heading-container h4 {
+      font-family: Aladin;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 30px !important;
+      line-height: 35px !important;
+      text-align: center;
+      letter-spacing: 0.07em;
+      color: #D2BA73;
+  }
+  .offer-popup-heading-container p {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 15px;
+      text-align: center;
+      color: #D2BA73;
+      margin-bottom: 5px;
+  }
+  .coupn-code-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 0 15px;
+      border-bottom: 4px solid #D2BA73;
+  }
+  .coupn-code-container h6 {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 25px;
+      line-height: 29px;
+      text-align: center;
+      letter-spacing: 0.1em;
+      color: #D2BA73;
+      opacity: 1;
+      margin: 0;
+  }
+  .coupn-code-container span.coupn-code {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 15px;
+      line-height: 15px;
+      text-align: center;
+      color: #FFFFFF;
+      background: #CF2A2A;
+      border-radius: 7px;
+      padding: 6px 15px;
+      margin-left: 10px;
+  }
+  .offer-popup-main-container h3 {
+      font-size: 14px;
+      margin: 8px 0;
+  }
+
+  .offer-popup-main-container h4 {
+      font-size: 14px;
+      line-height: 1.2;
+      padding: 10px;
+      margin-bottom: 0;
+  }
+  .offer-popup-main-container .combo-grid {
+      padding: 0 10px;
+  }
+  .offer-popup-main-container .combo-grid img {
+      width: 100%;
+      max-width: 150px;
+      object-fit: cover;
+      margin: 0 auto;
+      position: absolute;
+  }
+  .offer-popup-main-container .combo_img {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      padding-bottom: 100%;
+  }
+  .offer-popup-main-container .combo-grid h5 {
+      margin: 5px 0;
+      font-size: 13px;
+  }
+  .offer-popup-main-container .combo-save h3 {
+      font-size: 14px;
+      margin: 0;
+      padding: 7px 0;
+  }
+  .offer-popup-main-container .combo-save p {
+      font-size: 12px;
+      line-height: 1;
+      margin-top: 7px;
+  }
+  .offer-popup-main-container .shopify-buy__btn-wrapper {
+      margin-top: 10px;
+  }
+  .offer-popup-main-container .payment {
+      margin-top: 5px;
+  }
+  .offer-popup-main-container .payment img {
+      width: 100%;
+  }
+  .offer-popup-main-container .badge {
+      position: absolute;
+      left: -0.5rem;
+      top: 1.4rem;
+      width: 3rem;
+      height: 2rem;
+  }
+  p.offer-popup-inner-text {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: left;
+      color: #D2BA73;
+      max-width: 70%;
+      margin: 15px auto 0;
+      line-height: 18px;
+  }
+   @media only screen and (min-width: 768px) and (max-width: 1000px){
+  .offer-popup-main-container .badge{
+   top: 0.7rem;
+  }
+     .offer-popup-main-container .combo-container {
+      flex-direction: unset;
+  }
+    .offer-popup-main-container .combo-grid-content {
+      margin: 0;
+      border-radius: 15px;
+      padding: 16px 0;
+  }
+   }
+  @media only screen and (min-width: 768px){
+    .desktop-hide {
+      display: none;
+  }
+  }
+  @media only screen and (max-width: 767px){
+  .offer-popup-main-container .combo-container {
+      flex-direction: unset;
+      max-width: 100%;
+  }
+    .offer-popup-main-container .combo-grid-content {
+      margin: 0;
+      border-radius: 15px;
+      padding: 8px 0;
+  }
+    .offer-popup-main-container .combo-heading h3 {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 5px 0;
+  }
+    .offer-popup-heading-container h4 {
+      font-size: 16px !important;
+      line-height: 1 !important;
+      padding: 5px;
+  }
+    .offer-popup-heading-container p {
+      font-size: 12px;
+      margin: 0;
+      font-weight: 500;
+  }
+    .coupn-code-container {
+      padding: 8px;
+      border-bottom: 2px solid #D2BA73;
+  }
+    .coupn-code-container h6 {
+      font-size: 14px;
+      line-height: 1;
+  }
+    .coupn-code-container span.coupn-code {
+      font-size: 13px;
+      margin-left: 7px;
+      padding: 5px 15px;
+  }
+    .offer-popup-main-container section.combo-product-card {
+      width: 95%;
+      min-height: 70vh;
+  }
+  .offer-popup-main-container h3 {
+      font-size: 10px;
+      margin: 4px;
+      line-height: 1;
+  }
+  .offer-popup-main-container h4 {
+      font-size: 8px;
+      padding: 3px;
+  }
+  .offer-popup-main-container .combo-grid {
+      padding: 0 5px;
+  }
+  .offer-popup-main-container .combo-grid img {
+      max-width: 90px;
+  }
+  .offer-popup-main-container .combo-grid h5 {
+      margin: 0 0 3px;
+      font-size: 9px;
+  }
+  .offer-popup-main-container .combo-save h3 {
+      font-size: 10px;
+      padding: 4px 0;
+  }
+    .offer-popup-main-container .combo-save p {
+      font-size: 8px;
+      margin-top: 4px;
+  }
+  .offer-popup-main-container .badge {
+      width: 1.8rem;
+      top: 0.4rem;
+      left: -0.3rem;
+  }
+  .offer-popup-main-container span.offer-popup-close {
+      font-size: 1.5rem;
+      width: 27px;
+      height: 27px;
+      font-weight: 500;
+  }
+    .offer-popup-main-container .combo-product a {
+      padding: 14.5px 4px !important;
+      font-size: 8px !important;
+      margin-top: 10px !important;
+  }
+  .mobile-hide {
+  /*     display: none; */
+  }
+  @media(max-width: 767px){
+    .mobile-hide iframe{
+      min-height: 70px !important;
+    }
+  }
+  p.offer-popup-inner-text {
+      font-size: 15px;
+      line-height: 18px;
+      font-weight: 600;
+      max-width: 90%;
+  }
+  }
+
+    .btn.btn-signupButton{
+          background: #d3a640;
+      font-weight: bold;
+      text-transform: capitalize;
+      font-family: Helvetica;
+      margin: 8px 0 0;
+      padding: 12px;
+      font-size: 19px;
+      color: #fff;
+      margin: auto;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      max-width: 200px;
+      align-content: center;
+      padding: 15px;
+      margin-top: 50px;
+    }
+    .offer-popup-bg-image{
+      height: 490px;
+      width: 100%;
+      background-image: url(https://cdn.shopify.com/s/files/1/0335/6327/9404/files/33_83d446cb-5b60-4a77-b7d7-1b152aef14b4.png?v=1669623324);
+      background-size: cover;
+      background-repeat: no-repeat;
+  }
 </style>
 
-
- 
 {% if section.blocks.size > 0 %}
-<section class="combo-product-card combo-product-card-popup-trigger">
-  
-  
-  <div class="combo-main">
-    <span class="offer-popup-close"> &times; </span>
-    <div class="combo-heading offer-popup-heading-container">
-    <h3>25% off ENTIRE store!</h3>
-      <h4> Black Friday Sale!</h4> 
-      <div class="offer-popup-bg-image"> </div>
-      <a href="https://slickhare.com/collections/all" class="btn btn-signupButton offer-popup-close" > Shop Now </a>
-  </div>
-    
-  </div>
-</section>
-
+  <section class="combo-product-card combo-product-card-popup-trigger">
+    <div class="combo-main">
+      <span class="offer-popup-close"> &times; </span>
+      <div class="combo-heading offer-popup-heading-container">
+        <h3>25% off ENTIRE store!</h3>
+        <h4>Black Friday Sale!</h4>
+        <div class="offer-popup-bg-image"></div>
+        <a href="https://slickhare.com/collections/all" class="btn btn-signupButton offer-popup-close"> Shop Now </a>
+      </div>
+    </div>
+  </section>
 {%- endif -%}
 
-
 <script>
-
-$('.offer-popup-close').click(function(){
-  $('.combo-product-card-popup-trigger').hide();
-  $('.offer-popup-main-container').css('display', 'none');
-  $('body.offer-popup-body').css('position', 'unset');    
-});
+  $('.offer-popup-close').click(function(){
+    $('.combo-product-card-popup-trigger').hide();
+    $('.offer-popup-main-container').css('display', 'none');
+    $('body.offer-popup-body').css('position', 'unset');
+  });
 </script>
-
-
 
 {% schema %}
   {

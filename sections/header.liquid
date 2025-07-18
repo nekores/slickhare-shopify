@@ -103,9 +103,9 @@ font-weight: 500;
   <!-- SEO Meta Tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
   <meta name="description" content="{{ page_description | default: shop.description | strip_html | truncatewords: 155 }}">
   <meta name="keywords" content="{{ shop.metafields.global.keywords | default: shop.name }}">
-  <meta name="robots" content="index, follow">
   <meta property="og:site_name" content="{{ shop.name }}">
   <meta property="og:url" content="{{ canonical_url }}">
   <meta property="og:type" content="{% if template contains 'product' %}product{% else %}website{% endif %}">
@@ -164,7 +164,7 @@ font-weight: 500;
           {% if section.settings.logo %}
             {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
             <a href="{{ routes.root_url }}" class="site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered{% endif %}" data-image-loading-animation>
-              {% capture logo_alt %}{{ section.settings.logo.alt | default: shop.name }}{% endcapture %}
+              {% capture logo_alt %}{{ section.settings.logo.alt | default: shop.name | append: ' logo' }}{% endcapture %}
               <img class="lazyload js"
                    src="{{ section.settings.logo | img_url: '300x300' }}"
                    data-src="{{ img_url }}"
@@ -177,7 +177,7 @@ font-weight: 500;
                 {% capture image_size %}{{ section.settings.logo_max_width | escape }}x{% endcapture %}
                 <img src="{{ section.settings.logo | img_url: image_size }}"
                      srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
-                     alt="{{ section.settings.logo.alt | default: shop.name }}"
+                     alt="{{ section.settings.logo.alt | default: shop.name | append: ' logo' }}"
                      style="max-width: {{ section.settings.logo_max_width }}px;">
               </noscript>
             </a>

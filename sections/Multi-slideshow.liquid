@@ -64,7 +64,7 @@ button.owl-next {
               <source media="(max-width:768px)" srcset="{{ block.settings.image-mob | img_url:"master" }}">
               {% endif %}
               
-              <img src="{{ block.settings.image | img_url:"master" }}" style="width:100%;">
+              <img src="{{ block.settings.image | img_url:"master" }}" style="width:100%;" alt="{{ block.settings.button_text | default: 'Slideshow image' }}">
             </picture>
             </a>
       	  </div>
