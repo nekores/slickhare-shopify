@@ -1,0 +1,66 @@
+<div class="instagram-posts-grid-section{% if section.settings.mode == 'dark' %} dark{% endif %}{% if section.settings.mode == 'light' %} light{% endif %}">
+  {% if section.settings.title != blank %}
+    <h2 class="instagram-posts-grid-title">{{ section.settings.title }}</h2>
+  {% endif %}
+  <div id="insta-feed"></div>
+</div>
+
+<style>
+.instagram-posts-grid-section {
+  margin: 0 auto 40px auto;
+  padding: 40px 16px 32px 16px;
+  background: #fff;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  text-align: center;
+  color: #181818;
+}
+.instagram-posts-grid-section.light {
+  background: #fff;
+}
+.instagram-posts-grid-section.dark {
+  background: #181818;
+  color: #D3A640;
+}
+.instagram-posts-grid-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+  letter-spacing: 1px;
+  color: #181818;
+}
+.instagram-posts-grid-section.dark .instagram-posts-grid-title {
+  color: #D3A640;
+}
+.instagram-posts-grid-section.light .instagram-posts-grid-title {
+  color: #181818;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Instagram Posts Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Our Instagram Posts"
+    },
+    {
+      "type": "select",
+      "id": "mode",
+      "label": "Color Mode",
+      "options": [
+        { "value": "light", "label": "Light" },
+        { "value": "dark", "label": "Dark" }
+      ],
+      "default": "light"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram Posts Grid"
+    }
+  ]
+}
+{% endschema %} 
