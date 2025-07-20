@@ -1,0 +1,225 @@
+<div class="tiktok-reels-slider-section{% if section.settings.mode == 'dark' %} dark{% endif %}{% if section.settings.mode == 'light' %} light{% endif %}">
+  {% if section.settings.title != blank %}
+    <h2 class="tiktok-reels-slider-title">{{ section.settings.title }}</h2>
+  {% endif %}
+  <div class="swiper tiktok-reels-swiper">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        <div class="swiper-slide">
+          {% assign tiktok_url = block.settings.tiktok_url %}
+          {% if tiktok_url contains '/video/' %}
+            {% assign video_id = tiktok_url | split: '/video/' | last | split: '?' | first %}
+            <div class="tiktok-reel-embed-wrapper" data-video-id="{{ video_id }}">
+              <div class="tiktok-loader"></div>
+              <div class="tiktok-iframe-bg">
+                <blockquote class="tiktok-embed" cite="{{ tiktok_url | split: '?' | first }}" data-video-id="{{ video_id }}" style="max-width: 605px;min-width: 325px;">
+                  <section> </section>
+                </blockquote>
+              </div>
+            </div>
+          {% else %}
+            <p>Enter a valid TikTok video URL.</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var swiper = new Swiper('.tiktok-reels-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    autoplay: {
+      delay: 3500,
+      disableOnInteraction: false
+    },
+    breakpoints: {
+      600: {
+        slidesPerView: 2,
+      },
+      900: {
+        slidesPerView: 3,
+      }
+    }
+  });
+  // Pause autoplay on mouse enter, resume on mouse leave
+  var swiperEl = document.querySelector('.tiktok-reels-swiper');
+  if (swiperEl) {
+    swiperEl.addEventListener('mouseenter', function() {
+      swiper.autoplay.stop();
+    });
+    swiperEl.addEventListener('mouseleave', function() {
+      swiper.autoplay.start();
+    });
+  }
+  // Only add TikTok embed script if not already present
+  if (!document.querySelector('script[src="https://www.tiktok.com/embed.js"]')) {
+    var script = document.createElement('script');
+    script.src = 'https://www.tiktok.com/embed.js';
+    script.async = true;
+    document.body.appendChild(script);
+  }
+
+  // Improved loader logic: Hide loader only after TikTok iframe is fully loaded
+  document.querySelectorAll('.tiktok-reel-embed-wrapper').forEach(function(wrapper) {
+    var observer = new MutationObserver(function(mutations, obs) {
+      var iframe = wrapper.querySelector('iframe');
+      if (iframe) {
+        iframe.addEventListener('load', function() {
+          var loader = wrapper.querySelector('.tiktok-loader');
+          if (loader) loader.style.display = 'none';
+        });
+        // If iframe is already loaded (from cache), hide loader after a short delay
+        if (iframe.complete) {
+          setTimeout(function() {
+            var loader = wrapper.querySelector('.tiktok-loader');
+            if (loader) loader.style.display = 'none';
+          }, 300);
+        }
+        obs.disconnect();
+      }
+    });
+    observer.observe(wrapper, { childList: true, subtree: true });
+  });
+});
+</script>
+
+<style>
+.tiktok-reels-slider-section {
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+  padding: 40px 16px 32px 16px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  text-align: center;
+  color: #181818;
+}
+.tiktok-reels-slider-section.light {
+  background: #fff;
+}
+.tiktok-reels-slider-section.dark {
+  background: #181818;
+  color: #D3A640;
+}
+.tiktok-reels-slider-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+  letter-spacing: 1px;
+  color: #181818;
+}
+.tiktok-reels-slider-section.dark .tiktok-reels-slider-title {
+  color: #D3A640;
+}
+.tiktok-reels-slider-section.light .tiktok-reels-slider-title {
+  color: #181818;
+}
+.tiktok-iframe-bg {
+  background: #000;
+  border-radius: 12px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tiktok-reels-slider-section.dark .tiktok-iframe-bg {
+  background: #fff;
+}
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tiktok-reel-embed-wrapper {
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tiktok-loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 48px;
+  height: 48px;
+  margin-left: -24px;
+  margin-top: -24px;
+  border: 5px solid #eee;
+  border-top: 5px solid #D3A640;
+  border-radius: 50%;
+  animation: tiktok-spin 1s linear infinite;
+  z-index: 2;
+  background: transparent;
+}
+.tiktok-reels-slider-section.dark .tiktok-loader {
+  border: 5px solid #333;
+  border-top: 5px solid #D3A640;
+}
+@keyframes tiktok-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+
+{% schema %}
+{
+  "name": "TikTok Reels Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Our TikTok Reels"
+    },
+    {
+      "type": "select",
+      "id": "mode",
+      "label": "Color Mode",
+      "options": [
+        { "value": "light", "label": "Light" },
+        { "value": "dark", "label": "Dark" }
+      ],
+      "default": "light"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tiktok",
+      "name": "TikTok Reel",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tiktok_url",
+          "label": "TikTok Video URL",
+          "default": "https://www.tiktok.com/@tiktok/video/7137441234567890123"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TikTok Reels Slider"
+    }
+  ]
+}
+{% endschema %} 
