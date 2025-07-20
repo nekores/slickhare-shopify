@@ -7,15 +7,31 @@
     width: 25px;
     height: 25px;
     padding: 5px;
+
+}
+.Social-icon-footer{
+  margin: auto;
+  
+}
+.Social-icon-footer ul{
+  padding-top: 0;
+  padding-bottom: 2rem;
+
 }
   .social-icons__item-footer {
     padding: 10px;
 }
   
   .footer-insta {
-    display: flex;
-    flex-direction: row;
-    margin: 3rem;
+       display: flex;
+    flex-direction: column;
+    margin: 0px;
+    justify-content: center;
+    width: 100%;
+    padding-top: 2rem;
+    align-content: center;
+    align-items: center;
+    text-align: center;
 }
    footer {
     {% if section.settings.SelectType=="Dark" %}
@@ -23,9 +39,7 @@
     {% endif %}
 }
   
-.footer-insta__content {
-    width: 45%;
-}
+
   .footer-instagram {
     width: 55%;
 }
@@ -35,16 +49,18 @@
     align-items: flex-start;
 }
   .footer-insta__content {
-    width: 45%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
+    width: auto
+}
+.copyright-footer{
+  width: 100%;
+    background: #181818;
+    padding: 14px;
 }
   .copyright-footer p{
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 0.9rem;
     font-weight: 500;
-    margin: 4rem 0;
+    margin: 0;
 }
   
   .copyright-footer p a {
@@ -158,9 +174,9 @@
   </div>
   {%- endif -%}
   </div>
-    <div id="insta-feed" class="footer-instagram"></div> 
+ <!--   <div id="insta-feed" class="footer-instagram"></div> 
   </div>
-  
+  -->
 <!--   <div class="grid__item small--one-whole {{ copyright_show_class }} site-footer-item-align-right">
         <small class="site-footer__copyright-content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: routes.root_url }}</small>
         <small class="site-footer__copyright-content site-footer__copyright-content--powered-by">{{ powered_by_link }}</small>
