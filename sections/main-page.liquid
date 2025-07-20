@@ -8,7 +8,7 @@
       "name": "Judge.me Reviews"
     },
     {
-      "type": "funnel-frequently-asked-question",
+      "type": "faq-section",
       "name": "FAQ Section"
     }
   ],
@@ -24,7 +24,7 @@
   {% case block.type %}
     {% when 'judgeme-reviews-home' %}
       {% section 'judgeme-reviews-home' %}
-    {% when 'funnel-frequently-asked-question' %}
+    {% when 'faq-section' %}
       {% section 'funnel-frequently-asked-question' %}
   {% endcase %}
 {% endfor %} 

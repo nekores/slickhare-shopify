@@ -1,10 +1,74 @@
-{% render 'judgeme_widgets', widget_type: 'judgeme_featured_carousel', concierge_install: true, auto_install: true %}
-{% render 'judgeme_widgets', widget_type: 'judgeme_all_reviews', concierge_install: true, auto_install: true %}
+{% assign show_summary = section.settings.show_summary %}
+<div class="judgeme-reviews-section{% unless show_summary %} hide-summary{% endunless %}">
+  <h2 class="judgeme-reviews-heading">{{ section.settings.title | default: 'What Our Customers Say' }}</h2>
+  <div class="judgeme-reviews-widgets">
+    {% render 'judgeme_widgets', widget_type: 'judgeme_featured_carousel', concierge_install: true, auto_install: true %}
+    {% render 'judgeme_widgets', widget_type: 'judgeme_all_reviews', concierge_install: true, auto_install: true %}
+  </div>
+</div>
+
+<style>
+.judgeme-reviews-section{
+  padding-top: 5rem;
+}
+.judgeme-reviews-section.hide-summary .jdgm-all-reviews-rating-wrapper .jdgm-all-reviews-rating,
+.judgeme-reviews-section.hide-summary .jdgm-all-reviews-rating-wrapper .jdgm-carousel-number-of-reviews {
+  display: none !important;
+}
+.jdgm-carousel-wrapper .jdgm-carousel-item__review{
+  height: auto !important;
+}
+.jdgm-carousel-wrapper{
+  padding: 12px 0;
+}
+.jdgm-carousel-item__review p{
+      font-size: 16px;
+    margin: 12px 0px !important;
+}
+.jdgm-carousel-item__reviewer-name-wrapper{
+  font-weight: 900;
+}
+.jdgm-carousel__arrows{
+  margin: 50px auto -20px auto !important;
+}
+.judgeme-reviews-heading {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 0px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.jdgm-carousel-item__product-image{
+  height: min-content;
+    min-height: 100px;
+    max-height: 100px;
+    margin-top: 20px;
+}
+.judgeme-reviews-section.dark .judgeme-reviews-heading {
+  color: #D3A640;
+}
+.judgeme-reviews-section.light .judgeme-reviews-heading {
+  color: #181818;
+}
+</style>
 
 {% schema %}
 {
   "name": "Judge.me Reviews",
-  "settings": [],
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "What Our Customers Say"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_summary",
+      "label": "Show summary (stars and total reviews)",
+      "default": true
+    }
+  ],
   "presets": [
     {
       "name": "Judge.me Reviews"
