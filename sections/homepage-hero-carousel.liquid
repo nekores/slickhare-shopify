@@ -214,6 +214,47 @@ text-align: left;
       height: 100%;
   }
 
+  /* Floating Image Styles */
+  .floating-image {
+    position: absolute;
+    z-index: 5;
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: contain;
+  }
+
+  .floating-image.top-left {
+    top: 20px;
+    left: 20px;
+  }
+
+  .floating-image.bottom-left {
+    bottom: 20px;
+    left: 20px;
+  }
+
+  .floating-image.top-right {
+    top: 20px;
+    right: 20px;
+  }
+
+  .floating-image.bottom-right {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .floating-image.top-center {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .floating-image.bottom-center {
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   @media only screen and (max-width:768px) {
     .homepage-hero-carousel-v2 .contentSection h1{
       font-size:36px;
@@ -278,6 +319,11 @@ text-align: left;
 
     .homepage-hero-carousel-v2 .mainContainer {
       margin-top:0px;
+    }
+
+    .floating-image {
+      max-width: 150px;
+      max-height: 150px;
     }
   }
 
@@ -399,6 +445,19 @@ text-align: left;
               src="{{block.settings.sectionImage1 | img_url:'master'}}"
               alt="{{ block.settings.sectionHeading | default: 'Hero background image' }}"
             >
+          {% endif %}
+          {% if block.settings.floating_image != blank %}
+            {% if block.settings.floating_image_url != blank %}
+              <a href="{{ block.settings.floating_image_url }}" target="_blank">
+            {% endif %}
+            <img
+              class="floating-image {{ block.settings.floating_image_position }}"
+              src="{{ block.settings.floating_image | img_url: 'master' }}"
+              alt="{{ block.settings.sectionHeading | default: 'Floating image' }}"
+            >
+            {% if block.settings.floating_image_url != blank %}
+              </a>
+            {% endif %}
           {% endif %}
           <div class="content_block_item">
             <div class="content_alignment" style="display:flex;width:100%;justify-content:{{ block.settings.content_position }}">
@@ -567,6 +626,52 @@ text-align: left;
       "label": "Select Background Image"
     },
     {
+      "type": "header",
+      "content": "Floating Image Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "floating_image",
+      "label": "Floating Image"
+    },
+    {
+      "type": "url",
+      "id": "floating_image_url",
+      "label": "Floating Image URL"
+    },
+    {
+      "type": "select",
+      "id": "floating_image_position",
+      "label": "Floating Image Position",
+      "options": [
+        {
+          "value": "top-left",
+          "label": "Top Left"
+        },
+        {
+          "value": "bottom-left",
+          "label": "Bottom Left"
+        },
+        {
+          "value": "top-right",
+          "label": "Top Right"
+        },
+        {
+          "value": "bottom-right",
+          "label": "Bottom Right"
+        },
+        {
+          "value": "top-center",
+          "label": "Top Center"
+        },
+        {
+          "value": "bottom-center",
+          "label": "Bottom Center"
+        }
+      ],
+      "default": "top-left"
+    },
+    {
       "type": "checkbox",
       "id": "boxShadows",
       "label": "Box Shadow"
@@ -655,6 +760,52 @@ text-align: left;
           "type": "image_picker",
           "id": "sectionImage1",
           "label": "Select Background Image"
+        },
+        {
+          "type": "header",
+          "content": "Floating Image Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "floating_image",
+          "label": "Floating Image"
+        },
+        {
+          "type": "url",
+          "id": "floating_image_url",
+          "label": "Floating Image URL"
+        },
+        {
+          "type": "select",
+          "id": "floating_image_position",
+          "label": "Floating Image Position",
+          "options": [
+            {
+              "value": "top-left",
+              "label": "Top Left"
+            },
+            {
+              "value": "bottom-left",
+              "label": "Bottom Left"
+            },
+            {
+              "value": "top-right",
+              "label": "Top Right"
+            },
+            {
+              "value": "bottom-right",
+              "label": "Bottom Right"
+            },
+            {
+              "value": "top-center",
+              "label": "Top Center"
+            },
+            {
+              "value": "bottom-center",
+              "label": "Bottom Center"
+            }
+          ],
+          "default": "top-left"
         },
         {
           "type": "checkbox",
