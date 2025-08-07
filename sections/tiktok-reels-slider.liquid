@@ -1,78 +1,105 @@
-<div class="tiktok-reels-slider-section{% if section.settings.mode == 'dark' %} dark{% endif %}{% if section.settings.mode == 'light' %} light{% endif %}">
-  {% if section.settings.title != blank %}
-    <h2 class="tiktok-reels-slider-title">{{ section.settings.title }}</h2>
-  {% endif %}
-  <div class="swiper tiktok-reels-swiper">
-    <div class="swiper-wrapper">
-      {% for block in section.blocks %}
-        <div class="swiper-slide">
+{% assign show_summary = section.settings.show_summary %}
+{% assign view_mode = section.settings.view_mode %}
+{% assign mode = section.settings.mode %}
+{% assign mobile_columns = section.settings.mobile_columns | plus: 0 %}
+{% assign tablet_columns = section.settings.tablet_columns | plus: 0 %}
+{% assign desktop_columns = section.settings.desktop_columns | plus: 0 %}
+{% assign grid_gap = section.settings.grid_gap | plus: 0 %}
+<div class="tiktok-reels-section{% unless show_summary %} hide-summary{% endunless %}{% if view_mode == 'grid' %} grid-view{% endif %}{% if mode == 'dark' %} dark{% endif %}{% if mode == 'light' %} light{% endif %}">
+  <h2 class="tiktok-reels-heading">{{ section.settings.title | default: '' }}</h2>
+  
+  {% if view_mode == 'slider' %}
+    <!-- Slider View -->
+    <div class="swiper tiktok-reels-swiper">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
           {% assign tiktok_url = block.settings.tiktok_url %}
           {% if tiktok_url contains '/video/' %}
             {% assign video_id = tiktok_url | split: '/video/' | last | split: '?' | first %}
-            <div class="tiktok-reel-embed-wrapper" data-video-id="{{ video_id }}">
-              <div class="tiktok-loader"></div>
-              <div class="tiktok-iframe-bg">
-                <blockquote class="tiktok-embed" cite="{{ tiktok_url | split: '?' | first }}" data-video-id="{{ video_id }}" style="max-width: 605px;min-width: 325px;">
-                  <section> </section>
-                </blockquote>
+            <div class="swiper-slide">
+              <div class="tiktok-reel-embed-wrapper" data-video-id="{{ video_id }}">
+                <div class="tiktok-loader"></div>
+                <div class="tiktok-iframe-bg">
+                  <blockquote class="tiktok-embed" cite="{{ tiktok_url | split: '?' | first }}" data-video-id="{{ video_id }}" style="max-width: 605px;min-width: 325px;">
+                    <section> </section>
+                  </blockquote>
+                </div>
               </div>
             </div>
-          {% else %}
-            <p>Enter a valid TikTok video URL.</p>
           {% endif %}
-        </div>
+        {% endfor %}
+      </div>
+      <!-- Add Arrows -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination"></div>
+    </div>
+  {% else %}
+    <!-- Grid View -->
+    <div class="tiktok-reels-grid">
+      {% for block in section.blocks %}
+        {% assign tiktok_url = block.settings.tiktok_url %}
+        {% if tiktok_url contains '/video/' %}
+          {% assign video_id = tiktok_url | split: '/video/' | last | split: '?' | first %}
+          <div class="tiktok-reel-embed-wrapper" data-video-id="{{ video_id }}">
+            <div class="tiktok-loader"></div>
+            <div class="tiktok-iframe-bg">
+              <blockquote class="tiktok-embed" cite="{{ tiktok_url | split: '?' | first }}" data-video-id="{{ video_id }}" style="max-width: 605px;min-width: 325px;">
+                <section> </section>
+              </blockquote>
+            </div>
+          </div>
+        {% endif %}
       {% endfor %}
     </div>
-    <!-- Add Arrows -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <!-- Add Pagination -->
-    <div class="swiper-pagination"></div>
-  </div>
+  {% endif %}
 </div>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  var swiper = new Swiper('.tiktok-reels-swiper', {
-    slidesPerView: 1,
-    spaceBetween: 5,
-    loop: true,
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    autoplay: {
-      delay: 3500,
-      disableOnInteraction: false
-    },
-    breakpoints: {
-      600: {
-        slidesPerView: 2,
+  // Only initialize Swiper if slider view is active
+  var swiperContainer = document.querySelector('.tiktok-reels-swiper');
+  if (swiperContainer) {
+    var swiper = new Swiper('.tiktok-reels-swiper', {
+      slidesPerView: {{ mobile_columns }},
+      spaceBetween: 20,
+      loop: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
       },
-      900: {
-        slidesPerView: 3,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
       },
-      1200:{
-        slidesPerView: 4,
+      autoplay: {
+        delay: 3500,
+        disableOnInteraction: false
+      },
+      breakpoints: {
+        600: {
+          slidesPerView: {{ tablet_columns }},
+        },
+        900: {
+          slidesPerView: {{ desktop_columns }},
+        }
       }
+    });
+    // Pause autoplay on mouse enter, resume on mouse leave
+    var swiperEl = document.querySelector('.tiktok-reels-swiper');
+    if (swiperEl) {
+      swiperEl.addEventListener('mouseenter', function() {
+        swiper.autoplay.stop();
+      });
+      swiperEl.addEventListener('mouseleave', function() {
+        swiper.autoplay.start();
+      });
     }
-  });
-  // Pause autoplay on mouse enter, resume on mouse leave
-  var swiperEl = document.querySelector('.tiktok-reels-swiper');
-  if (swiperEl) {
-    swiperEl.addEventListener('mouseenter', function() {
-      swiper.autoplay.stop();
-    });
-    swiperEl.addEventListener('mouseleave', function() {
-      swiper.autoplay.start();
-    });
   }
+  
   // Only add TikTok embed script if not already present
   if (!document.querySelector('script[src="https://www.tiktok.com/embed.js"]')) {
     var script = document.createElement('script');
@@ -106,42 +133,46 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <style>
-.tiktok-reels-slider-section {
+.tiktok-reels-section {
   padding: 40px 16px 32px 16px;
+  border-radius: 16px;
   background: #fff;
   box-shadow: 0 2px 16px rgba(0,0,0,0.04);
   text-align: center;
   color: #181818;
 }
-.tiktok-reels-slider-section.light {
+.tiktok-reels-section.light {
   background: #fff;
+  color: #181818;
 }
-.tiktok-reels-slider-section.dark {
+.tiktok-reels-section.dark {
   background: #181818;
   color: #D3A640;
 }
-.tiktok-reels-slider-title {
+.tiktok-reels-heading {
+  text-align: center;
   font-size: 2rem;
+  margin-bottom: 0px;
   font-weight: 700;
-  margin-bottom: 32px;
   letter-spacing: 1px;
-  color: #181818;
+  color: var(--jdgm-heading, #181818);
 }
-.tiktok-reels-slider-section.dark .tiktok-reels-slider-title {
+.tiktok-reels-section.dark .tiktok-reels-heading {
   color: #D3A640;
 }
-.tiktok-reels-slider-section.light .tiktok-reels-slider-title {
+.tiktok-reels-section.light .tiktok-reels-heading {
   color: #181818;
 }
 .tiktok-iframe-bg {
   background: #000;
+  width: 100%;
   border-radius: 12px;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.tiktok-reels-slider-section.dark .tiktok-iframe-bg {
+.tiktok-reels-section.dark .tiktok-iframe-bg {
   background: #fff;
 }
 .swiper-slide {
@@ -171,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
   z-index: 2;
   background: transparent;
 }
-.tiktok-reels-slider-section.dark .tiktok-loader {
+.tiktok-reels-section.dark .tiktok-loader {
   border: 5px solid #333;
   border-top: 5px solid #D3A640;
 }
@@ -179,17 +210,107 @@ document.addEventListener('DOMContentLoaded', function() {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+/* Grid View Styles */
+.tiktok-reels-grid {
+  display: grid;
+  gap: {{ grid_gap }}px;
+  justify-items: center;
+}
+/* Mobile (default) */
+.tiktok-reels-grid {
+  grid-template-columns: repeat({{ mobile_columns }}, 1fr);
+}
+/* Tablet */
+@media (min-width: 600px) {
+  .tiktok-reels-grid {
+    grid-template-columns: repeat({{ tablet_columns }}, 1fr);
+  }
+}
+/* Desktop */
+@media (min-width: 900px) {
+  .tiktok-reels-grid {
+    grid-template-columns: repeat({{ desktop_columns }}, 1fr);
+  }
+}
+.tiktok-reels-section.grid-view .tiktok-reel-embed-wrapper {
+  width: 100%;
+}
+@media (max-width: 600px) {
+  .tiktok-reels-section {
+    padding: 24px 4px 16px 4px;
+  }
+  .tiktok-reels-heading {
+    font-size: 1.3rem;
+    margin-bottom: 18px;
+  }
+}
 </style>
 
 {% schema %}
 {
-  "name": "TikTok Reels Slider",
+  "name": "TikTok Reels",
   "settings": [
     {
       "type": "text",
       "id": "title",
       "label": "Section Title",
       "default": "Our TikTok Reels"
+    },
+    {
+      "type": "select",
+      "id": "view_mode",
+      "label": "View Mode",
+      "options": [
+        { "value": "slider", "label": "Slider" },
+        { "value": "grid", "label": "Grid" }
+      ],
+      "default": "slider"
+    },
+    {
+      "type": "select",
+      "id": "mobile_columns",
+      "label": "Mobile Columns",
+      "options": [
+        { "value": "1", "label": "1 Column" },
+        { "value": "2", "label": "2 Columns" },
+        { "value": "3", "label": "3 Columns" },
+        { "value": "4", "label": "4 Columns" }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "select",
+      "id": "tablet_columns",
+      "label": "Tablet Columns",
+      "options": [
+        { "value": "1", "label": "1 Column" },
+        { "value": "2", "label": "2 Columns" },
+        { "value": "3", "label": "3 Columns" },
+        { "value": "4", "label": "4 Columns" }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "select",
+      "id": "desktop_columns",
+      "label": "Desktop Columns",
+      "options": [
+        { "value": "1", "label": "1 Column" },
+        { "value": "2", "label": "2 Columns" },
+        { "value": "3", "label": "3 Columns" },
+        { "value": "4", "label": "4 Columns" }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "Grid Gap",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 25
     },
     {
       "type": "select",
@@ -200,6 +321,12 @@ document.addEventListener('DOMContentLoaded', function() {
         { "value": "dark", "label": "Dark" }
       ],
       "default": "light"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_summary",
+      "label": "Show summary (stars and total reviews)",
+      "default": true
     }
   ],
   "blocks": [
@@ -218,7 +345,7 @@ document.addEventListener('DOMContentLoaded', function() {
   ],
   "presets": [
     {
-      "name": "TikTok Reels Slider"
+      "name": "TikTok Reels"
     }
   ]
 }
