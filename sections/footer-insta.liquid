@@ -1,102 +1,221 @@
 <style>
- .social-icons__link-footer > svg {
-    color: #000;
-   background:#fff;
+.luxury-footer {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
 }
-  .Social-icon-footer .icon {
-    width: 25px;
-    height: 25px;
-    padding: 5px;
 
+.luxury-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+  pointer-events: none;
 }
-.Social-icon-footer{
-  margin: auto;
-  
-}
-.Social-icon-footer ul{
-  padding-top: 0;
-  padding-bottom: 2rem;
 
+.luxury-footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px 40px 20px;
+  position: relative;
+  z-index: 2;
 }
-  .social-icons__item-footer {
-    padding: 10px;
-}
-  
-  .footer-insta {
-       display: flex;
-    flex-direction: column;
-    margin: 0px;
-    justify-content: center;
-    width: 100%;
-    padding-top: 2rem;
-    align-content: center;
-    align-items: center;
-    text-align: center;
-}
-   footer {
-    {% if section.settings.SelectType=="Dark" %}
-    background: black;
-    {% endif %}
-}
-  
 
-  .footer-instagram {
-    width: 55%;
+.luxury-footer-content {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 60px;
+  align-items: center;
+  margin-bottom: 60px;
 }
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+
+.luxury-footer-text {
+  max-width: 600px;
 }
-  .footer-insta__content {
-    width: auto
+
+.luxury-footer-heading {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
-.copyright-footer{
-  width: 100%;
-    background: #181818;
-    padding: 14px;
+
+.luxury-footer-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #b0b0b0;
+  margin-bottom: 0;
+  font-weight: 400;
 }
-  .copyright-footer p{
-    text-align: center;
-    font-size: 0.9rem;
-    font-weight: 500;
-    margin: 0;
+
+.luxury-social-icons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
-  
-  .copyright-footer p a {
-    color: #fff;
-    text-decoration: underline;
+
+.luxury-social-item {
+  list-style: none;
+  margin: 0;
 }
-  
-  .copyright-footer p a:hover {
-    color: #fff;
-    text-decoration: underline;
+
+.luxury-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+  color: #1a1a1a;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
 }
-  
-  @media only screen and (max-width: 750px) {
-    
-    .footer-insta {
-    flex-direction: column;
-    margin: 1.5rem;
+
+.luxury-social-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 50%;
 }
-    .footer-insta__content {
-    width: 100%;
+
+.luxury-social-link:hover::before {
+  opacity: 1;
 }
-    .footer-instagram {
-    width: 100%;
+
+.luxury-social-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  color: #ffffff;
 }
-    .grid__item.small--one-whole.site-footer-item-align-right {
-    font-size: 1.2rem;
-    margin: 2rem 0;
+
+.luxury-social-link svg {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease;
 }
-    .copyright-footer p {
-    font-size: 1rem;
+
+.luxury-social-link:hover svg {
+  color: #ffffff;
 }
-    
+
+.luxury-copyright {
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  padding: 24px 20px;
+  text-align: center;
+  position: relative;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.luxury-copyright-content {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #b0b0b0;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.luxury-copyright-content a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.luxury-copyright-content a:hover {
+  color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .luxury-footer-container {
+    padding: 60px 20px 30px 20px;
   }
   
-</style>
+  .luxury-footer-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  
+  .luxury-footer-heading {
+    font-size: 2rem;
+  }
+  
+  .luxury-footer-description {
+    font-size: 1rem;
+  }
+  
+  .luxury-social-icons {
+    justify-content: center;
+  }
+  
+  .luxury-copyright {
+    padding: 20px 15px;
+  }
+}
 
+@media (max-width: 480px) {
+  .luxury-footer-container {
+    padding: 40px 15px 20px 15px;
+  }
+  
+  .luxury-footer-heading {
+    font-size: 1.8rem;
+  }
+  
+  .luxury-footer-description {
+    font-size: 0.95rem;
+  }
+  
+  .luxury-social-link {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .luxury-social-link svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Animation for page load */
+.luxury-footer-container {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
 
 {%- assign social_icons = false -%}
 
@@ -117,122 +236,98 @@
 
 {%- assign socials = "Facebook Twitter Pinterest Instagram Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
 
+<footer class="luxury-footer">
+  <div class="luxury-footer-container">
+    <div class="luxury-footer-content">
+      {%- if section.settings.heading != blank and section.settings.discription != blank -%}
+      <div class="luxury-footer-text">
+        <h3 class="luxury-footer-heading">{{section.settings.heading}}</h3>
+        <p class="luxury-footer-description">{{section.settings.discription}}</p>
+      </div>
+      {%- endif -%}
 
-
-
-<footer>
-  <div class="footer-insta">
-  <div class="footer-insta__content">
-    {%- if section.settings.heading != blank and section.settings.discription != blank -%}
-    <div class="container">
-  <div class="head_content">
-    <h3 class="head">{{section.settings.heading}}</h3>
-    <div class="head_p">
-    <p>{{section.settings.discription}}</p>
+      {%- if social_icons -%}
+      <div class="luxury-social-icons">
+        {%- for social in socials -%}
+          {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
+          {%- assign icon_link = social | prepend: 'icon-' | downcase -%}
+          {%- if settings[social_link] != blank -%}
+            <li class="luxury-social-item">
+              <a class="luxury-social-link" href="{{ settings[social_link] | escape }}" aria-describedby="a11y-external-message">
+                {%- include icon_link -%}
+                <span class="icon__fallback-text">{{ social }}</span>
+              </a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+        
+        <li class="luxury-social-item">
+          <a class="luxury-social-link" href="mailto:slickharegrooming@gmail.com">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 479.058 479.058" height="512" viewBox="0 0 479.058 479.058" width="512">
+              <path d="m434.146 59.882h-389.234c-24.766 0-44.912 20.146-44.912 44.912v269.47c0 24.766 20.146 44.912 44.912 44.912h389.234c24.766 0 44.912-20.146 44.912-44.912v-269.47c0-24.766-20.146-44.912-44.912-44.912zm0 29.941c2.034 0 3.969.422 5.738 1.159l-200.355 173.649-200.356-173.649c1.769-.736 3.704-1.159 5.738-1.159zm0 299.411h-389.234c-8.26 0-14.971-6.71-14.971-14.971v-251.648l199.778 173.141c2.822 2.441 6.316 3.655 9.81 3.655s6.988-1.213 9.81-3.655l199.778-173.141v251.649c-.001 8.26-6.711 14.97-14.971 14.97z"/>
+            </svg>
+            <span class="icon__fallback-text">Email</span>
+          </a>
+        </li>
+        
+        {%- if request.page_type == 'blog' or request.page_type == 'article' -%}
+          <li class="luxury-social-item">
+            <a class="luxury-social-link" href="{{ shop.url }}{{ blog.url }}.atom">
+              {% include 'icon-rss' %}
+              <span class="icon__fallback-text">RSS</span>
+            </a>
+          </li>
+        {%- endif -%}
+      </div>
+      {%- endif -%}
     </div>
   </div>
-      
- 
-
-{%- if social_icons -%}
-	<div class="Social-icon-footer">
-          <ul class="list--inline site-footer__social-icons social-icons site-footer__icon-list">
-            {%- for social in socials -%}
-              {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
-              {%- assign icon_link = social | prepend: 'icon-' | downcase -%}
-              {%- if settings[social_link] != blank -%}
-                <li class="social-icons__item-footer">
-                  <a class="social-icons__link-footer" href="{{ settings[social_link] | escape }}" aria-describedby="a11y-external-message">
-                    {%- include icon_link -%}
-                    <span class="icon__fallback-text">{{ social }}</span>
-                  </a>
-                </li>
-              {%- endif -%}
-            {%- endfor -%}
-<li class="social-icons__item-footer">
-                <a class="social-icons__link-footer" href="mailto:slickharegrooming@gmail.com">
-                  <svg class="icon" xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 479.058 479.058" height="512" viewBox="0 0 479.058 479.058" width="512"><path d="m434.146 59.882h-389.234c-24.766 0-44.912 20.146-44.912 44.912v269.47c0 24.766 20.146 44.912 44.912 44.912h389.234c24.766 0 44.912-20.146 44.912-44.912v-269.47c0-24.766-20.146-44.912-44.912-44.912zm0 29.941c2.034 0 3.969.422 5.738 1.159l-200.355 173.649-200.356-173.649c1.769-.736 3.704-1.159 5.738-1.159zm0 299.411h-389.234c-8.26 0-14.971-6.71-14.971-14.971v-251.648l199.778 173.141c2.822 2.441 6.316 3.655 9.81 3.655s6.988-1.213 9.81-3.655l199.778-173.141v251.649c-.001 8.26-6.711 14.97-14.971 14.97z"/></svg>
-                  <span class="icon__fallback-text">Email</span>
-                </a>
-              </li>
-            {%- if request.page_type == 'blog' or request.page_type == 'article' -%}
-              <li>
-                <a class="social-icons__link-footer" href="{{ shop.url }}{{ blog.url }}.atom">
-                  {% include 'icon-rss' %}
-                  <span class="icon__fallback-text">RSS</span>
-                </a>
-              </li>
-            {%- endif -%}
-          </ul>
-</div>
-        {%- endif -%}
-
-
-
-
-
-  </div>
-  {%- endif -%}
-  </div>
- <!--   <div id="insta-feed" class="footer-instagram"></div> 
-  </div>
-  -->
-<!--   <div class="grid__item small--one-whole {{ copyright_show_class }} site-footer-item-align-right">
-        <small class="site-footer__copyright-content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: routes.root_url }}</small>
-        <small class="site-footer__copyright-content site-footer__copyright-content--powered-by">{{ powered_by_link }}</small>
-      </div> -->
   
-  
-  <div class="copyright-footer"> {{section.settings.copyright}} </div>
+  <div class="luxury-copyright">
+    <p class="luxury-copyright-content">{{section.settings.copyright}}</p>
+  </div>
 </footer>
 
-
-
-
 {% schema %}
-  {
-    "name": "footer-insta",
-    "settings": [
-	{
+{
+  "name": "Luxury Footer",
+  "settings": [
+    {
       "type": "text",
       "id": "heading",
       "label": "Heading"
     },
-	{
+    {
       "type": "richtext",
       "id": "discription",
-      "label": "Discription"
+      "label": "Description"
     },
-	{
+    {
       "type": "richtext",
       "id": "copyright",
-      "label": "copyright"
+      "label": "Copyright"
     },
-      
     {
       "type": "select",
-      "label":"Select Background Type",
+      "label": "Select Background Type",
       "options": [
         {
           "label": "Dark",
-          "value":"Dark"
+          "value": "Dark"
         },
         {
           "label": "Light",
-          "value":"Light"
+          "value": "Light"
         }
       ],
       "id": "SelectType",
-      "default": "Light"
+      "default": "Dark"
     }
-    
-	
-  	],
-
-"presets": [
+  ],
+  "presets": [
     {
-      "category": "footer-insta",
-      "name": "footer-insta",
+      "category": "Footer",
+      "name": "Luxury Footer",
       "settings": {}
     }
   ]

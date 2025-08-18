@@ -1,509 +1,446 @@
 <style>
-  .homepage-hero-carousel-v2 {
-    {% if section.settings.colorID !=blank %}
-      background-color:{{ section.settings.colorID }};
-    {% endif %}
-    padding-bottom: 0;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    position:relative;
-    z-index:1;
-    overflow:hidden;
-    height:calc(100vh - 150px);
-    align-items: center;
-    display: flex !important;
-    justify-content: center;
-  }
+.luxury-hero-carousel {
+  {% if section.settings.colorID != blank %}
+    background-color: {{ section.settings.colorID }};
+  {% endif %}
+  padding-bottom: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  height: calc(100vh - 150px);
+  align-items: center;
+  display: flex !important;
+  justify-content: center;
+}
 
-  .homepage-hero-carousel-v2 .swiper-slide:before {
-    content: "";
-    width: 100%;
-    background-color: var(--overlayColor);
-    height: 100%;
-    position: absolute;
-    padding-top: 0;
-    z-index:-1;
-    opacity: var(--overlayOpacity);
-  }
+.luxury-hero-carousel .swiper-slide::before {
+  content: "";
+  width: 100%;
+  background-color: var(--overlayColor);
+  height: 100%;
+  position: absolute;
+  padding-top: 0;
+  z-index: -1;
+  opacity: var(--overlayOpacity);
+}
 
-  .imageSection img.image_fluid {
-    position: relative;
-    top: 0px;
-  }
+.luxury-hero-carousel .swiper-slide {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
-  img.image_fluid {
-    width: 100%;
-    height: 100%;
-  }
+.luxury-hero-carousel .swiper-slide img {
+  position: absolute;
+  z-index: -9;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-  .imageSection {
-    position: relative;
-  }
+.luxury-hero-content {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  padding: 50px 20px;
+  align-items: center;
+  height: 100%;
+  max-width: 1400px;
+  width: 100%;
+}
 
-  .homepage-hero-carousel-v2 .content_block_item{
-    padding-top:0 !important;
-    flex-direction:row;
-    width:100%;
-    height:100%;
-    align-items:center;
-  }
+.luxury-hero-text-section {
+  flex-basis: 80%;
+  z-index: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 100px;
+}
 
-  .content_block_item {
-    display: flex;
-    justify-content: space-around;
-    margin: 0px auto;
-    padding-top:50px;
-    align-items:center;
-  }
+.luxury-hero-logo {
+  margin-bottom: 30px;
+  opacity: 0;
+  transform: translateY(-30px);
+  transition: opacity 1s ease, transform 1s ease;
+}
 
-   .homepage-hero-carousel-v2 .mainContainer{
-    padding-top:0 !important;
-    flex-direction:row;
-    width:100%;
-    height:100%;
-    align-items:center;
-  }
-     .homepage-hero-carousel-v2 .content_block_item{
-    padding-top:0 !important;
-    flex-direction:row;
-    width:100%;
-    height:100%;
-    align-items:center;
+.luxury-hero-logo img {
+  height: 60px;
+  width: auto;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.luxury-hero-heading {
+  max-width: 47rem;
+  text-align: center;
+  line-height: 1.2;
+  font-size: 3.5rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 30px;
+  color: #fff;
+  font-weight: 800;
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: opacity 1s ease, transform 1s ease;
+  text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.luxury-hero-subheading {
+  max-width: 40rem;
+  line-height: 1.6;
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+  text-align: left;
+  color: #fff;
+  font-weight: 400;
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateX(100px);
+  transition: opacity 1s ease, transform 1s ease;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.luxury-hero-button-wrapper {
+  margin-top: 30px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.luxury-hero-button {
+  background: {{ section.settings.button_bg }};
+  color: {{ section.settings.button_color }};
+  padding: 18px 40px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.luxury-hero-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.luxury-hero-button:hover::before {
+  left: 100%;
+}
+
+.luxury-hero-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+  color: {{ section.settings.button_color }};
+  text-decoration: none;
+}
+
+/* Active slide animations */
+.luxury-hero-carousel .swiper-slide-active .luxury-hero-logo,
+.luxury-hero-carousel .swiper-slide-active .luxury-hero-heading,
+.luxury-hero-carousel .swiper-slide-active .luxury-hero-subheading,
+.luxury-hero-carousel .swiper-slide-active .luxury-hero-button-wrapper {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+}
+
+/* Navigation arrows */
+.luxury-hero-navigation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.luxury-nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+}
+
+.luxury-nav-button.button-prev {
+  left: 40px;
+  transform: rotate(-90deg);
+  background-color: rgb(29, 29, 29);
+
+
+}
+.luxury-nav-button.button-next:hover,
+.luxury-nav-button.button-prev:hover{
+    transform: rotate(-90deg);
+
+}
+
+.luxury-nav-button.button-next {
+  right: 40px;
+  transform: rotate(-90deg);
+  background-color: rgb(29, 29, 29);
+
+
+}
+
+.luxury-nav-button {
+  width: 50px;
+  height: 50px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.luxury-nav-button:hover {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.1);
+}
+
+.luxury-nav-button img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s ease;
+}
+
+.luxury-nav-button.button-next img {
+  transform: rotate(180deg);
+}
+
+.luxury-nav-button:hover img {
+  transform: scale(1.2);
+}
+
+.luxury-nav-button.button-next:hover img {
+  transform: rotate(180deg) scale(1.2);
+}
+
+/* Swiper container */
+.luxury-hero-carousel .swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.luxury-hero-carousel .swiper-wrapper {
+  height: 100%;
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 1024px) {
+  .luxury-hero-heading {
+    font-size: 3rem;
+    line-height: 1.1;
   }
   
-   .mainContainer {
-    display: flex;
-    justify-content: space-around;
-    margin: 0px auto;
-    padding-top:50px;
-    align-items:center;
+  .luxury-hero-subheading {
+    font-size: 1.1rem;
+  }
+  
+  .luxury-hero-text-section {
+    padding-left: 60px;
+  }
 }
-  .content_block_item{
-     display: flex;
-    justify-content: space-around;
-    margin: 0px auto;
-    padding-top:50px;
-    align-items:center;
-  }
 
-  .homepage-hero-carousel-v2 .contentSection {
-       padding-left: 100px;
-   flex-basis:80%;
-   z-index:0;
-  width:100%;
+@media only screen and (max-width: 768px) {
+  .luxury-hero-carousel {
+    height: calc(100vh - 100px);
   }
-  .block_content_section{
-    flex-basis:80%;
-    z-index:0;
-    width:100%;
-    display: flex;
+  
+  .luxury-hero-content {
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .homepage-hero-carousel-v2 .block_content_section h1 {
-    line-height: 72px;
-    font-size:40px;
-    letter-spacing: 0.3px;
+    padding: 40px 20px;
     text-align: center;
-    color:#fff;
-    font-weight: 800;
-    margin: 0;
-    width: 100%;
-    opacity: 0;
-    transform: translateX(-100%);
-    transition: opacity 1s ease, transform 1s ease;
   }
-  .homepage-hero-carousel-v2 .contentSection h1 {
-max-width:47rem;
-line-height: 72px;
-font-size:53px;  
-letter-spacing: 0.3px;
-text-align: left;
-margin-bottom: 50px;
-color:#fff;
-
-font-weight: 800;
-opacity: 0;
-    transform: translateX(-100%);
-    transition: opacity 1s ease, transform 1s ease;    
+  
+  .luxury-hero-text-section {
+    padding-left: 0;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .luxury-hero-heading {
+    font-size: 2.5rem;
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  
+  .luxury-hero-subheading {
+    font-size: 1rem;
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 30px;
+  }
+  
+  .luxury-hero-logo {
+    margin-bottom: 20px;
+  }
+  
+  .luxury-hero-logo img {
+    height: 50px;
+  }
+  
+  .luxury-hero-button {
+    padding: 16px 32px;
+    font-size: 1rem;
+  }
+  
+  .luxury-nav-button.button-prev {
+    left: 20px;
+  }
+  
+  .luxury-nav-button.button-next {
+    right: 20px;
+  }
+  
+  .luxury-nav-button {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .luxury-nav-button img {
+    width: 18px;
+    height: 18px;
+  }
 }
 
-  .homepage-hero-carousel-v2 .block_content_section p {
-    line-height: 72px;
-    font-size:20px;
-    letter-spacing: 0.3px;
-    text-align: center;
-    color:#fff;
-    font-weight: 800;
-    margin: 0;
-    width: 100%;
-    opacity: 0;
-    transform: translateX(100%);
-    transition: opacity 1s ease, transform 1s ease;
+@media only screen and (max-width: 480px) {
+  .luxury-hero-carousel {
+    height: calc(100vh - 80px);
   }
+  
+  .luxury-hero-heading {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  .luxury-hero-subheading {
+    font-size: 0.95rem;
+  }
+  
+  .luxury-hero-button {
+    padding: 14px 28px;
+    font-size: 0.95rem;
+  }
+  
 
-  .homepage-hero-carousel-v2 .swiper-slide-active .block_content_section p,
-  .homepage-hero-carousel-v2 .swiper-slide-active .block_content_section h1 {
+  
+  .luxury-nav-button {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .luxury-nav-button img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Animation for page load */
+.luxury-hero-carousel {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
     opacity: 1;
-    transform: translateX(0);
   }
-    .homepage-hero-carousel-v2 .swiper-slide-active .contentSection p,
-  .homepage-hero-carousel-v2 .swiper-slide-active .contentSection h1 {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-   .homepage-hero-carousel-v2 .contentSection .readMorebtn {
-     background:{{ section.settings.button_bg}};
-    width: auto;
-    color:{{ section.settings.button_color}};
-    padding: 11px 50px;
-font-size: 22px;
-font-weight: 700;
-line-height: 31px;
-letter-spacing: 0em;
-text-align: left;
-  }
-  .homepage-hero-carousel-v2 .block_content_section .readMorebtn {
-    z-index: 9;
-    background:{{ section.settings.button_bg}};
-    font-family:"ITC Avant Garde Gothic", sans-serif;
-    height: auto;
-    width: auto;
-    font-weight:700 !important;
-   color:{{ section.settings.button_color}};
-    text-decoration: none;
-    white-space: nowrap;
-    min-height: 0px;
-    min-width: 0px;
-    max-height: none;
-    max-width: none;
-    text-align: left;
-    line-height:31px;
-    letter-spacing: 0px;
-    font-weight: 500;
-    font-size: 22px;
-    padding:11px 50px;
-    backdrop-filter: none;
-    filter: none;
-    transform-origin: 50% 50%;
-    opacity: 1;
-    transform: translate(0px, 0px);
-    visibility: visible;
-    border-width: 0px;
-    border-radius: 0px;
-    display:flex;
-  }
-
-  .btnWrapper-home-v2 {
-      margin-top: 30px;
-      position: relative;
-  }
-
-  .swiper {
-    width: 100%;
-    height:100%;
-  }
-
-  .homepage_hero_carousel_wrapper {
-      position: relative;
-      width: 100%;
-      height: 100%;
-  }
-
-  /* Floating Image Styles */
-  .floating-image {
-    position: absolute;
-    z-index: 5;
-    max-width: 200px;
-    max-height: 200px;
-    object-fit: contain;
-  }
-
-  .floating-image.top-left {
-    top: 20px;
-    left: 20px;
-  }
-
-  .floating-image.bottom-left {
-    bottom: 20px;
-    left: 20px;
-  }
-
-  .floating-image.top-right {
-    top: 20px;
-    right: 20px;
-  }
-
-  .floating-image.bottom-right {
-    bottom: 20px;
-    right: 20px;
-  }
-
-  .floating-image.top-center {
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .floating-image.bottom-center {
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  @media only screen and (max-width:768px) {
-    .homepage-hero-carousel-v2 .contentSection h1{
-      font-size:36px;
-      text-align: center;
-      line-height:40px;
-      margin-bottom: 16px;
-    }
-
-    .homepage-hero-carousel-v2 .block_content_section p{
-      font-size:18px;
-      line-height:24px;
-    }
-   
-    .homepage-hero-carousel-v2 .contentSection{
-      padding-left:0;
-    }
-      .homepage-hero-carousel-v2 .block_content_section h1{
-      font-size:32px;
-      text-align: center;
-      line-height:40px;
-      margin-bottom: 16px;
-    }
-
-    .homepage-hero-carousel-v2 .block_content_section{
-      padding-left:0;
-    }
-
-    
-
-    .homepage-hero-carousel-v2 .readMorebtn{
-      margin:0px auto;
-    }
-
-    .mainContainer {
-      display: flex;
-      justify-content: space-around;
-      padding-top:0px;
-      margin: 0px auto;
-      align-items: center;
-      flex-direction: column;
-      overflow:hidden;
-    }
-
-    .contentSection {
-      width: 100%;
-      padding: 60px;
-      padding-right: 0;
-    }
-
-    .imageSection img.image_fluid {
-      position: relative;
-      width: 90%;
-    }
-
-    .imageSection{
-      text-align:center;
-    }
-
-    .homepage-hero-carousel-v2 .imageSection{
-      display:none;
-    }
-
-    .homepage-hero-carousel-v2 .mainContainer {
-      margin-top:0px;
-    }
-
-    .floating-image {
-      max-width: 150px;
-      max-height: 150px;
-    }
-  }
-
-  @media only screen and (max-width:375px) {
-    .homepage-hero-carousel-v2 .block_content_section{
-      padding-left:15px;
-    }
-
-    .homepage-hero-carousel-v2 .block_content_section h1{
-      font-size: 45px;
-      text-align: center;
-      line-height:52px;
-    }
-     .homepage-hero-carousel-v2 .contentSection{
-    padding-left:15px;
-   }
-     .homepage-hero-carousel-v2 .contentSection h1{
-       font-size: 45px;
-       text-align: center;
-       line-height:52px;
-     }
-
-    .homepage-hero-carousel-v2 .btnWrapper-home-v2{
-      display:flex;
-    }
-
-    .homepage-hero-carousel-v2 .readMorebtn{
-      margin:0px auto;
-    }
-
-    .two-productsection-v2 .sectionBlock2:before{
-      border-right:0px solid transparent;
-    }
-
-    .hompage-twoproduct-v2 .contentWrapper{
-      padding:0;
-    }
-
-    .hompage-twoproduct-v2 .block_content_section h1{
-      margin-left:0 !important;
-    }
-    .hompage-twoproduct-v2 .contentSection h1{
-       margin-left:0 !important;
-     }
-
-    .btnWrapper .readMorebtn{
-      font-size:12px;
-    }
-  }
+}
 </style>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <link rel="preload" as="image" href="{{section.settings.sectionImage1 | img_url:'master'}}">
 
-<div class="homepage_hero_carousel_wrapper">
+<div class="luxury-hero-carousel">
   <div class="swiper">
     <div class="swiper-wrapper">
-      {% comment %}
-      {% if section.settings.sectionHeading !=blank or section.settings.sectionSubHeading or section.settings.btntitle !=blank %}
-      <div
-        class="swiper-slide" 
-         {% if section.settings.sectionHeading !=blank or section.settings.sectionSubHeading or section.settings.btntitle !=blank %} style="display:none" {% else %} style="--overlayColor:{{ section.settings.overlay }}; --overlayOpacity:{{ section.settings.overlayOpacity }};" {% endif %}
-      >
-        {% if section.settings.sectionImage1 != blank %}
-          <img
-            style="position:absolute;z-index:-9;width: 100%;height: 100%;object-fit: cover"
-            fetchpriority="High"
-            src="{{section.settings.sectionImage1 | img_url:'master'}}"
-            alt="{{ section.settings.sectionHeading | default: 'Hero background image' }}"
-          >
-        {% endif %}
-        <div class="mainContainer">
-          <div class="contentSection" style="display:flex;justify-content:{{ section.settings.content_position }}">
-            <div class="content_alignment_wrap">
-            <div class="imageSection">
-              {% if section.settings.sectionImage != blank %}
-                <img
-                  style="height: 60px; width: auto;"
-                  class="image_fluid"
-                  src="{{ section.settings.sectionImage |img_url:'master' }}"
-                  alt="{{ section.settings.sectionHeading | default: 'Hero section logo' }}"
-                >
-              {% endif %}
-            </div>
-            {% if section.settings.sectionHeading != blank %}
-              <h1 class="sectionHeading">
-                {{ section.settings.sectionHeading }}
-              </h1>
-            {% endif %}
-            {% if section.settings.sectionSubHeading != blank %}
-              <p class="sectionSubHeading">
-                {{ section.settings.sectionSubHeading }}
-              </p>
-            {% endif %}
-            {% if section.settings.btntitle != blank %}
-              <div class="btnWrapper-home-v2">
-                <a href="{{ section.settings.btnUrl}}" class="readMorebtn">{{ section.settings.btntitle }}</a>
-              </div>
-            {% endif %}
-            
-          </div>
-        </div>
-          </div>
-      </div>
-      {%  endif %}
-      {% endcomment %}
-      
       {% for block in section.blocks %}
-        <div
-          class="swiper-slide"
-          style="--overlayColor:{{ block.settings.overlay }}; --overlayOpacity:{{ block.settings.overlayOpacity }};"
-        >
+        <div class="swiper-slide" style="--overlayColor:{{ block.settings.overlay }}; --overlayOpacity:{{ block.settings.overlayOpacity }};">
           {% if block.settings.sectionImage1 != blank %}
             <img
-              style="position:absolute;z-index:-9;width: 100%;height: 100%;object-fit: cover"
               fetchpriority="High"
               src="{{block.settings.sectionImage1 | img_url:'master'}}"
               alt="{{ block.settings.sectionHeading | default: 'Hero background image' }}"
             >
           {% endif %}
-          {% if block.settings.floating_image != blank %}
-            {% if block.settings.floating_image_url != blank %}
-              <a href="{{ block.settings.floating_image_url }}" target="_blank">
-            {% endif %}
-            <img
-              class="floating-image {{ block.settings.floating_image_position }}"
-              src="{{ block.settings.floating_image | img_url: 'master' }}"
-              alt="{{ block.settings.sectionHeading | default: 'Floating image' }}"
-            >
-            {% if block.settings.floating_image_url != blank %}
-              </a>
-            {% endif %}
-          {% endif %}
-          <div class="content_block_item">
-            <div class="content_alignment" style="display:flex;width:100%;justify-content:{{ block.settings.content_position }}">
-            <div class="block_content_section">
-              <div class="imageSection">
+          <div class="luxury-hero-content">
+            <div class="luxury-hero-text-section" style="align-items: {{ block.settings.content_position }};">
+              <div class="luxury-hero-logo">
                 {% if block.settings.sectionImage != blank %}
                   <img
-                    style="height: 60px; width: auto;"
-                    class="image_fluid"
-                    src="{{ block.settings.sectionImage |img_url:'master' }}"
+                    src="{{ block.settings.sectionImage | img_url:'master' }}"
                     alt="{{ block.settings.sectionHeading | default: 'Hero section logo' }}"
                   >
                 {% endif %}
               </div>
               {% if block.settings.sectionHeading != blank %}
-                <h1 class="sectionHeading">
+                <h1 class="luxury-hero-heading">
                   {{ block.settings.sectionHeading }}
                 </h1>
               {% endif %}
               {% if block.settings.sectionSubHeading != blank %}
-                <p class="sectionSubHeading">
+                <p class="luxury-hero-subheading">
                   {{ block.settings.sectionSubHeading }}
                 </p>
               {% endif %}
               {% if block.settings.btntitle != blank %}
-                <div class="btnWrapper-home-v2">
-                  <a href="{{ block.settings.btnUrl}}" class="readMorebtn">{{ block.settings.btntitle }}</a>
+                <div class="luxury-hero-button-wrapper">
+                  <a href="{{ block.settings.btnUrl}}" class="luxury-hero-button">
+                    {{ block.settings.btntitle }}
+                  </a>
                 </div>
               {% endif %}
             </div>
           </div>
-          </div>
         </div>
       {% endfor %}
     </div>
-    <div style="position: absolute; right: 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 60px; top: 50%; transform: translateY(-50%); z-index: 999;">
-      <!-- If we need navigation buttons -->
-      <div class="button-prev" style="cursor: pointer;">
+    
+    <div class="luxury-hero-navigation">
+      <div class="luxury-nav-button button-prev">
         <img src="https://curly.qodeinteractive.com/wp-content/themes/curly/assets/img/arrow-top-light.png" alt="Previous slide navigation arrow">
       </div>
-      <div class="button-next" style="cursor: pointer;">
-        <img
-          src="https://curly.qodeinteractive.com/wp-content/themes/curly/assets/img/arrow-top-light.png"
-          style="transform: rotate(180deg);"
-          alt="Next slide navigation arrow"
-        >
+      <div class="luxury-nav-button button-next">
+        <img src="https://curly.qodeinteractive.com/wp-content/themes/curly/assets/img/arrow-top-light.png" alt="Next slide navigation arrow">
       </div>
     </div>
   </div>
@@ -512,16 +449,25 @@ text-align: left;
 <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const swiper = new Swiper('.swiper', {
-      direction: 'horizontal',
-      loop: true,
-      navigation: {
-        nextEl: '.button-next',
-        prevEl: '.button-prev',
-      },
-    });
+document.addEventListener('DOMContentLoaded', function () {
+  const swiper = new Swiper('.luxury-hero-carousel .swiper', {
+    direction: 'horizontal',
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true
+    },
+    navigation: {
+      nextEl: '.button-next',
+      prevEl: '.button-prev',
+    },
+    speed: 1000,
   });
+});
 </script>
 
 {% schema %}
@@ -626,52 +572,6 @@ text-align: left;
       "label": "Select Background Image"
     },
     {
-      "type": "header",
-      "content": "Floating Image Settings"
-    },
-    {
-      "type": "image_picker",
-      "id": "floating_image",
-      "label": "Floating Image"
-    },
-    {
-      "type": "url",
-      "id": "floating_image_url",
-      "label": "Floating Image URL"
-    },
-    {
-      "type": "select",
-      "id": "floating_image_position",
-      "label": "Floating Image Position",
-      "options": [
-        {
-          "value": "top-left",
-          "label": "Top Left"
-        },
-        {
-          "value": "bottom-left",
-          "label": "Bottom Left"
-        },
-        {
-          "value": "top-right",
-          "label": "Top Right"
-        },
-        {
-          "value": "bottom-right",
-          "label": "Bottom Right"
-        },
-        {
-          "value": "top-center",
-          "label": "Top Center"
-        },
-        {
-          "value": "bottom-center",
-          "label": "Bottom Center"
-        }
-      ],
-      "default": "top-left"
-    },
-    {
       "type": "checkbox",
       "id": "boxShadows",
       "label": "Box Shadow"
@@ -760,52 +660,6 @@ text-align: left;
           "type": "image_picker",
           "id": "sectionImage1",
           "label": "Select Background Image"
-        },
-        {
-          "type": "header",
-          "content": "Floating Image Settings"
-        },
-        {
-          "type": "image_picker",
-          "id": "floating_image",
-          "label": "Floating Image"
-        },
-        {
-          "type": "url",
-          "id": "floating_image_url",
-          "label": "Floating Image URL"
-        },
-        {
-          "type": "select",
-          "id": "floating_image_position",
-          "label": "Floating Image Position",
-          "options": [
-            {
-              "value": "top-left",
-              "label": "Top Left"
-            },
-            {
-              "value": "bottom-left",
-              "label": "Bottom Left"
-            },
-            {
-              "value": "top-right",
-              "label": "Top Right"
-            },
-            {
-              "value": "bottom-right",
-              "label": "Bottom Right"
-            },
-            {
-              "value": "top-center",
-              "label": "Top Center"
-            },
-            {
-              "value": "bottom-center",
-              "label": "Bottom Center"
-            }
-          ],
-          "default": "top-left"
         },
         {
           "type": "checkbox",

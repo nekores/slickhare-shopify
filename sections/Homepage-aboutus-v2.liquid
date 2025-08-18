@@ -1,335 +1,330 @@
 <style>
-  .hompage-aboutus-v2 {
-    {% if section.settings.colorID !=blank %}
-    background:{{section.settings.colorID}};
-    {% else %}
-   background:white;
-    {% endif %}
-    {% if section.settings.sectionImage !=blank %}
-     background-image:url("{{ section.settings.sectionImage |img_url:'master' }}"); 
-     background-repeat:no-repeat;
-     background-size:cover;
-     background-position:center center;
-    {% endif %}
-    {% if section.settings.logo_aligment == "ON" %}
-    z-index:-1;
-    {% endif %}
-      
-    padding-bottom:80px;
-    position:relative;
-  
+.luxury-about-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
 }
-  {% if section.settings.logo_aligment == "ON" %}
-  .hompage-aboutus-v2:before{
-        content: "";
-    width: 100%;
-    {% if section.settings.overlay !=blank %}
-    background-color:{{ section.settings.overlay }};
-    {% endif %}
-    height: 100%;
-    position: absolute;
-    top: 0;
-    z-index:-1;
-    opacity: 0.4;
+
+.luxury-about-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  pointer-events: none;
+}
+
+.luxury-about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.luxury-about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.luxury-about-text {
+  font-size: 18px;
+}
+
+.luxury-about-heading {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #1a1a1a;
+  margin-bottom: 32px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.luxury-about-description {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: #6c757d;
+  margin-bottom: 40px;
+  font-weight: 400;
+}
+
+.luxury-about-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+  color: #ffffff;
+  padding: 18px 36px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-about-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.luxury-about-button:hover::before {
+  left: 100%;
+}
+
+.luxury-about-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.luxury-about-images {
+  display: grid;
+  gap: 24px;
+  position: relative;
+}
+
+.luxury-image-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.luxury-image-wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+}
+
+.luxury-image-wrapper img {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  transform: scale(1.05);
+
+}
+
+.luxury-image-wrapper:hover img {
+  transform: scale(1.1);
+}
+
+.luxury-image-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.luxury-image-wrapper:hover::after {
+  opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .luxury-about-content {
+    gap: 60px;
   }
- {% endif %}
   
-  img.image_fluid {
-    width: 100%;
-    height: 100%;
-}
-  .imageSection {
-    position: relative;
-}
+  .luxury-about-heading {
+    font-size: 3rem;
+  }
   
-  .hompage-aboutus-v2 .mainContainer {
-    display: flex;
-    justify-content: center;
-   margin: 0px auto; 
-    max-width:1500px;
-}
-.hompage-aboutus-v2 .contentSection {
-    padding: 0px 70px;
-    
-    padding-left:0px;
-    flex-basis:50%;
-    padding-right:0;
-}
-.hompage-aboutus-v2 .contentSection h3{
-    font-size: 40px;
-    font-weight: 800;
-    line-height: 36px;
-    color: rgba(51, 51, 51, 1);
-    letter-spacing: 0.03em;
-    text-align: left;
-    margin-bottom: 20px;
+  .luxury-about-description {
+    font-size: 1.1rem;
+  }
 }
 
-  .readMorebtn {
-  background: #000000;
-  width: auto;
-  color: white;
-  padding: 11px 50px;
-  font-size:16px;
-  font-weight: 700;
-  line-height: 31px;
-  letter-spacing: 0em;
-  text-align: left;
-
-}
-  .btnWrapper-about-v2 {
-   
-    margin-top: 30px;
-    position: relative;
-}
-    .hompage-aboutus-v2 .image1 img.image_fluid {
-    width:100%;
-    max-width:450px;
-}
-  .image1 img.image_fluid {
-    width:60%;
-}
-    .image2 img.image_fluid {
-    width:80% !important;
-}
-.contentWrapper {
-    padding: 40px;
-    border: 4px solid rgba(214, 180, 98, 0.95);
-    padding-right: 118px;
-}
-.image2 {
-    margin-left: -90px;
-    margin-top: -16px;
-}
-  .image1 {
-    padding-left: 16px;
-}
-  .contentWrapper p {
-    color: rgba(51, 51, 51);
-    font-size: 20px;
-    line-height: 36px;
-    margin: 0;
-}
-  .about-use-v2 .imageSection {
-    /* margin-top: -40px; */
-    width:30%;
-}
-  @media only screen and (max-width:768px) {
-  .hompage-aboutus-v2 .mainContainer {
-display: block;
-justify-content: center;
-margin: 0px auto;
-margin: 30px;
-}
-    .hompage-aboutus-v2 .image2 img.image_fluid {
-      width: 100% !important;
-    }
-    
-    .hompage-aboutus-v2 .contentSection {
-/* padding: 70px; */
-padding-left: 100px;
-/* flex-basis: 50%; */
-/* padding-right: 0; */
-padding: 0;
-}
-    .contentSection {
-/* padding-left: 100px; */
-/* flex-basis: 80%; */
-}
-    .contentWrapper {
-padding: 40px;
-border: 4px solid rgba(214, 180, 98, 0.95);
-padding-bottom: 50px;
-padding-right: 118px;
-padding: 0;
-padding: 30px;
-}
-    .about-use-v2 .imageSection {
-/* margin-top: -40px; */
-display: flex;
-margin-top: 10px;
-/* justify-content: space-between; */
-gap: 12px;
-      width: 100%;
-      flex-direction: column;
-}
-    .image1 {
-/* padding-left: 16px; */
-}
-    .imageSection img.image_fluid {
-/* position: relative; */
-/* top: 20px; */
-}
-    .aboutsectionImage .image1 img.image_fluid {
- width:auto;
-      max-width: 100% !important;
-}
-     .aboutsectionImage .image1{
-       padding-left:0px;
-     }
-  .aboutsectionImage .image1{
-       padding-left:0px;
-     }
-    
-   .aboutsectionImage .image2 {
-margin-left:0px; 
- margin-top:0px; 
-}
-    .aboutsectionImage img.image_fluid {
- position:unset; 
- top:0px; 
-}
-    .aboutsectionImage .image2 img.image_fluid {
- width:auto;
+@media (max-width: 768px) {
+  .luxury-about-section {
+    padding: 60px 0;
+  }
+  
+  .luxury-about-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  
+  .luxury-about-text {
+    padding-right: 0;
+  }
+  
+  .luxury-about-heading {
+    font-size: 2.5rem;
+  }
+  
+  .luxury-about-description {
+    font-size: 1rem;
+  }
+  
+  .luxury-about-images {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .luxury-image-wrapper img {
+    height: 250px;
+  }
 }
 
+@media (max-width: 480px) {
+  .luxury-about-section {
+    padding: 40px 0;
+  }
+  
+  .luxury-about-container {
+    padding: 0 15px;
+  }
+  
+  .luxury-about-heading {
+    font-size: 2rem;
+  }
+  
+  .luxury-about-description {
+    font-size: 0.95rem;
+  }
+  
+  .luxury-about-button {
+    padding: 16px 32px;
+    font-size: 1rem;
+  }
+  
+  .luxury-image-wrapper img {
+    height: 200px;
+  }
+}
 
-    
+/* Animation for page load */
+.luxury-about-container {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>
-<div class="mainContainer about-use-v2"> 
 
-      <div class="contentSection">
-        <div class="contentWrapper">
-          {% if section.settings.sectionHeading !=blank %}
-       <h3 class="sectionHeading">  
-         {{ section.settings.sectionHeading }}
-       </h3>
-        {% endif %} 
-      {% if section.settings.sectiondescription !=blank %}
-       <p>
-        {{ section.settings.sectiondescription }}
-       </p>
+<div class="luxury-about-section">
+  <div class="luxury-about-container">
+    <div class="luxury-about-content">
+      <div class="luxury-about-text">
+        {% if section.settings.sectionHeading != blank %}
+        <h2 class="luxury-about-heading">
+          {{ section.settings.sectionHeading }}
+        </h2>
         {% endif %}
-        {% if section.settings.btntitle !=blank %}
- <div class="btnWrapper-about-v2">
-    <a href="{{ section.settings.btnUrl}}"class="readMorebtn">{{ section.settings.btntitle }}</a>
- </div>
-          {% endif %}
-        </div>
         
+        {% if section.settings.sectiondescription != blank %}
+        <p class="luxury-about-description">
+          {{ section.settings.sectiondescription }}
+        </p>
+        {% endif %}
+        
+        {% if section.settings.btntitle != blank %}
+        <a href="{{ section.settings.btnUrl }}" class="luxury-about-button">
+          {{ section.settings.btntitle }}
+        </a>
+        {% endif %}
       </div>
-       <div class="imageSection aboutsectionImage"> 
-         {% if section.settings.Image1 !=blank %}
-         <div class="image1"> 
-                <img class="image_fluid" src="{{ section.settings.Image1|img_url:'master' }}"/>
-         
-         </div>
-           {% endif %}
-              {% if section.settings.Image2 !=blank %}
-          <div class="image2">
-                   <img class="image_fluid" src="{{ section.settings.Image2|img_url:'master' }}"/>
-          </div>
-           {% endif %}
-         
-       
-       </div>
-
-
- </div>
-
+      
+      <div class="luxury-about-images">
+        {% if section.settings.Image1 != blank %}
+        <div class="luxury-image-wrapper">
+          <img src="{{ section.settings.Image1 | img_url: 'master' }}" alt="{{ section.settings.sectionHeading | default: 'About Us Image 1' }}"/>
+        </div>
+        {% endif %}
+         {% comment %} 
+        {% if section.settings.Image2 != blank %}
+        <div class="luxury-image-wrapper">
+          <img src="{{ section.settings.Image2 | img_url: 'master' }}" alt="{{ section.settings.sectionHeading | default: 'About Us Image 2' }}"/>
+        </div>
+        {% endif %}
+         {% endcomment %} 
+      </div>
+    </div>
+  </div>
+</div>
 
 {% schema %}
 {
   "name": {
-    
-    "en": "Homepage-Aboutus-v2"
+    "en": "Luxury About Us Section"
   },
-  "class": "index-section hompage-aboutus-v2",
+  "class": "index-section luxury-about-section",
   "settings": [
-         {
-        "type": "header",
-        "content":"Content Area"
-      },
-       {
+    {
       "type": "text",
       "id": "sectionHeading",
-      "label":"Heading",
-      "default": "Heading"
-      },
-     {
-      "type": "richtext",
-      "id": "sectiondescription",
-      "label":"Content"
-     
-      },
-      {
-        "type": "image_picker",
-        "id": "Image1",
-        "label": "Image 1"
-   
-      },
-     {
-        "type": "image_picker",
-        "id": "Image2",
-        "label": "Image 2"
-   
-      },
-   
-      {
-      "type": "text",
-      "id": "btntitle",
-      "label": "Button Label"
-      },
-      {
-        "type": "url",
-        "id": "btnUrl",
-        "label": "Button Link"
-        
-      },
-      {
-        "type": "header",
-        "content":"Section Settings"
-        
-      },
-     
-     {
-        "type": "color",
-        "id": "colorID",
-        "label": "Select Background Color",
-        "default": "#000000"
-      },
-    {
-  "type": "radio",
-  "id": "logo_aligment",
-  "label": "Overlay",
-  "options": [
-    {
-      "value": "ON",
-      "label": "ON"
+      "label": "Section Heading",
+      "default": "About Us"
     },
     {
-      "value": "OFF",
-      "label": "OFF"
+      "type": "richtext",
+      "id": "sectiondescription",
+      "label": "Section Description",
+      "default": "<p>Discover our story and passion for creating exceptional products that enhance your lifestyle.</p>"
+    },
+    {
+      "type": "text",
+      "id": "btntitle",
+      "label": "Button Text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "btnUrl",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "Image1",
+      "label": "First Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "Image2",
+      "label": "Second Image"
     }
-  ],
-  "default": "OFF"
-},
-     {
-        "type": "color",
-        "id": "overlay",
-        "label": "Select Background Overlay",
-        "default": "#000000"
-      },
-      {
-        "type": "image_picker",
-        "id": "sectionImage",
-        "label": "Select Background Image"
-   
-      }
-  
   ],
   "presets": [
     {
       "name": {
-       
-        "en": "Homepage About Us V2"
-      
+        "en": "Luxury About Us Section"
       },
       "category": {
-       
-        "en": "Homepage"
-       
+        "en": "About Us"
       }
     }
   ]

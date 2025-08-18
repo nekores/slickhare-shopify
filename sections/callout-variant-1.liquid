@@ -1,51 +1,54 @@
 {% if section.blocks.size > 0 %}
 
-<section class="offer-img-txt">
+<section class="luxury-callout-section">
    {% for block in section.blocks %}
-  {%- if block.settings.image != blank-%}
-
-  <div class="banner_img">
-    <img src="{{block.settings.image |img_url: 'medium'}}">
-  </div>
-  {%- endif -%}
-   {%- if block.settings.heading != blank-%}
-    <div class="container">
-  <div class="head_content">
-    <h2 class="head">{{block.settings.heading}}</h2>
-    <div class="head_h2">
-    <h3>{{block.settings.discription}}</h3>
+  <div class="luxury-callout-container">
+    {%- if block.settings.image != blank-%}
+    <div class="luxury-image-wrapper">
+      <img src="{{block.settings.image |img_url: 'master'}}" alt="{{ block.settings.heading }}" class="luxury-image">
     </div>
-  </div>
-  </div>
-  {%- endif -%}
-  <div class="buy-button">
-
-		<div class="offer-btn">
-        <a href="{{ block.settings.button_link }}"
-          class="btn">
-          {{- block.settings.button_label | escape -}}
+    {%- endif -%}
+    
+    <div class="luxury-content-wrapper">
+      {%- if block.settings.heading != blank-%}
+      <div class="luxury-heading">
+        <h2 class="luxury-title">{{block.settings.heading}}</h2>
+      </div>
+      {%- endif -%}
+      
+      {%- if block.settings.discription != blank-%}
+      <div class="luxury-description">
+        <p class="luxury-text">{{block.settings.discription}}</p>
+      </div>
+      {%- endif -%}
+      
+      {%- if block.settings.button_label != blank-%}
+      <div class="luxury-button-wrapper">
+        <a href="{{ block.settings.button_link }}" class="luxury-button">
+          <span class="button-text">{{- block.settings.button_label | escape -}}</span>
+          <svg class="button-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </a>
       </div>
-     
+      {%- endif -%}
+    </div>
   </div>
   {% endfor %}
-  
 </section>
 
- {%- endif -%}
-
-
+{%- endif -%}
 
 {% schema %}
   {
-    "name": "Callout Variant 2",
-    "class":"callout_variant_1_section",
+    "name": "Luxury Callout Section",
+    "class":"luxury_callout_section",
     "settings": [],
 	"max_blocks": 5,
   "blocks": [
 	{
 	  "type": "image",
-      "name": "Image slide",
+      "name": "Luxury Callout",
       "settings": [
 	{
       "type": "image_picker",
@@ -60,25 +63,25 @@
 	{
       "type": "text",
       "id": "discription",
-      "label": "Discription"
+      "label": "Description"
     },
 	{
       "type": "text",
       "id": "button_label",
-      "label": "button_labal"
+      "label": "Button Label"
     },
 	{
       "type": "url",
       "id": "button_link",
-      "label": "button_link"
+      "label": "Button Link"
     }
 	]
   	}],
 
 "presets": [
     {
-      "category": "Image",
-      "name": "Callout Variant 2",
+      "category": "Content",
+      "name": "Luxury Callout Section",
       "settings": {}
     }
   ]
@@ -86,70 +89,243 @@
 {% endschema %}
 
 <style>
-  
-  .callout_variant_1_section .head_content {
-    margin: 1rem;
-    padding: 1rem;
-    margin-bottom:0;
-    margin-top:0;
+.luxury-callout-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
 }
 
- .callout_variant_1_section .head_h2 h3 {
-    font-size: 21px;
-    font-weight: 700;
-    color: #000;
-    text-align: center;
-    line-height: normal;
-    padding: 0 !important;
+.luxury-callout-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  pointer-events: none;
 }
- 
-  .callout_variant_1_section .offer-img-txt {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: #fff;
-    padding: 4rem;
+
+.luxury-callout-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  position: relative;
+  z-index: 2;
 }
-  .callout_variant_1_section .offer-btn a.btn {
-    text-transform: unset;
+
+.luxury-image-wrapper {
+  flex: 0 0 45%;
+  position: relative;
+  box-shadow: none;
 }
-  @media only screen and (max-width: 750px){
-  .callout_variant_1_section h2.head {
-    font-size: 1.8rem;
+
+.luxury-image {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-  .callout_variant_1_section .head_h2 h3 {
-    font-size: 1rem;
-    padding: 0;
+
+.luxury-image:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.15);
 }
-    .callout_variant_1_section .head{
-        font-size: 20px !important;
-        line-height: normal !important;
-        margin-bottom:5px !important;
-    }
-    .callout_variant_1_section .head_h2 h3{
-      font-size:14px;
-      line-height:normal;
-    }
-  
- .callout_variant_1_section .offer-btn a.btn {
-    padding: 0.9rem 1.8rem;
+
+.luxury-content-wrapper {
+  flex: 1;
+  text-align: left;
 }
-    .callout_variant_1_section .offer-img-txt {
-    padding: 2rem 0;
+
+.luxury-heading {
+  margin-bottom: 24px;
 }
-    .callout_variant_1_section .banner_img img{
-      max-width:75%;
-      margin:0px auto;
-    }
-    .callout_variant_1_section .banner_img{
-      display:flex;
-      justify-content:center;
-    }
-    .callout_variant_1_section .head_content{
-      margin-top:0;
-      margin-left:0;
-      margin-right:0;
-    }
+
+.luxury-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  line-height: 1.1;
+  margin: 0;
+  background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+}
+
+.luxury-description {
+  margin-bottom: 40px;
+}
+
+.luxury-text {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #6c757d;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 500px;
+}
+
+.luxury-button-wrapper {
+  display: inline-block;
+}
+
+.luxury-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+  color: #ffffff;
+  padding: 18px 36px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.luxury-button:hover::before {
+  left: 100%;
+}
+
+.luxury-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+}
+
+.button-arrow {
+  transition: transform 0.3s ease;
+}
+
+.luxury-button:hover .button-arrow {
+  transform: translateX(4px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .luxury-callout-container {
+    gap: 40px;
   }
+  
+  .luxury-title {
+    font-size: 3rem;
+  }
+  
+  .luxury-text {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .luxury-callout-section {
+    padding: 60px 0;
+  }
+  
+  .luxury-callout-container {
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+  }
+  
+  .luxury-image-wrapper {
+    flex: none;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .luxury-content-wrapper {
+    text-align: center;
+  }
+  
+  .luxury-title {
+    font-size: 2.5rem;
+  }
+  
+  .luxury-text {
+    font-size: 1rem;
+    margin: 0 auto;
+  }
+  
+  .luxury-button {
+    padding: 16px 32px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .luxury-callout-section {
+    padding: 40px 0;
+  }
+  
+  .luxury-callout-container {
+    padding: 0 15px;
+    gap: 30px;
+  }
+  
+  .luxury-title {
+    font-size: 2rem;
+  }
+  
+  .luxury-text {
+    font-size: 0.95rem;
+  }
+  
+  .luxury-button {
+    padding: 14px 28px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Animation for page load */
+.luxury-callout-container {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover effects for image */
+.luxury-image-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.luxury-image-wrapper:hover::after {
+  opacity: 1;
+}
 </style>
