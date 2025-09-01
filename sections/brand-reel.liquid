@@ -1,0 +1,257 @@
+<style>
+.brand-reel-section {
+  background: {{ section.settings.background_color | default: '#ffffff' }};
+  padding: 60px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.brand-reel-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+}
+
+.brand-reel-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.brand-reel-title h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: {{ section.settings.title_color | default: '#1a1a1a' }};
+  margin: 0;
+  line-height: 1.2;
+}
+
+.brand-reel-slider {
+  position: relative;
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+.brand-reel-track {
+  display: flex;
+  animation: scroll {{ section.settings.scroll_speed | default: 30 }}s linear infinite;
+  width: calc(200px * {{ section.blocks.size }} * 2);
+}
+
+.brand-reel-track:hover {
+  animation-play-state: paused;
+}
+
+.brand-item {
+  flex: 0 0 200px;
+  margin: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.brand-item:hover {
+  transform: scale(1.1);
+}
+
+.brand-item img {
+  max-width: 100%;
+  max-height: 80px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: all 0.3s ease;
+}
+
+.brand-item:hover img {
+  filter: grayscale(0%);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-200px * {{ section.blocks.size }}));
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .brand-reel-section {
+    padding: 40px 0;
+  }
+  
+  .brand-reel-title h2 {
+    font-size: 2rem;
+  }
+  
+  .brand-reel-track {
+    animation-duration: {{ section.settings.scroll_speed | default: 30 | plus: 10 }}s;
+  }
+  
+  .brand-item {
+    flex: 0 0 150px;
+    margin: 0 20px;
+  }
+  
+  .brand-item img {
+    max-height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-reel-section {
+    padding: 30px 0;
+  }
+  
+  .brand-reel-title h2 {
+    font-size: 1.5rem;
+  }
+  
+  .brand-reel-track {
+    animation-duration: {{ section.settings.scroll_speed | default: 30 | plus: 15 }}s;
+  }
+  
+  .brand-item {
+    flex: 0 0 120px;
+    margin: 0 15px;
+  }
+  
+  .brand-item img {
+    max-height: 50px;
+  }
+}
+
+/* Pause animation on reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .brand-reel-track {
+    animation: none;
+  }
+  
+  .brand-reel-track:hover {
+    animation-play-state: running;
+  }
+}
+</style>
+
+<div class="brand-reel-section">
+  <div class="brand-reel-container">
+    {% if section.settings.title != blank %}
+      <div class="brand-reel-title">
+        <h2>{{ section.settings.title }}</h2>
+      </div>
+    {% endif %}
+    
+    <div class="brand-reel-slider">
+      <div class="brand-reel-track">
+        {% for block in section.blocks %}
+          {% if block.settings.brand_image != blank %}
+            <div class="brand-item" {{ block.shopify_attributes }}>
+              <img 
+                src="{{ block.settings.brand_image | img_url: 'medium' }}" 
+                alt="{{ block.settings.brand_name | default: 'Brand' }}"
+                loading="lazy"
+              >
+            </div>
+          {% endif %}
+        {% endfor %}
+        
+        <!-- Duplicate items for seamless loop -->
+        {% for block in section.blocks %}
+          {% if block.settings.brand_image != blank %}
+            <div class="brand-item">
+              <img 
+                src="{{ block.settings.brand_image | img_url: 'medium' }}" 
+                alt="{{ block.settings.brand_name | default: 'Brand' }}"
+                loading="lazy"
+              >
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Brand Reel",
+  "class": "index-section brand-reel-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Trusted by Leading Brands"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "label": "Scroll Speed (seconds)",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "brand_image",
+          "label": "Brand Logo"
+        },
+        {
+          "type": "text",
+          "id": "brand_name",
+          "label": "Brand Name"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Brand Reel",
+      "blocks": [
+        {
+          "type": "brand"
+        },
+        {
+          "type": "brand"
+        },
+        {
+          "type": "brand"
+        },
+        {
+          "type": "brand"
+        },
+        {
+          "type": "brand"
+        },
+        {
+          "type": "brand"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
