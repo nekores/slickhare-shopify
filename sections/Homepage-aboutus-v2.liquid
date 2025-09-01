@@ -1,19 +1,61 @@
 <style>
 .luxury-about-section {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   padding: 100px 0;
   position: relative;
   overflow: hidden;
 }
 
-.luxury-about-section::before {
+/* Light Theme (Default) */
+.luxury-about-section.theme-light {
+  background: {{ section.settings.light_bg_color | default: '#ffffff' }};
+  {% if section.settings.light_bg_image != blank %}
+    background-image: url('{{ section.settings.light_bg_image | img_url: 'master' }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  {% endif %}
+}
+
+.luxury-about-section.theme-light::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  {% if section.settings.light_bg_image != blank and section.settings.light_overlay_color != blank %}
+    background: {{ section.settings.light_overlay_color }};
+    opacity: {{ section.settings.light_overlay_opacity | default: 0.5 }};
+  {% else %}
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  {% endif %}
+  pointer-events: none;
+}
+
+/* Dark Theme */
+.luxury-about-section.theme-dark {
+  background: {{ section.settings.dark_bg_color | default: '#000000' }};
+  {% if section.settings.dark_bg_image != blank %}
+    background-image: url('{{ section.settings.dark_bg_image | img_url: 'master' }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  {% endif %}
+}
+
+.luxury-about-section.theme-dark::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  {% if section.settings.dark_bg_image != blank and section.settings.dark_overlay_color != blank %}
+    background: {{ section.settings.dark_overlay_color }};
+    opacity: {{ section.settings.dark_overlay_opacity | default: 0.5 }};
+  {% else %}
+    background: linear-gradient(45deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 100%);
+  {% endif %}
   pointer-events: none;
 }
 
@@ -41,9 +83,20 @@
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.02em;
-  color: #1a1a1a;
   margin-bottom: 32px;
+}
+
+/* Light Theme Heading */
+.theme-light .luxury-about-heading {
   background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Dark Theme Heading */
+.theme-dark .luxury-about-heading {
+  background: linear-gradient(135deg, #D6B462 0%, #B8945F 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -52,17 +105,24 @@
 .luxury-about-description {
   font-size: 1.25rem;
   line-height: 1.7;
-  color: #6c757d;
   margin-bottom: 40px;
   font-weight: 400;
+}
+
+/* Light Theme Description */
+.theme-light .luxury-about-description {
+  color: #6c757d;
+}
+
+/* Dark Theme Description */
+.theme-dark .luxury-about-description {
+  color: #D6B462;
 }
 
 .luxury-about-button {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
-  color: #ffffff;
   padding: 18px 36px;
   border-radius: 50px;
   text-decoration: none;
@@ -72,6 +132,18 @@
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
   position: relative;
   overflow: hidden;
+}
+
+/* Light Theme Button */
+.theme-light .luxury-about-button {
+  background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+  color: #ffffff;
+}
+
+/* Dark Theme Button */
+.theme-dark .luxury-about-button {
+  background: linear-gradient(135deg, #D6B462 0%, #B8945F 100%);
+  color: #ffffff;
 }
 
 .luxury-about-button::before {
@@ -92,9 +164,19 @@
 .luxury-about-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+  text-decoration: none;
+}
+
+/* Light Theme Button Hover */
+.theme-light .luxury-about-button:hover {
   background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
   color: #ffffff;
-  text-decoration: none;
+}
+
+/* Dark Theme Button Hover */
+.theme-dark .luxury-about-button:hover {
+  background: linear-gradient(135deg, #B8945F 0%, #D6B462 100%);
+  color: #ffffff;
 }
 
 .luxury-about-images {
@@ -236,7 +318,7 @@
 }
 </style>
 
-<div class="luxury-about-section">
+<div class="luxury-about-section theme-{{ section.settings.theme }}">
   <div class="luxury-about-container">
     <div class="luxury-about-content">
       <div class="luxury-about-text">
@@ -284,6 +366,80 @@
   },
   "class": "index-section luxury-about-section",
   "settings": [
+    {
+      "type": "select",
+      "id": "theme",
+      "label": "Theme",
+      "options": [
+        {
+          "value": "light",
+          "label": "Light"
+        },
+        {
+          "value": "dark",
+          "label": "Dark"
+        }
+      ],
+      "default": "light"
+    },
+    {
+      "type": "color",
+      "id": "light_bg_color",
+      "label": "Light Theme Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "dark_bg_color",
+      "label": "Dark Theme Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Light Theme Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "light_bg_image",
+      "label": "Light Theme Background Image"
+    },
+    {
+      "type": "color",
+      "id": "light_overlay_color",
+      "label": "Light Theme Overlay Color"
+    },
+    {
+      "type": "range",
+      "id": "light_overlay_opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "label": "Light Theme Overlay Opacity",
+      "default": 0.5
+    },
+    {
+      "type": "header",
+      "content": "Dark Theme Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "dark_bg_image",
+      "label": "Dark Theme Background Image"
+    },
+    {
+      "type": "color",
+      "id": "dark_overlay_color",
+      "label": "Dark Theme Overlay Color"
+    },
+    {
+      "type": "range",
+      "id": "dark_overlay_opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "label": "Dark Theme Overlay Opacity",
+      "default": 0.5
+    },
     {
       "type": "text",
       "id": "sectionHeading",

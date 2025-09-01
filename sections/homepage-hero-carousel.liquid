@@ -196,23 +196,12 @@
 
 .luxury-nav-button.button-prev {
   left: 40px;
-  transform: rotate(-90deg);
   background-color: rgb(29, 29, 29);
-
-
-}
-.luxury-nav-button.button-next:hover,
-.luxury-nav-button.button-prev:hover{
-    transform: rotate(-90deg);
-
 }
 
 .luxury-nav-button.button-next {
   right: 40px;
-  transform: rotate(-90deg);
   background-color: rgb(29, 29, 29);
-
-
 }
 
 .luxury-nav-button {
@@ -234,23 +223,16 @@
   transform: scale(1.1);
 }
 
-.luxury-nav-button img {
-  width: 20px;
-  height: 20px;
-  filter: brightness(0) invert(1);
-  transition: transform 0.3s ease;
+.luxury-nav-button svg {
+  width: 24px;
+  height: 24px;
+  color: #ffffff;
+  transition: all 0.3s ease;
 }
 
-.luxury-nav-button.button-next img {
-  transform: rotate(180deg);
-}
-
-.luxury-nav-button:hover img {
+.luxury-nav-button:hover svg {
   transform: scale(1.2);
-}
-
-.luxury-nav-button.button-next:hover img {
-  transform: rotate(180deg) scale(1.2);
+  color: #ffffff;
 }
 
 /* Swiper container */
@@ -336,9 +318,9 @@
     height: 45px;
   }
   
-  .luxury-nav-button img {
-    width: 18px;
-    height: 18px;
+  .luxury-nav-button svg {
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -368,9 +350,9 @@
     height: 40px;
   }
   
-  .luxury-nav-button img {
-    width: 16px;
-    height: 16px;
+  .luxury-nav-button svg {
+    width: 18px;
+    height: 18px;
   }
 }
 
@@ -435,14 +417,20 @@
       {% endfor %}
     </div>
     
-    <div class="luxury-hero-navigation">
-      <div class="luxury-nav-button button-prev">
-        <img src="https://curly.qodeinteractive.com/wp-content/themes/curly/assets/img/arrow-top-light.png" alt="Previous slide navigation arrow">
+    {% if section.blocks.size > 1 %}
+      <div class="luxury-hero-navigation">
+        <div class="luxury-nav-button button-prev">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="luxury-nav-button button-next">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
       </div>
-      <div class="luxury-nav-button button-next">
-        <img src="https://curly.qodeinteractive.com/wp-content/themes/curly/assets/img/arrow-top-light.png" alt="Next slide navigation arrow">
-      </div>
-    </div>
+    {% endif %}
   </div>
 </div>
 
@@ -450,23 +438,28 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  const swiper = new Swiper('.luxury-hero-carousel .swiper', {
-    direction: 'horizontal',
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-    },
-    effect: 'fade',
-    fadeEffect: {
-      crossFade: true
-    },
-    navigation: {
-      nextEl: '.button-next',
-      prevEl: '.button-prev',
-    },
-    speed: 1000,
-  });
+  const swiperContainer = document.querySelector('.luxury-hero-carousel .swiper');
+  const slideCount = swiperContainer.querySelectorAll('.swiper-slide').length;
+  
+  if (slideCount > 1) {
+    const swiper = new Swiper('.luxury-hero-carousel .swiper', {
+      direction: 'horizontal',
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true
+      },
+      navigation: {
+        nextEl: '.button-next',
+        prevEl: '.button-prev',
+      },
+      speed: 1000,
+    });
+  }
 });
 </script>
 
