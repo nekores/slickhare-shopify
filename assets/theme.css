@@ -7261,3 +7261,9 @@ span.site-nav__label{
   height:25px !important;
   width:25px !important;
   }
+
+  @media (max-width: 767px) {
+    .swiper > div:nth-child(2) {
+    display: none;
+}
+}
